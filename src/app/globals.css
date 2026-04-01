@@ -28,20 +28,28 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.05), 0 0 10px rgba(34, 197, 94, 0.08), 0 0 24px rgba(34, 197, 94, 0.04);
 }
 
-/* RTL: keep page layout direction fixed (columns, flex rows stay the same).
-   Only text within elements gets RTL text alignment.
-   We override the html dir so layout stays LTR, but set text-align on body. */
-html[dir="rtl"] {
-  direction: ltr; /* keep layout LTR */
-}
-html[dir="rtl"] body {
-  text-align: right;
+/* RTL text — use data-dir attribute (not the dir attribute, which flips flex/grid layout).
+   Only text-bearing elements get RTL direction. Flex/grid containers are unaffected. */
+[data-dir="rtl"] p,
+[data-dir="rtl"] h1,
+[data-dir="rtl"] h2,
+[data-dir="rtl"] h3,
+[data-dir="rtl"] h4,
+[data-dir="rtl"] span,
+[data-dir="rtl"] label,
+[data-dir="rtl"] li,
+[data-dir="rtl"] button,
+[data-dir="rtl"] a {
   direction: rtl;
+  text-align: right;
+  unicode-bidi: embed;
 }
-/* Inputs, selects and date pickers should always be LTR-layout */
-html[dir="rtl"] input,
-html[dir="rtl"] select,
-html[dir="rtl"] textarea {
+/* Inputs, selects, and date pickers stay LTR so they render correctly */
+[data-dir="rtl"] input,
+[data-dir="rtl"] select,
+[data-dir="rtl"] textarea,
+[data-dir="rtl"] input[type="date"],
+[data-dir="rtl"] input[type="number"] {
   direction: ltr;
   text-align: left;
 }

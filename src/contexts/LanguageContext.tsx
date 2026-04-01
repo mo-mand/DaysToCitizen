@@ -22,14 +22,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem('dtc-lang') as LanguageCode | null;
     if (saved && saved in languages) {
       setLangState(saved);
-      document.documentElement.dir = languages[saved].dir;
+      // Use data-dir instead of dir attribute — the dir attribute flips flex/grid layout
+      document.documentElement.setAttribute('data-dir', languages[saved].dir);
     }
   }, []);
 
   function setLang(code: LanguageCode) {
     setLangState(code);
     localStorage.setItem('dtc-lang', code);
-    document.documentElement.dir = languages[code].dir;
+    document.documentElement.setAttribute('data-dir', languages[code].dir);
   }
 
   return (
