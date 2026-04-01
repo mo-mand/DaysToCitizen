@@ -41,6 +41,8 @@ const fr: Translations = {
   tripNotesPlaceholder: 'ex. vacances, voyage d\'affaires…',
   addTrip: 'Ajouter le voyage',
   adding: 'Ajout…',
+  immigrationStatusLabel: "Statut d'immigration",
+  errorEndDateRequired: 'La date de fin est requise, ou cochez "Je suis actuellement au Canada".',
 
   timeRemaining: 'Temps restant',
   eligible: 'Vous êtes admissible !',

@@ -37,6 +37,8 @@ const vi: Translations = {
   tripNotesPlaceholder: 'VD: Đến Canada với tư cách PR, giấy phép lao động…',
   addTrip: 'Thêm thời gian lưu trú',
   adding: 'Đang thêm…',
+  immigrationStatusLabel: 'Trạng thái di trú',
+  errorEndDateRequired: 'Ngày kết thúc bắt buộc hoặc chọn "Hiện đang ở Canada".',
   timeRemaining: 'Thời gian còn lại',
   eligible: 'Bạn đủ điều kiện nộp đơn!',
   estimatedEligibility: 'Ngày đủ điều kiện dự kiến:',

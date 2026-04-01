@@ -37,6 +37,8 @@ const tl: Translations = {
   tripNotesPlaceholder: 'Hal.: Dumating bilang PR, work permit…',
   addTrip: 'Idagdag ang pananatili',
   adding: 'Idinaragdag…',
+  immigrationStatusLabel: 'Status sa imigrasyon',
+  errorEndDateRequired: 'Kailangan ang end date, o lagyan ng tsek ang "Kasalukuyan sa Canada".',
   timeRemaining: 'Natitirang Oras',
   eligible: 'Karapat-dapat ka nang mag-apply!',
   estimatedEligibility: 'Tinatantiyang petsa ng pagiging karapat-dapat:',

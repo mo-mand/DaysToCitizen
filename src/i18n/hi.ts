@@ -37,6 +37,8 @@ const hi: Translations = {
   tripNotesPlaceholder: 'जैसे: PR के रूप में आया, वर्क परमिट…',
   addTrip: 'प्रवास जोड़ें',
   adding: 'जोड़ा जा रहा है…',
+  immigrationStatusLabel: 'आव्रजन स्थिति',
+  errorEndDateRequired: 'समाप्ति तिथि आवश्यक है, या "वर्तमान में कनाडा में हूं" चेक करें।',
   timeRemaining: 'शेष समय',
   eligible: 'आप पात्र हैं!',
   estimatedEligibility: 'अनुमानित पात्रता तिथि:',

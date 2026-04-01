@@ -37,6 +37,8 @@ const ja: Translations = {
   tripNotesPlaceholder: '例：PRとして入国、就労許可…',
   addTrip: '滞在を追加',
   adding: '追加中…',
+  immigrationStatusLabel: '移民ステータス',
+  errorEndDateRequired: '終了日を入力するか、「現在カナダにいる」をチェックしてください。',
   timeRemaining: '残り時間',
   eligible: '申請資格があります！',
   estimatedEligibility: '資格取得予定日：',

@@ -37,6 +37,8 @@ const uk: Translations = {
   tripNotesPlaceholder: 'Напр.: прибув як PR, робоча віза…',
   addTrip: 'Додати перебування',
   adding: 'Додаємо…',
+  immigrationStatusLabel: 'Імміграційний статус',
+  errorEndDateRequired: 'Вкажіть дату закінчення або позначте «Зараз у Канаді».',
   timeRemaining: 'Залишилось',
   eligible: 'Ви можете подати заявку!',
   estimatedEligibility: 'Орієнтовна дата:',

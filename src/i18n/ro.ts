@@ -37,6 +37,8 @@ const ro: Translations = {
   tripNotesPlaceholder: 'Ex.: a sosit ca PR, permis de muncă…',
   addTrip: 'Adăugați șederea',
   adding: 'Se adaugă…',
+  immigrationStatusLabel: 'Statut de imigrare',
+  errorEndDateRequired: 'Data de sfârșit este necesară sau bifați "Sunt în Canada acum".',
   timeRemaining: 'Timp rămas',
   eligible: 'Ești eligibil să aplici!',
   estimatedEligibility: 'Data estimată de eligibilitate:',

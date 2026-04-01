@@ -37,6 +37,8 @@ const ko: Translations = {
   tripNotesPlaceholder: '예: PR로 입국, 취업 허가…',
   addTrip: '체류 추가',
   adding: '추가 중…',
+  immigrationStatusLabel: '이민 상태',
+  errorEndDateRequired: '종료 날짜가 필요하거나 "현재 캐나다에 있습니다"를 선택하세요.',
   timeRemaining: '남은 시간',
   eligible: '신청 자격이 됩니다!',
   estimatedEligibility: '예상 자격 취득일:',

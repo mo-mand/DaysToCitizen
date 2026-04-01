@@ -37,6 +37,8 @@ const gu: Translations = {
   tripNotesPlaceholder: 'દા.ત.: PR તરીકે આવ્યો, વર્ક પરમિટ…',
   addTrip: 'રોકાણ ઉમેરો',
   adding: 'ઉમેરાઈ રહ્યું છે…',
+  immigrationStatusLabel: 'ઇમિગ્રેશન સ્થિતિ',
+  errorEndDateRequired: 'સમાપ્તિ તારીખ જરૂરી છે, અથવા "હાલ કેનેડામાં છું" ચેક કરો.',
   timeRemaining: 'બાકી સમય',
   eligible: 'તમે અરજી માટે પાત્ર છો!',
   estimatedEligibility: 'અંદાજિત પાત્રતા તારીખ:',

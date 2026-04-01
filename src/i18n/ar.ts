@@ -37,6 +37,8 @@ const ar: Translations = {
   tripNotesPlaceholder: 'مثلاً: وصلت كمقيم دائم، تصريح عمل...',
   addTrip: 'إضافة إقامة',
   adding: 'جارٍ الإضافة…',
+  immigrationStatusLabel: 'حالة الهجرة',
+  errorEndDateRequired: 'تاريخ الانتهاء مطلوب، أو حدد "أنا حاليًا في كندا".',
   timeRemaining: 'الوقت المتبقي',
   eligible: 'أنت مؤهل للتقديم!',
   estimatedEligibility: 'تاريخ الأهلية المتوقع:',

@@ -37,6 +37,8 @@ const tr: Translations = {
   tripNotesPlaceholder: 'Örn.: PR olarak girdim, çalışma izni…',
   addTrip: 'Konaklama ekle',
   adding: 'Ekleniyor…',
+  immigrationStatusLabel: 'Göçmenlik durumu',
+  errorEndDateRequired: "Bitiş tarihi gerekli veya \"Şu an Kanada'dayım\" işaretleyin.",
   timeRemaining: 'Kalan Süre',
   eligible: 'Başvuru için uygunsunuz!',
   estimatedEligibility: 'Tahmini uygunluk tarihi:',

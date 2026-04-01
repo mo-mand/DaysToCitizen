@@ -37,6 +37,8 @@ const de: Translations = {
   tripNotesPlaceholder: 'z.B.: Als PR eingereist, Arbeitserlaubnis…',
   addTrip: 'Aufenthalt hinzufügen',
   adding: 'Wird hinzugefügt…',
+  immigrationStatusLabel: 'Aufenthaltsstatus',
+  errorEndDateRequired: 'Enddatum erforderlich oder „Ich bin aktuell in Kanada" ankreuzen.',
   timeRemaining: 'Verbleibende Zeit',
   eligible: 'Sie sind berechtigt zu beantragen!',
   estimatedEligibility: 'Voraussichtliches Datum:',

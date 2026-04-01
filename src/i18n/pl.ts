@@ -37,6 +37,8 @@ const pl: Translations = {
   tripNotesPlaceholder: 'Np.: przybyłem jako PR, zezwolenie na pracę…',
   addTrip: 'Dodaj pobyt',
   adding: 'Dodawanie…',
+  immigrationStatusLabel: 'Status imigracyjny',
+  errorEndDateRequired: 'Data końcowa jest wymagana lub zaznacz „Jestem teraz w Kanadzie".',
   timeRemaining: 'Pozostały czas',
   eligible: 'Możesz złożyć wniosek!',
   estimatedEligibility: 'Szacowana data kwalifikacji:',

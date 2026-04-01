@@ -37,6 +37,8 @@ const pa: Translations = {
   tripNotesPlaceholder: 'ਜਿਵੇਂ: PR ਵਜੋਂ ਆਇਆ, ਵਰਕ ਪਰਮਿਟ…',
   addTrip: 'ਠਹਿਰਾਅ ਜੋੜੋ',
   adding: 'ਜੋੜਿਆ ਜਾ ਰਿਹਾ ਹੈ…',
+  immigrationStatusLabel: 'ਇਮੀਗ੍ਰੇਸ਼ਨ ਸਥਿਤੀ',
+  errorEndDateRequired: 'ਸਮਾਪਤੀ ਮਿਤੀ ਦੀ ਲੋੜ ਹੈ, ਜਾਂ "ਹੁਣ ਕੈਨੇਡਾ ਵਿੱਚ ਹਾਂ" ਚੁਣੋ।',
   timeRemaining: 'ਬਾਕੀ ਸਮਾਂ',
   eligible: 'ਤੁਸੀਂ ਯੋਗ ਹੋ!',
   estimatedEligibility: 'ਅਨੁਮਾਨਿਤ ਯੋਗਤਾ ਮਿਤੀ:',

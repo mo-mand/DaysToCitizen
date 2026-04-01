@@ -37,6 +37,8 @@ const zh: Translations = {
   tripNotesPlaceholder: '例如：以PR身份登陆、工作许可…',
   addTrip: '添加居留',
   adding: '添加中…',
+  immigrationStatusLabel: '移民身份',
+  errorEndDateRequired: '请填写结束日期，或选中"当前在加拿大"。',
   timeRemaining: '剩余时间',
   eligible: '您已符合申请资格！',
   estimatedEligibility: '预计符合资格日期：',

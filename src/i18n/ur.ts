@@ -37,6 +37,8 @@ const ur: Translations = {
   tripNotesPlaceholder: 'مثلاً: PR کے طور پر آیا، ورک پرمٹ…',
   addTrip: 'قیام شامل کریں',
   adding: 'شامل ہو رہا ہے…',
+  immigrationStatusLabel: 'امیگریشن کی حیثیت',
+  errorEndDateRequired: 'آخری تاریخ درکار ہے، یا "ابھی کینیڈا میں ہوں" چیک کریں۔',
   timeRemaining: 'باقی وقت',
   eligible: 'آپ اہل ہیں!',
   estimatedEligibility: 'متوقع اہلیت کی تاریخ:',

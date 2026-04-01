@@ -37,6 +37,8 @@ const bn: Translations = {
   tripNotesPlaceholder: 'যেমন: PR হিসেবে এসেছি, ওয়ার্ক পারমিট…',
   addTrip: 'অবস্থান যোগ করুন',
   adding: 'যোগ করা হচ্ছে…',
+  immigrationStatusLabel: 'অভিবাসন অবস্থা',
+  errorEndDateRequired: 'শেষ তারিখ আবশ্যক, বা "এখন কানাডায় আছি" চেক করুন।',
   timeRemaining: 'বাকি সময়',
   eligible: 'আপনি যোগ্য!',
   estimatedEligibility: 'আনুমানিক যোগ্যতার তারিখ:',

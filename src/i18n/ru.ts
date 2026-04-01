@@ -37,6 +37,8 @@ const ru: Translations = {
   tripNotesPlaceholder: 'Напр.: прибыл как PR, рабочая виза…',
   addTrip: 'Добавить пребывание',
   adding: 'Добавляем…',
+  immigrationStatusLabel: 'Иммиграционный статус',
+  errorEndDateRequired: 'Укажите дату окончания или отметьте «Сейчас в Канаде».',
   timeRemaining: 'Осталось',
   eligible: 'Вы можете подавать заявку!',
   estimatedEligibility: 'Ориентировочная дата:',

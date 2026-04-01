@@ -44,6 +44,8 @@ const en = {
   tripNotesPlaceholder: 'e.g. Landed as PR, work permit…',
   addTrip: 'Add Stay',
   adding: 'Adding…',
+  immigrationStatusLabel: 'Immigration status',
+  errorEndDateRequired: 'End date is required, or check "Still in Canada".',
 
   // Countdown
   timeRemaining: 'Time Remaining',

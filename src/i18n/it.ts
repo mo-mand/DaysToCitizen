@@ -37,6 +37,8 @@ const it: Translations = {
   tripNotesPlaceholder: 'Es.: arrivato come PR, permesso di lavoro…',
   addTrip: 'Aggiungi soggiorno',
   adding: 'Aggiunta in corso…',
+  immigrationStatusLabel: 'Stato di immigrazione',
+  errorEndDateRequired: 'La data di fine è obbligatoria o spunta "Sono attualmente in Canada".',
   timeRemaining: 'Tempo rimanente',
   eligible: 'Sei idoneo a fare domanda!',
   estimatedEligibility: 'Data di idoneità stimata:',

@@ -37,6 +37,8 @@ const es: Translations = {
   tripNotesPlaceholder: 'Ej. llegué como RP, permiso de trabajo…',
   addTrip: 'Agregar estancia',
   adding: 'Agregando…',
+  immigrationStatusLabel: 'Estado migratorio',
+  errorEndDateRequired: 'La fecha de fin es requerida, o marca "Actualmente estoy en Canadá".',
   timeRemaining: 'Tiempo restante',
   eligible: '¡Eres elegible para aplicar!',
   estimatedEligibility: 'Elegibilidad estimada:',

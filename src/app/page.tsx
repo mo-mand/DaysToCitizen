@@ -10,6 +10,8 @@ import { TripCard } from '@/components/TripCard';
 import { CountdownCard } from '@/components/CountdownCard';
 import { ProgressCard } from '@/components/ProgressCard';
 import { StatsCards } from '@/components/StatsCards';
+import { ReminderBanner } from '@/components/ReminderBanner';
+import { ProhibitionsCard } from '@/components/ProhibitionsCard';
 import { Footer } from '@/components/Footer';
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -97,6 +99,7 @@ export default function Home() {
           transition={{ delay: 0.05 }}
           className="space-y-4 lg:sticky lg:top-24"
         >
+          <ReminderBanner stats={stats} />
           <CountdownCard stats={stats} />
           <ProgressCard stats={stats} />
           <StatsCards stats={stats} />
@@ -171,6 +174,14 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.25 }}
+      >
+        <ProhibitionsCard />
       </motion.div>
 
       <Footer />

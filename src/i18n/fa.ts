@@ -37,6 +37,8 @@ const fa: Translations = {
   tripNotesPlaceholder: 'مثلاً: ورود به عنوان PR، مجوز کار...',
   addTrip: 'افزودن اقامت',
   adding: 'در حال افزودن...',
+  immigrationStatusLabel: 'وضعیت مهاجرتی',
+  errorEndDateRequired: 'تاریخ پایان الزامی است، یا گزینه "در حال حاضر در کانادا هستم" را انتخاب کنید.',
   timeRemaining: 'زمان باقی‌مانده',
   eligible: 'واجد شرایط هستید!',
   estimatedEligibility: 'تاریخ تخمینی واجد شرایط شدن:',
