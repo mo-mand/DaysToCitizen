@@ -29,13 +29,6 @@ export function Footer() {
           </a>
           <span className="text-gray-300">·</span>
           <a
-            href="mailto:Mo.Mand.Ops@Gmail.com"
-            className="hover:text-gray-700 transition-colors"
-          >
-            Mo.Mand.Ops@Gmail.com
-          </a>
-          <span className="text-gray-300">·</span>
-          <a
             href="https://github.com/mo-mand/daystocitizen"
             target="_blank"
             rel="noopener noreferrer"
