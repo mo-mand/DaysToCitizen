@@ -1,0 +1,89 @@
+import { Translations } from './en';
+
+const fr: Translations = {
+  appName: 'DaysToCitizen',
+  tagline: 'Suivi de la citoyenneté canadienne',
+
+  signIn: 'Connexion',
+  signOut: 'Déconnexion',
+  myAccount: 'Mon compte',
+
+  authTitle: 'Connectez-vous pour sauvegarder vos données',
+  authSubtitle: 'Entrez votre courriel pour recevoir un code unique. Aucun mot de passe requis.',
+  emailLabel: 'Adresse courriel',
+  emailPlaceholder: 'vous@exemple.com',
+  sendCode: 'Envoyer le code',
+  sending: 'Envoi…',
+  checkEmail: 'Vérifiez votre courriel',
+  otpSentTo: 'Nous avons envoyé un code à 6 chiffres à',
+  otpDevNote: '(Mode dev : consultez la console du serveur pour le code)',
+  otpLabel: 'Code de vérification',
+  otpPlaceholder: '123456',
+  verify: 'Vérifier',
+  verifying: 'Vérification…',
+  resendCode: 'Renvoyer le code',
+  authDisclaimer: 'Vos données sont stockées en sécurité. Nous ne partageons jamais vos informations.',
+
+  journeyTitle: 'Votre parcours de citoyenneté',
+  setPrDate: 'Définissez votre date de RP pour commencer le suivi',
+  prDateLabel: 'Date de résidence permanente (RP)',
+  arrivalDateLabel: 'Première arrivée au Canada',
+  arrivalDateHint: 'Facultatif — permet le crédit pré-RP (les jours avant la RP comptent à moitié)',
+  saveAndStart: 'Enregistrer et commencer',
+  changeDates: 'Modifier les dates',
+  prDate: 'Date RP',
+
+  addTripTitle: 'Ajouter un voyage hors du Canada',
+  leftCanada: 'Quitté le Canada',
+  returnedToCanada: 'Retour au Canada',
+  stillAbroad: 'Je suis encore à l\'étranger',
+  tripNotes: 'Notes',
+  tripNotesPlaceholder: 'ex. vacances, voyage d\'affaires…',
+  addTrip: 'Ajouter le voyage',
+  adding: 'Ajout…',
+
+  timeRemaining: 'Temps restant',
+  eligible: 'Vous êtes admissible !',
+  estimatedEligibility: 'Admissibilité estimée :',
+  assumingStay: 'en supposant que vous restez au Canada',
+  year: 'an',
+  years: 'ans',
+  month: 'mois',
+  months: 'mois',
+  day: 'jour',
+  days: 'jours',
+
+  progress: 'Progression',
+  creditedDays: 'jours crédités',
+  daysNeeded: 'jours requis',
+
+  daysInCanada: 'Jours au Canada',
+  daysOutside: 'Jours à l\'étranger',
+  prDays: 'Jours RP',
+  preprCredit: 'Crédit pré-RP',
+
+  tripsTitle: 'Voyages hors du Canada',
+  noTrips: 'Aucun voyage enregistré',
+  noTripsHint: 'Ajoutez vos voyages ci-dessus pour suivre vos absences',
+  deleteTrip: 'Supprimer',
+  currentlyAbroad: 'Actuellement à l\'étranger',
+  returned: 'Retourné',
+
+  howTitle: 'Comment fonctionne la citoyenneté canadienne',
+  how1: 'Vous devez être physiquement présent au Canada pendant au moins 1 095 jours (3 ans) dans les 5 années précédant votre demande.',
+  how2: 'Les jours en tant que résident permanent comptent en totalité (1:1).',
+  how3: 'Les jours sous tout autre statut (visiteur, permis de travail, étude) comptent à moitié (1:0.5), jusqu\'à un maximum de 365 jours crédités.',
+  how4: 'Seules les 5 dernières années sont prises en compte — la fenêtre avance chaque jour.',
+  disclaimer: 'Cet outil est fourni à titre indicatif uniquement. Vérifiez toujours auprès des directives officielles d\'IRCC avant de présenter une demande.',
+
+  errorRequired: 'Ce champ est obligatoire.',
+  errorDates: 'La date de retour doit être après la date de départ.',
+  errorOtp: 'Code invalide ou expiré. Veuillez réessayer.',
+  errorGeneral: 'Une erreur s\'est produite. Veuillez réessayer.',
+
+  footerBuiltBy: 'Créé par',
+  footerOpenSource: 'Open source',
+  footerDisclaimer: 'À titre indicatif uniquement — consultez toujours IRCC.',
+};
+
+export default fr;
