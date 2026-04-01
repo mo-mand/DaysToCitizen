@@ -26,21 +26,23 @@ export function LanguageSwitcher() {
       {open && (
         <>
           <div className="fixed inset-0" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-lg border border-gray-100 py-1 z-50">
-            {(Object.entries(languages) as [LanguageCode, typeof languages[LanguageCode]][]).map(([code, info]) => (
-              <button
-                key={code}
-                onClick={() => { setLang(code); setOpen(false); }}
-                className={`w-full flex items-center gap-2 px-4 py-2.5 text-sm transition-colors ${
-                  lang === code
-                    ? 'text-red-600 bg-red-50 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <span>{info.flag}</span>
-                <span>{info.label}</span>
-              </button>
-            ))}
+          <div className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-gray-100 z-50 overflow-hidden">
+            <div className="max-h-72 overflow-y-auto py-1">
+              {(Object.entries(languages) as [LanguageCode, typeof languages[LanguageCode]][]).map(([code, info]) => (
+                <button
+                  key={code}
+                  onClick={() => { setLang(code); setOpen(false); }}
+                  className={`w-full flex items-center gap-2.5 px-4 py-2 text-sm transition-colors ${
+                    lang === code
+                      ? 'text-red-600 bg-red-50 font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <span className="text-base leading-none">{info.flag}</span>
+                  <span>{info.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </>
       )}

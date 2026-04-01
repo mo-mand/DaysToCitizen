@@ -14,16 +14,15 @@ export function ProgressCard({ stats }: Props) {
   const pct = stats.percentComplete;
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 card-neon">
       <div className="flex items-center justify-between mb-3">
         <span className="text-sm font-semibold text-gray-800">{t.progress}</span>
         <span className="text-sm font-bold text-red-600">{pct}%</span>
       </div>
 
-      {/* Progress bar */}
       <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
         <div
-          className="h-full bg-red-600 rounded-full transition-all duration-700 ease-out"
+          className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-700 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>

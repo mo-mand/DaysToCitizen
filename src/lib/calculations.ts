@@ -4,98 +4,93 @@ import {
   subYears,
   addDays,
   format,
-  isBefore,
   isAfter,
   max as dateMax,
   min as dateMin,
 } from 'date-fns';
-import { Absence, UserProfile, CitizenshipStats } from './types';
+import { Stay, CitizenshipStats } from './types';
 
 const REQUIRED_DAYS = 1095;
 const WINDOW_YEARS = 5;
-const MAX_PREPR_CREDITED = 365;
+const MAX_OTHER_CREDITED = 365;
 
-// Sum the days of absence that overlap with [from, to)
-function absenceDaysInRange(absences: Absence[], from: Date, to: Date, today: Date): number {
+// ── Interval helpers ──────────────────────────────────────────────────────────
+
+interface Interval { start: Date; end: Date }
+
+/** Count distinct calendar days covered by a set of (possibly overlapping) intervals. */
+function countDistinctDays(intervals: Interval[]): number {
+  if (intervals.length === 0) return 0;
+  const sorted = [...intervals].sort((a, b) => a.start.getTime() - b.start.getTime());
   let total = 0;
-  for (const abs of absences) {
-    const dept = parseISO(abs.departureDate);
-    const ret = abs.returnDate ? parseISO(abs.returnDate) : today;
-    const overlapStart = dateMax([dept, from]);
-    const overlapEnd = dateMin([ret, to]);
-    if (isAfter(overlapEnd, overlapStart)) {
-      total += differenceInDays(overlapEnd, overlapStart);
+  let curStart = sorted[0].start;
+  let curEnd = sorted[0].end;
+  for (let i = 1; i < sorted.length; i++) {
+    const { start, end } = sorted[i];
+    if (!isAfter(start, curEnd)) {
+      if (isAfter(end, curEnd)) curEnd = end;
+    } else {
+      total += differenceInDays(curEnd, curStart);
+      curStart = start;
+      curEnd = end;
     }
   }
+  total += differenceInDays(curEnd, curStart);
   return total;
 }
 
-export function calculateStats(
-  absences: Absence[],
-  profile: UserProfile,
-): CitizenshipStats {
+// ── Main calculator ───────────────────────────────────────────────────────────
+
+export function calculateStats(stays: Stay[]): CitizenshipStats {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-
   const windowStart = subYears(today, WINDOW_YEARS);
 
-  const prDate = profile.prDate ? parseISO(profile.prDate) : null;
-  const arrivalDate = profile.arrivalDate ? parseISO(profile.arrivalDate) : null;
+  const allIntervals: Interval[] = [];
+  const prIntervals: Interval[] = [];
 
-  // ── Post-PR days (count 1:1) ────────────────────────────────────────────────
-  let prDays = 0;
-  if (prDate && !isAfter(prDate, today)) {
-    const postPrStart = isAfter(prDate, windowStart) ? prDate : windowStart;
-    const totalPostPr = differenceInDays(today, postPrStart);
-    const absentPostPr = absenceDaysInRange(absences, postPrStart, today, today);
-    prDays = Math.max(0, totalPostPr - absentPostPr);
+  for (const stay of stays) {
+    const entry = parseISO(stay.entryDate);
+    const exit = stay.exitDate ? parseISO(stay.exitDate) : today;
+
+    // Clamp to the 5-year window
+    const start = dateMax([entry, windowStart]);
+    const end = dateMin([exit, today]);
+    if (!isAfter(end, start)) continue;
+
+    allIntervals.push({ start, end });
+    if (stay.status === 'permanent-resident') prIntervals.push({ start, end });
   }
 
-  // ── Pre-PR days (count 1:0.5, cap at 365 credited) ─────────────────────────
-  let preprDaysRaw = 0;
-  let preprCredited = 0;
-  if (arrivalDate && prDate && isBefore(arrivalDate, prDate)) {
-    const preprStart = isAfter(arrivalDate, windowStart) ? arrivalDate : windowStart;
-    const preprEnd = prDate; // PR date marks the boundary
-    if (isAfter(preprEnd, preprStart)) {
-      const totalPrepr = differenceInDays(preprEnd, preprStart);
-      const absentPrepr = absenceDaysInRange(absences, preprStart, preprEnd, today);
-      preprDaysRaw = Math.max(0, totalPrepr - absentPrepr);
-      preprCredited = Math.min(Math.floor(preprDaysRaw / 2), MAX_PREPR_CREDITED);
-    }
-  }
+  // Distinct total physical days (overlaps collapsed)
+  const physicalDays = countDistinctDays(allIntervals);
+  // Distinct PR days (overlaps collapsed)
+  const prDays = countDistinctDays(prIntervals);
+  // Other days = total physical minus PR (PR takes precedence on overlapping days)
+  const otherDaysRaw = Math.max(0, physicalDays - prDays);
 
-  const creditedDays = prDays + preprCredited;
+  const otherDaysCredited = Math.min(Math.floor(otherDaysRaw / 2), MAX_OTHER_CREDITED);
+  const creditedDays = prDays + otherDaysCredited;
   const daysRemaining = Math.max(0, REQUIRED_DAYS - creditedDays);
   const percentComplete = Math.min(100, Math.round((creditedDays / REQUIRED_DAYS) * 100));
-  const physicalDays = prDays + preprDaysRaw;
+  const currentlyInCanada = stays.some((s) => s.exitDate === null);
 
-  // Total absence days across all recorded absences
-  const absenceDays = absences.reduce((sum, abs) => {
-    const dept = parseISO(abs.departureDate);
-    const ret = abs.returnDate ? parseISO(abs.returnDate) : today;
-    return sum + Math.max(0, differenceInDays(ret, dept));
-  }, 0);
-
-  // Eligibility date: today + daysRemaining (assuming continuous presence)
   const eligibilityDate =
     daysRemaining === 0
       ? format(today, 'MMMM d, yyyy')
       : format(addDays(today, daysRemaining), 'MMMM d, yyyy');
 
-  const currentlyOutside = absences.some((a) => a.returnDate === null);
-
   return {
     creditedDays,
-    prDays,
-    preprCredited,
     physicalDays,
-    absenceDays,
+    prDays,
+    otherDaysRaw,
+    otherDaysCredited,
     daysRemaining,
     percentComplete,
     isEligible: creditedDays >= REQUIRED_DAYS,
     eligibilityDate,
-    currentlyOutside,
+    currentlyInCanada,
     windowStart: format(windowStart, 'MMM d, yyyy'),
   };
 }
@@ -107,8 +102,8 @@ export function daysToYMD(days: number): { years: number; months: number; days: 
   return { years, months, days: remaining };
 }
 
-export function absenceDuration(abs: Absence): number {
-  const dept = parseISO(abs.departureDate);
-  const ret = abs.returnDate ? parseISO(abs.returnDate) : new Date();
-  return Math.max(0, differenceInDays(ret, dept));
+export function stayDuration(stay: Stay): number {
+  const entry = parseISO(stay.entryDate);
+  const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
+  return Math.max(0, differenceInDays(exit, entry));
 }

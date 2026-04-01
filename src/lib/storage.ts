@@ -1,9 +1,8 @@
 'use client';
 
-import { Absence, UserProfile } from './types';
+import { Stay } from './types';
 
-const ABSENCE_KEY = 'dtc-absences-v1';
-const PROFILE_KEY = 'dtc-profile-v1';
+const STAYS_KEY = 'dtc-stays-v2';
 const CREATED_KEY = 'dtc-created-at';
 const THREE_MONTHS_MS = 90 * 24 * 60 * 60 * 1000;
 
@@ -20,64 +19,42 @@ function touchCreated(): void {
 }
 
 function clearAll(): void {
-  localStorage.removeItem(ABSENCE_KEY);
-  localStorage.removeItem(PROFILE_KEY);
+  localStorage.removeItem(STAYS_KEY);
   localStorage.removeItem(CREATED_KEY);
 }
 
-// ── Absences ─────────────────────────────────────────────────────────────────
-
-export function getAbsences(): Absence[] {
+export function getStays(): Stay[] {
   if (typeof window === 'undefined') return [];
   if (isExpired()) { clearAll(); return []; }
   try {
-    const raw = localStorage.getItem(ABSENCE_KEY);
-    return raw ? (JSON.parse(raw) as Absence[]) : [];
+    const raw = localStorage.getItem(STAYS_KEY);
+    return raw ? (JSON.parse(raw) as Stay[]) : [];
   } catch {
     return [];
   }
 }
 
-export function saveAbsences(absences: Absence[]): void {
+export function saveStays(stays: Stay[]): void {
   if (typeof window === 'undefined') return;
   touchCreated();
-  localStorage.setItem(ABSENCE_KEY, JSON.stringify(absences));
+  localStorage.setItem(STAYS_KEY, JSON.stringify(stays));
 }
 
-export function addAbsence(absence: Absence): Absence[] {
-  const list = [...getAbsences(), absence].sort(
-    (a, b) => new Date(b.departureDate).getTime() - new Date(a.departureDate).getTime(),
+export function addStay(stay: Stay): Stay[] {
+  const list = [...getStays(), stay].sort(
+    (a, b) => new Date(b.entryDate).getTime() - new Date(a.entryDate).getTime(),
   );
-  saveAbsences(list);
+  saveStays(list);
   return list;
 }
 
-export function deleteAbsence(id: string): Absence[] {
-  const list = getAbsences().filter((a) => a.id !== id);
-  saveAbsences(list);
+export function deleteStay(id: string): Stay[] {
+  const list = getStays().filter((s) => s.id !== id);
+  saveStays(list);
   return list;
 }
 
-// ── Profile ──────────────────────────────────────────────────────────────────
-
-export function getProfile(): UserProfile {
-  if (typeof window === 'undefined') return { prDate: null, arrivalDate: null };
-  if (isExpired()) { clearAll(); return { prDate: null, arrivalDate: null }; }
-  try {
-    const raw = localStorage.getItem(PROFILE_KEY);
-    return raw ? (JSON.parse(raw) as UserProfile) : { prDate: null, arrivalDate: null };
-  } catch {
-    return { prDate: null, arrivalDate: null };
-  }
-}
-
-export function saveProfile(profile: UserProfile): void {
-  if (typeof window === 'undefined') return;
-  touchCreated();
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
-}
-
-export function clearLocalData(): void {
+export function clearStays(): void {
   if (typeof window === 'undefined') return;
   clearAll();
 }

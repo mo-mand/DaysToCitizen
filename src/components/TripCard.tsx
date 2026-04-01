@@ -2,69 +2,79 @@
 
 import { motion } from 'motion/react';
 import { format, parseISO, differenceInDays } from 'date-fns';
-import { Plane, Trash2, MapPin } from 'lucide-react';
-import { Absence } from '@/lib/types';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Trash2, Calendar } from 'lucide-react';
+import { Stay } from '@/lib/types';
 
 interface Props {
-  absence: Absence;
+  stay: Stay;
   index: number;
   onDelete: (id: string) => void;
 }
 
-export function TripCard({ absence, index, onDelete }: Props) {
-  const { t } = useLanguage();
-
-  const dept = parseISO(absence.departureDate);
-  const ret = absence.returnDate ? parseISO(absence.returnDate) : new Date();
-  const totalDays = Math.max(0, differenceInDays(ret, dept));
-  const isOngoing = !absence.returnDate;
+export function TripCard({ stay, index, onDelete }: Props) {
+  const entry = parseISO(stay.entryDate);
+  const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
+  const totalDays = Math.max(0, differenceInDays(exit, entry));
+  const isOngoing = !stay.exitDate;
+  const isPR = stay.status === 'permanent-resident';
+  const creditedDays = isPR ? totalDays : Math.floor(totalDays / 2);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, x: -10 }}
-      transition={{ delay: index * 0.04 }}
-      className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-start gap-3"
+      exit={{ opacity: 0, height: 0, marginBottom: 0, transition: { duration: 0.18 } }}
+      transition={{ duration: 0.2 }}
+      className="bg-white rounded-xl border border-gray-100 shadow-sm p-3.5 flex items-start gap-3"
     >
-      <div className={`mt-0.5 p-2 rounded-lg flex-shrink-0 ${isOngoing ? 'bg-orange-50' : 'bg-gray-50'}`}>
-        {isOngoing ? (
-          <MapPin className="w-4 h-4 text-orange-500" />
-        ) : (
-          <Plane className="w-4 h-4 text-gray-400" />
-        )}
-      </div>
-
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-gray-900">
-            {format(dept, 'MMM d, yyyy')}
+        {/* Dates row */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <Calendar className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
+          <span className="text-sm font-medium text-gray-800">
+            {format(entry, 'MMM d, yyyy')}
           </span>
           <span className="text-gray-300 text-xs">→</span>
-          <span className={`text-sm font-medium ${isOngoing ? 'text-orange-600' : 'text-gray-700'}`}>
-            {absence.returnDate
-              ? format(parseISO(absence.returnDate), 'MMM d, yyyy')
-              : t.currentlyAbroad}
+          <span className={`text-sm font-medium ${isOngoing ? 'text-red-600' : 'text-gray-700'}`}>
+            {stay.exitDate ? format(parseISO(stay.exitDate), 'MMM d, yyyy') : 'Present'}
           </span>
+          {isOngoing && (
+            <span className="inline-flex items-center gap-1 text-xs text-red-600 font-medium">
+              <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+              Now
+            </span>
+          )}
         </div>
 
-        <div className="flex items-center gap-3 mt-1 flex-wrap">
-          <span className="text-xs text-gray-400">
-            {totalDays} {totalDays === 1 ? t.day : t.days}
+        {/* Tags row */}
+        <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+          <span
+            className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ${
+              isPR
+                ? 'bg-green-100 text-green-800'
+                : 'bg-blue-100 text-blue-800'
+            }`}
+          >
+            {isPR ? 'PR' : 'Visitor / Work / Other'}
           </span>
-          {absence.notes && (
-            <span className="text-xs text-gray-400 truncate">· {absence.notes}</span>
+          <span className="text-xs text-gray-400">
+            {totalDays} physical {totalDays === 1 ? 'day' : 'days'}
+          </span>
+          <span className="text-xs font-semibold text-red-600">
+            = {creditedDays} credited
+          </span>
+          {stay.notes && (
+            <span className="text-xs text-gray-400 italic truncate max-w-[140px]">· {stay.notes}</span>
           )}
         </div>
       </div>
 
       <button
-        onClick={() => onDelete(absence.id)}
-        className="text-gray-300 hover:text-red-500 transition-colors p-1 flex-shrink-0"
-        aria-label={t.deleteTrip}
+        onClick={() => onDelete(stay.id)}
+        className="text-gray-300 hover:text-red-500 transition-colors p-1 flex-shrink-0 mt-0.5"
+        aria-label="Delete stay"
       >
-        <Trash2 className="w-4 h-4" />
+        <Trash2 className="w-3.5 h-3.5" />
       </button>
     </motion.div>
   );

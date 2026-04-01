@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { saveOtp } from '@/lib/db';
-import { generateOtp, otpExpiresAt } from '@/lib/auth';
-import { sendOtpEmail } from '@/lib/email';
+import { upsertUser } from '@/lib/db';
+import { signToken, COOKIE_NAME, COOKIE_MAX_AGE } from '@/lib/auth';
 
+// Email-only login — no OTP, no verification.
+// Submitting an email instantly creates or retrieves the account.
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   const email: unknown = body?.email;
@@ -11,12 +12,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Valid email is required.' }, { status: 400 });
   }
 
-  const normalized = email.trim().toLowerCase();
-  const code = generateOtp();
-  const expires = otpExpiresAt();
+  const user = upsertUser(email.trim().toLowerCase());
+  const token = await signToken(user.id);
 
-  saveOtp(normalized, code, expires);
-  await sendOtpEmail(normalized, code);
-
-  return NextResponse.json({ ok: true });
+  const res = NextResponse.json({ email: user.email });
+  res.cookies.set(COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: COOKIE_MAX_AGE,
+    path: '/',
+  });
+  return res;
 }

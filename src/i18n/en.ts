@@ -36,13 +36,13 @@ const en = {
   prDate: 'PR Date',
 
   // Trip form
-  addTripTitle: 'Add Trip Outside Canada',
-  leftCanada: 'Left Canada',
-  returnedToCanada: 'Returned to Canada',
-  stillAbroad: 'I\'m still outside Canada',
+  addTripTitle: 'Add a Stay in Canada',
+  leftCanada: 'Start Date in Canada',
+  returnedToCanada: 'End Date in Canada',
+  stillAbroad: 'I\'m currently in Canada',
   tripNotes: 'Notes',
-  tripNotesPlaceholder: 'e.g. vacation, work trip…',
-  addTrip: 'Add Trip',
+  tripNotesPlaceholder: 'e.g. Landed as PR, work permit…',
+  addTrip: 'Add Stay',
   adding: 'Adding…',
 
   // Countdown
@@ -66,15 +66,15 @@ const en = {
   daysInCanada: 'Days in Canada',
   daysOutside: 'Days Outside',
   prDays: 'PR Days',
-  preprCredit: 'Pre-PR Credit',
+  preprCredit: 'Other Status',
 
   // Trip list
-  tripsTitle: 'Trips Outside Canada',
-  noTrips: 'No trips recorded yet',
-  noTripsHint: 'Add your trips above to track your absences',
+  tripsTitle: 'Stays in Canada',
+  noTrips: 'No stays recorded yet',
+  noTripsHint: 'Add your first stay above',
   deleteTrip: 'Delete',
-  currentlyAbroad: 'Currently abroad',
-  returned: 'Returned',
+  currentlyAbroad: 'Currently in Canada',
+  returned: 'Left Canada',
 
   // How it works
   howTitle: 'How Canadian Citizenship Works',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
+import { LeafBackground } from '@/components/LeafBackground';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -25,8 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased bg-gray-50 min-h-screen">
         <AuthProvider>
           <LanguageProvider>
-            <Navbar />
-            {children}
+            <LeafBackground />
+            <div className="relative z-10">
+              <Navbar />
+              {children}
+            </div>
           </LanguageProvider>
         </AuthProvider>
       </body>

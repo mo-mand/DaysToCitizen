@@ -1,20 +1,9 @@
-/**
- * File-based JSON database for DaysToCitizen.
- * Simple, portable, no native dependencies — works on any platform.
- * Data is stored in .data/db.json (gitignored).
- *
- * For high-traffic production use, swap this module for a proper database
- * (PostgreSQL via Prisma, Turso/libSQL, etc.) without changing the API.
- */
-
 import fs from 'fs';
 import path from 'path';
-import { Absence, UserProfile } from './types';
+import { Stay } from './types';
 
 const DB_DIR = path.join(process.cwd(), '.data');
 const DB_PATH = path.join(DB_DIR, 'db.json');
-
-// ── Schema ────────────────────────────────────────────────────────────────────
 
 interface DBUser {
   id: string;
@@ -22,38 +11,22 @@ interface DBUser {
   createdAt: string;
 }
 
-interface DBOtp {
-  email: string;
-  code: string;
-  expiresAt: string;
-}
-
-interface DBProfile {
-  userId: string;
-  prDate: string | null;
-  arrivalDate: string | null;
-}
-
-interface DBAbsence extends Absence {
+interface DBStay extends Stay {
   userId: string;
   createdAt: string;
 }
 
 interface DB {
   users: DBUser[];
-  otps: DBOtp[];
-  profiles: DBProfile[];
-  absences: DBAbsence[];
+  stays: DBStay[];
 }
-
-// ── IO ────────────────────────────────────────────────────────────────────────
 
 function readDB(): DB {
   try {
     const raw = fs.readFileSync(DB_PATH, 'utf-8');
     return JSON.parse(raw) as DB;
   } catch {
-    return { users: [], otps: [], profiles: [], absences: [] };
+    return { users: [], stays: [] };
   }
 }
 
@@ -82,78 +55,28 @@ export function upsertUser(email: string): DBUser {
   return user;
 }
 
-// ── OTPs ──────────────────────────────────────────────────────────────────────
+// ── Stays ─────────────────────────────────────────────────────────────────────
 
-export function saveOtp(email: string, code: string, expiresAt: Date): void {
-  const db = readDB();
-  db.otps = db.otps.filter((o) => o.email !== email); // one OTP per email
-  db.otps.push({ email, code, expiresAt: expiresAt.toISOString() });
-  writeDB(db);
-}
-
-export function verifyAndConsumeOtp(email: string, code: string): boolean {
-  const db = readDB();
-  const idx = db.otps.findIndex((o) => o.email === email);
-  if (idx === -1) return false;
-  const otp = db.otps[idx];
-  if (otp.code !== code) return false;
-  if (new Date(otp.expiresAt) < new Date()) {
-    db.otps.splice(idx, 1);
-    writeDB(db);
-    return false;
-  }
-  db.otps.splice(idx, 1);
-  writeDB(db);
-  return true;
-}
-
-// ── Profiles ──────────────────────────────────────────────────────────────────
-
-export function getProfile(userId: string): UserProfile {
-  const row = readDB().profiles.find((p) => p.userId === userId);
-  return { prDate: row?.prDate ?? null, arrivalDate: row?.arrivalDate ?? null };
-}
-
-export function upsertProfile(userId: string, profile: UserProfile): void {
-  const db = readDB();
-  const idx = db.profiles.findIndex((p) => p.userId === userId);
-  const record: DBProfile = { userId, prDate: profile.prDate ?? null, arrivalDate: profile.arrivalDate ?? null };
-  if (idx === -1) db.profiles.push(record);
-  else db.profiles[idx] = record;
-  writeDB(db);
-}
-
-// ── Absences ──────────────────────────────────────────────────────────────────
-
-export function getAbsences(userId: string): Absence[] {
+export function getStays(userId: string): Stay[] {
   return readDB()
-    .absences.filter((a) => a.userId === userId)
-    .sort((a, b) => new Date(b.departureDate).getTime() - new Date(a.departureDate).getTime())
-    .map(({ userId: _uid, createdAt: _ca, ...abs }) => abs);
+    .stays.filter((s) => s.userId === userId)
+    .sort((a, b) => new Date(b.entryDate).getTime() - new Date(a.entryDate).getTime())
+    .map(({ userId: _uid, createdAt: _ca, ...stay }) => stay);
 }
 
-export function createAbsence(userId: string, absence: Absence): Absence {
+export function createStay(userId: string, stay: Stay): Stay {
   const db = readDB();
-  const record: DBAbsence = { ...absence, userId, createdAt: new Date().toISOString() };
-  db.absences.push(record);
+  if (db.stays.some((s) => s.id === stay.id && s.userId === userId)) return stay;
+  db.stays.push({ ...stay, userId, createdAt: new Date().toISOString() });
   writeDB(db);
-  return absence;
+  return stay;
 }
 
-export function updateAbsence(userId: string, id: string, patch: Partial<Absence>): boolean {
+export function deleteStay(userId: string, id: string): boolean {
   const db = readDB();
-  const idx = db.absences.findIndex((a) => a.id === id && a.userId === userId);
+  const idx = db.stays.findIndex((s) => s.id === id && s.userId === userId);
   if (idx === -1) return false;
-  db.absences[idx] = { ...db.absences[idx], ...patch };
-  writeDB(db);
-  return true;
-}
-
-export function deleteAbsence(userId: string, id: string): boolean {
-  const db = readDB();
-  const idx = db.absences.findIndex((a) => a.id === id && a.userId === userId);
-  if (idx === -1) return false;
-  db.absences.splice(idx, 1);
+  db.stays.splice(idx, 1);
   writeDB(db);
   return true;
 }

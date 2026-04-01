@@ -19,9 +19,12 @@ export function Navbar() {
       <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <MapleLeaf className="w-7 h-7" />
-            <span className="font-bold text-lg text-gray-900">DaysToCitizen</span>
+          <div className="flex items-center gap-2.5">
+            <MapleLeaf className="w-7 h-7 flex-shrink-0" />
+            <div>
+              <span className="font-bold text-lg text-gray-900 leading-none block">DaysToCitizen</span>
+              <span className="text-xs text-gray-400 leading-none">Track your days to Canadian citizenship</span>
+            </div>
           </div>
 
           {/* Right side */}

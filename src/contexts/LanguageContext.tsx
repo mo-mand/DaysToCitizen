@@ -20,12 +20,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('dtc-lang') as LanguageCode | null;
-    if (saved && saved in languages) setLangState(saved);
+    if (saved && saved in languages) {
+      setLangState(saved);
+      document.documentElement.dir = languages[saved].dir;
+    }
   }, []);
 
   function setLang(code: LanguageCode) {
     setLangState(code);
     localStorage.setItem('dtc-lang', code);
+    document.documentElement.dir = languages[code].dir;
   }
 
   return (

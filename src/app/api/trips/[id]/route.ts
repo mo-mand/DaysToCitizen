@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken, COOKIE_NAME } from '@/lib/auth';
-import { deleteAbsence, updateAbsence } from '@/lib/db';
+import { deleteStay } from '@/lib/db';
 
 async function getUserId(req: NextRequest): Promise<string | null> {
   const token = req.cookies.get(COOKIE_NAME)?.value;
@@ -15,20 +15,7 @@ export async function DELETE(
   const { id } = await params;
   const userId = await getUserId(req);
   if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const deleted = deleteAbsence(userId, id);
+  const deleted = deleteStay(userId, id);
   if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  return NextResponse.json({ ok: true });
-}
-
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  const userId = await getUserId(req);
-  if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  const patch = await req.json().catch(() => ({}));
-  const updated = updateAbsence(userId, id, patch);
-  if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json({ ok: true });
 }
