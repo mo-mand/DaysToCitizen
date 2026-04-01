@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Settings2 } from 'lucide-react';
+import Link from 'next/link';
 
 import { TripForm } from '@/components/TripForm';
 import { TripCard } from '@/components/TripCard';
@@ -114,9 +115,18 @@ export default function Home() {
           <div className="space-y-2">
             <div className="flex items-center justify-between px-1">
               <h2 className="text-sm font-semibold text-gray-700">{t.tripsTitle}</h2>
-              <span className="text-xs text-gray-400 bg-white border border-gray-100 rounded-full px-2.5 py-0.5 shadow-sm">
-                {stays.length} {stays.length === 1 ? 'stay' : 'stays'}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-gray-400 bg-white border border-gray-100 rounded-full px-2.5 py-0.5 shadow-sm">
+                  {stays.length} {stays.length === 1 ? 'stay' : 'stays'}
+                </span>
+                <Link
+                  href="/stays"
+                  className="flex items-center gap-1 text-xs text-gray-500 hover:text-red-600 bg-white border border-gray-100 rounded-full px-2.5 py-0.5 shadow-sm transition-colors"
+                >
+                  <Settings2 className="w-3 h-3" />
+                  Manage
+                </Link>
+              </div>
             </div>
 
             {stays.length === 0 ? (

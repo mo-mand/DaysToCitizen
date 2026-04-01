@@ -71,10 +71,10 @@ export function TripCard({ stay, index, onDelete }: Props) {
 
       <button
         onClick={() => onDelete(stay.id)}
-        className="text-gray-300 hover:text-red-500 transition-colors p-1 flex-shrink-0 mt-0.5"
+        className="text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors p-2 rounded-lg flex-shrink-0 mt-0.5"
         aria-label="Delete stay"
       >
-        <Trash2 className="w-3.5 h-3.5" />
+        <Trash2 className="w-5 h-5" />
       </button>
     </motion.div>
   );

@@ -54,8 +54,8 @@ export function StatsCards({ stats }: Props) {
             <c.icon className={`w-4 h-4 ${c.color}`} />
           </div>
           <div>
-            <p className="text-xs text-gray-500">{c.label}</p>
-            <p className="text-lg font-bold text-gray-900 leading-tight">{c.value}</p>
+            <p className="text-xs font-medium text-gray-500">{c.label}</p>
+            <p className="text-xl font-bold text-gray-900 leading-tight">{c.value}</p>
             <p className="text-xs text-gray-400">{c.sub}</p>
           </div>
         </div>

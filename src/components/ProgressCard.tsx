@@ -28,12 +28,12 @@ export function ProgressCard({ stats }: Props) {
       </div>
 
       <div className="flex items-center justify-between mt-2">
-        <span className="text-xs text-gray-500">
-          <strong className="text-gray-800">{stats.creditedDays.toLocaleString()}</strong>{' '}
+        <span className="text-sm text-gray-500">
+          <strong className="text-gray-800 text-base">{stats.creditedDays.toLocaleString()}</strong>{' '}
           {t.creditedDays}
         </span>
-        <span className="text-xs text-gray-500">
-          <strong className="text-gray-800">{REQUIRED.toLocaleString()}</strong>{' '}
+        <span className="text-sm text-gray-500">
+          <strong className="text-gray-800 text-base">{REQUIRED.toLocaleString()}</strong>{' '}
           {t.daysNeeded}
         </span>
       </div>

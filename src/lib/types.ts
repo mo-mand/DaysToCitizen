@@ -17,7 +17,7 @@ export interface CitizenshipStats {
   daysRemaining: number;
   percentComplete: number;
   isEligible: boolean;
-  eligibilityDate: string | null;
+  eligibilityDate: Date | null;
   currentlyInCanada: boolean;
   windowStart: string;
 }

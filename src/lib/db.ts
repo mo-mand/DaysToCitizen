@@ -80,3 +80,13 @@ export function deleteStay(userId: string, id: string): boolean {
   writeDB(db);
   return true;
 }
+
+export function updateStay(userId: string, id: string, updates: Partial<Stay>): Stay | null {
+  const db = readDB();
+  const idx = db.stays.findIndex((s) => s.id === id && s.userId === userId);
+  if (idx === -1) return null;
+  db.stays[idx] = { ...db.stays[idx], ...updates };
+  writeDB(db);
+  const { userId: _uid, createdAt: _ca, ...stay } = db.stays[idx];
+  return stay;
+}

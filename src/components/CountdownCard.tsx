@@ -10,8 +10,16 @@ interface Props {
 }
 
 export function CountdownCard({ stats }: Props) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { years, months, days } = daysToYMD(stats.daysRemaining);
+
+  const showYears = years > 0;
+  const showMonths = months > 0;
+  const showDays = days > 0 || (!showYears && !showMonths);
+
+  const formattedDate = stats.eligibilityDate
+    ? new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric' }).format(stats.eligibilityDate)
+    : null;
 
   if (stats.isEligible) {
     return (
@@ -19,7 +27,7 @@ export function CountdownCard({ stats }: Props) {
         <CheckCircle2 className="w-14 h-14 text-green-500" />
         <div>
           <p className="text-2xl font-bold text-gray-900">{t.eligible}</p>
-          <p className="text-sm text-gray-500 mt-1">{t.estimatedEligibility} {stats.eligibilityDate}</p>
+          <p className="text-sm text-gray-500 mt-1">{t.estimatedEligibility} {formattedDate}</p>
         </div>
       </div>
     );
@@ -31,28 +39,30 @@ export function CountdownCard({ stats }: Props) {
       <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">{t.timeRemaining}</p>
 
       <div className="flex items-end justify-center gap-5">
-        {years > 0 && (
+        {showYears && (
           <div className="flex flex-col items-center">
             <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{years}</span>
             <span className="text-xs text-gray-400 mt-1">{years === 1 ? t.year : t.years}</span>
           </div>
         )}
-        {(years > 0 || months > 0) && (
+        {showMonths && (
           <div className="flex flex-col items-center">
             <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{months}</span>
             <span className="text-xs text-gray-400 mt-1">{months === 1 ? t.month : t.months}</span>
           </div>
         )}
-        <div className="flex flex-col items-center">
-          <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{days}</span>
-          <span className="text-xs text-gray-400 mt-1">{days === 1 ? t.day : t.days}</span>
-        </div>
+        {showDays && (
+          <div className="flex flex-col items-center">
+            <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{days}</span>
+            <span className="text-xs text-gray-400 mt-1">{days === 1 ? t.day : t.days}</span>
+          </div>
+        )}
       </div>
 
       <div className="text-center mt-1">
         <p className="text-sm text-gray-600">
           {t.estimatedEligibility}{' '}
-          <strong className="text-gray-900">{stats.eligibilityDate}</strong>
+          <strong className="text-gray-900">{formattedDate}</strong>
         </p>
         <p className="text-xs text-gray-400 mt-0.5">({t.assumingStay})</p>
       </div>

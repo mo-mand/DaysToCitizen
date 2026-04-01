@@ -75,10 +75,8 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
   const percentComplete = Math.min(100, Math.round((creditedDays / REQUIRED_DAYS) * 100));
   const currentlyInCanada = stays.some((s) => s.exitDate === null);
 
-  const eligibilityDate =
-    daysRemaining === 0
-      ? format(today, 'MMMM d, yyyy')
-      : format(addDays(today, daysRemaining), 'MMMM d, yyyy');
+  const eligibilityDate: Date =
+    daysRemaining === 0 ? today : addDays(today, daysRemaining);
 
   return {
     creditedDays,

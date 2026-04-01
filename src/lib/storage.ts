@@ -54,6 +54,12 @@ export function deleteStay(id: string): Stay[] {
   return list;
 }
 
+export function updateStay(id: string, updates: Partial<Stay>): Stay[] {
+  const list = getStays().map((s) => (s.id === id ? { ...s, ...updates } : s));
+  saveStays(list);
+  return list;
+}
+
 export function clearStays(): void {
   if (typeof window === 'undefined') return;
   clearAll();
