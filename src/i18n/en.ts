@@ -55,6 +55,15 @@ const en = {
   visitorOther: 'Visitor / Work / Other',
   prOption: 'Permanent Resident — Full Days',
   otherOption: 'Any Other Status (Visitor, Work, Student…) — Half Days',
+  backToDashboard: 'Back to dashboard',
+  manageStaysTitle: 'Manage Stays',
+  manageStaysSubtitle: 'Add, edit, or remove your stays in Canada.',
+  recordedStays: 'Recorded stays',
+  noStaysYet: 'No stays recorded yet',
+  saveLabel: 'Save',
+  cancelLabel: 'Cancel',
+  eligibleDaysOf: 'eligible days of',
+  visaDays: 'visa days',
 
   // Countdown
   timeRemaining: 'Time Remaining',

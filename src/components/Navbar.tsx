@@ -23,7 +23,7 @@ export function Navbar() {
             <MapleLeaf className="w-7 h-7 flex-shrink-0" />
             <div>
               <span className="font-bold text-lg text-gray-900 leading-none block">DaysToCitizen</span>
-              <span className="text-xs text-gray-400 leading-none">Track your days to Canadian citizenship</span>
+              <span className="text-xs text-gray-400 leading-none">{t.tagline}</span>
             </div>
           </div>
 
