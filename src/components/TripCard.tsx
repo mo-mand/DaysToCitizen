@@ -16,7 +16,7 @@ export function TripCard({ stay, index, onDelete }: Props) {
   const { t } = useLanguage();
   const entry = parseISO(stay.entryDate);
   const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
-  const totalDays = Math.max(0, differenceInDays(exit, entry));
+  const totalDays = Math.max(1, differenceInDays(exit, entry) + 1); // inclusive: both entry and exit day count
   const isOngoing = !stay.exitDate;
   const isPR = stay.status === 'permanent-resident';
   const creditedDays = isPR ? totalDays : Math.floor(totalDays / 2);

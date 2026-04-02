@@ -19,24 +19,30 @@ const MAX_OTHER_CREDITED = 365;
 
 interface Interval { start: Date; end: Date }
 
-/** Count distinct calendar days covered by a set of (possibly overlapping) intervals. */
+/** Count distinct calendar days covered by intervals (inclusive, handles overlaps). */
 function countDistinctDays(intervals: Interval[]): number {
   if (intervals.length === 0) return 0;
+
   const sorted = [...intervals].sort((a, b) => a.start.getTime() - b.start.getTime());
+
   let total = 0;
   let curStart = sorted[0].start;
   let curEnd = sorted[0].end;
+
   for (let i = 1; i < sorted.length; i++) {
     const { start, end } = sorted[i];
-    if (!isAfter(start, curEnd)) {
+
+    // Overlapping or touching intervals — merge
+    if (!isAfter(start, addDays(curEnd, 1))) {
       if (isAfter(end, curEnd)) curEnd = end;
     } else {
-      total += differenceInDays(curEnd, curStart);
+      total += differenceInDays(curEnd, curStart) + 1; // inclusive
       curStart = start;
       curEnd = end;
     }
   }
-  total += differenceInDays(curEnd, curStart);
+
+  total += differenceInDays(curEnd, curStart) + 1; // inclusive
   return total;
 }
 
@@ -45,6 +51,7 @@ function countDistinctDays(intervals: Interval[]): number {
 export function calculateStats(stays: Stay[]): CitizenshipStats {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+
   const windowStart = subYears(today, WINDOW_YEARS);
 
   const allIntervals: Interval[] = [];
@@ -54,26 +61,38 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
     const entry = parseISO(stay.entryDate);
     const exit = stay.exitDate ? parseISO(stay.exitDate) : today;
 
-    // Clamp to the 5-year window
     const start = dateMax([entry, windowStart]);
     const end = dateMin([exit, today]);
-    if (!isAfter(end, start)) continue;
+
+    // Allow same-day stays (inclusive)
+    if (isAfter(start, end)) continue;
 
     allIntervals.push({ start, end });
-    if (stay.status === 'permanent-resident') prIntervals.push({ start, end });
+
+    if (stay.status === 'permanent-resident') {
+      prIntervals.push({ start, end });
+    }
   }
 
-  // Distinct total physical days (overlaps collapsed)
+  // Distinct total days (overlaps automatically removed)
   const physicalDays = countDistinctDays(allIntervals);
-  // Distinct PR days (overlaps collapsed)
+
+  // Distinct PR days
   const prDays = countDistinctDays(prIntervals);
-  // Other days = total physical minus PR (PR takes precedence on overlapping days)
+
+  // Other days (non-PR)
   const otherDaysRaw = Math.max(0, physicalDays - prDays);
 
   const otherDaysCredited = Math.min(Math.floor(otherDaysRaw / 2), MAX_OTHER_CREDITED);
   const creditedDays = prDays + otherDaysCredited;
+
   const daysRemaining = Math.max(0, REQUIRED_DAYS - creditedDays);
-  const percentComplete = Math.min(100, Math.round((creditedDays / REQUIRED_DAYS) * 100));
+
+  const percentComplete = Math.min(
+    100,
+    Math.round((creditedDays / REQUIRED_DAYS) * 100)
+  );
+
   const currentlyInCanada = stays.some((s) => s.exitDate === null);
 
   const eligibilityDate: Date =
@@ -94,9 +113,11 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
   };
 }
 
+// ── Utilities ─────────────────────────────────────────────────────────────────
+
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
+  // Fixed reference date so the result never varies based on today's leap year position
+  const start = new Date(2000, 0, 1);
   const end = addDays(start, days);
   const d = intervalToDuration({ start, end });
   return {
@@ -109,5 +130,6 @@ export function daysToYMD(days: number): { years: number; months: number; days: 
 export function stayDuration(stay: Stay): number {
   const entry = parseISO(stay.entryDate);
   const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
-  return Math.max(0, differenceInDays(exit, entry));
+  if (isAfter(entry, exit)) return 0;
+  return differenceInDays(exit, entry) + 1; // inclusive — both entry and exit day count
 }
