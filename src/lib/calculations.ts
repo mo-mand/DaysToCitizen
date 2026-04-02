@@ -31,17 +31,16 @@ function countDistinctDays(intervals: Interval[]): number {
   for (let i = 1; i < sorted.length; i++) {
     const { start, end } = sorted[i];
 
-    // Overlapping or touching intervals — merge
     if (!isAfter(start, addDays(curEnd, 1))) {
       if (isAfter(end, curEnd)) curEnd = end;
     } else {
-      total += differenceInDays(curEnd, curStart) + 1; // inclusive
+      total += differenceInDays(curEnd, curStart) + 1;
       curStart = start;
       curEnd = end;
     }
   }
 
-  total += differenceInDays(curEnd, curStart) + 1; // inclusive
+  total += differenceInDays(curEnd, curStart) + 1;
   return total;
 }
 
@@ -63,7 +62,6 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
     const start = dateMax([entry, windowStart]);
     const end = dateMin([exit, today]);
 
-    // Allow same-day stays (inclusive)
     if (isAfter(start, end)) continue;
 
     allIntervals.push({ start, end });
@@ -73,13 +71,8 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
     }
   }
 
-  // Distinct total days (overlaps automatically removed)
   const physicalDays = countDistinctDays(allIntervals);
-
-  // Distinct PR days
   const prDays = countDistinctDays(prIntervals);
-
-  // Other days (non-PR)
   const otherDaysRaw = Math.max(0, physicalDays - prDays);
 
   const otherDaysCredited = Math.min(Math.floor(otherDaysRaw / 2), MAX_OTHER_CREDITED);
@@ -115,15 +108,15 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 // ── Utilities ─────────────────────────────────────────────────────────────────
 
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  // Use simple day-based math (365/year, 30/month) to match IRCC's day-counting model.
-  // intervalToDuration gives "wrong" results because leap years make 1095 days fall
-  // 1 day short of 3 calendar years — but IRCC counts days, so 1095 = exactly 3 years.
-  let years = Math.floor(days / 365);
-  const afterYears = days % 365;
-  let months = Math.floor(afterYears / 30);
-  const remainingDays = afterYears % 30;
-  // Normalize: 12 months overflow into a year (happens when afterYears is 360-364)
-  if (months >= 12) { years += 1; months = 0; }
+  // IRCC counts 1095 days as 3 years.
+  let totalDays = days;
+  
+  const years = Math.floor(totalDays / 365);
+  totalDays %= 365;
+
+  const months = Math.floor(totalDays / 30);
+  const remainingDays = totalDays % 30;
+
   return { years, months, days: remainingDays };
 }
 
@@ -131,5 +124,5 @@ export function stayDuration(stay: Stay): number {
   const entry = parseISO(stay.entryDate);
   const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
   if (isAfter(entry, exit)) return 0;
-  return differenceInDays(exit, entry) + 1; // inclusive — both entry and exit day count
+  return differenceInDays(exit, entry) + 1;
 }

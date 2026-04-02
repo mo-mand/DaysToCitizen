@@ -13,9 +13,10 @@ export function CountdownCard({ stats }: Props) {
   const { t, lang } = useLanguage();
   const { years, months, days } = daysToYMD(stats.daysRemaining);
 
-  const displayYears = years;
+  // Logic: Only show the segment if the value is greater than 0
   const showYears = years > 0;
   const showMonths = months > 0;
+  // Show days if they are > 0 OR if everything else is 0 (to avoid an empty card)
   const showDays = days > 0 || (!showYears && !showMonths);
 
   const formattedDate = stats.eligibilityDate
@@ -42,8 +43,8 @@ export function CountdownCard({ stats }: Props) {
       <div className="flex items-end justify-center gap-5">
         {showYears && (
           <div className="flex flex-col items-center">
-            <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{displayYears}</span>
-            <span className="text-xs text-gray-400 mt-1">{displayYears === 1 ? t.year : t.years}</span>
+            <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{years}</span>
+            <span className="text-xs text-gray-400 mt-1">{years === 1 ? t.year : t.years}</span>
           </div>
         )}
         {showMonths && (
