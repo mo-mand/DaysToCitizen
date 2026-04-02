@@ -2,7 +2,7 @@ import { Translations } from './en';
 
 const fa: Translations = {
   appName: 'DaysToCitizen',
-  tagline: 'ردیاب شهروندی کانادا',
+  tagline: 'روز شمار شهروندی کانادا',
   signIn: 'ورود',
   signOut: 'خروج',
   myAccount: 'حساب من',

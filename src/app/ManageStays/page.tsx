@@ -188,16 +188,17 @@ export default function ManageStaysPage() {
   }
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-8 space-y-6">
-      <Link href="/"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg transition-colors shadow-sm">
-        <ArrowLeft className="w-4 h-4" />
-        {t.backToDashboard}
-      </Link>
-
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">{t.manageStaysTitle}</h1>
-        <p className="text-sm text-gray-500 mt-1">{t.manageStaysSubtitle}</p>
+    <main className="max-w-2xl mx-auto px-4 py-6 space-y-4">
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">{t.manageStaysTitle}</h1>
+          <p className="text-sm text-gray-500 mt-0.5">{t.manageStaysSubtitle}</p>
+        </div>
+        <Link href="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 px-3 py-1.5 rounded-lg transition-colors shadow-sm flex-shrink-0">
+          <ArrowLeft className="w-4 h-4" />
+          {t.backToDashboard}
+        </Link>
       </div>
 
       <TripForm onAdd={handleAdd} />

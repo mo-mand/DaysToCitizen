@@ -32,7 +32,7 @@ export function StatsCards({ stats }: Props) {
       icon: Layers,
       label: t.preprCredit,
       value: stats.otherDaysCredited.toLocaleString(),
-      sub: `${stats.otherDaysCredited} ${t.eligibleDaysOf} ${stats.otherDaysRaw} ${t.visaDays}`,
+      sub: `${t.eligibleDaysOf} ${stats.otherDaysRaw} ${t.visaDays}`,
       color: 'text-purple-600',
       bg: 'bg-purple-50',
     },
