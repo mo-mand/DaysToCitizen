@@ -112,6 +112,6 @@ export function daysToYMD(days: number): { years: number; months: number; days: 
   const remainingAfterYears = days - years * 365;
   // Using 365/12 per month guarantees months is always 0–11, never 12
   const months = Math.floor(remainingAfterYears * 12 / 365);
-  const remainingDays = remainingAfterYears - Math.floor(months * 365 / 12);
+  const remainingDays = remainingAfterYears - Math.round(months * 365 / 12);
   return { years, months, days: remainingDays };
 }
