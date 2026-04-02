@@ -13,12 +13,10 @@ export function CountdownCard({ stats }: Props) {
   const { t, lang } = useLanguage();
   const { years, months, days } = daysToYMD(stats.daysRemaining);
 
-  // Round up: if 6 or more months remaining within the year, show years+1 only
-  const roundedUp = months >= 6;
-  const displayYears = roundedUp ? years + 1 : years;
-  const showYears = displayYears > 0;
-  const showMonths = !roundedUp && months > 0;
-  const showDays = !roundedUp && (days > 0 || (!showYears && !showMonths));
+  const displayYears = years;
+  const showYears = years > 0;
+  const showMonths = months > 0;
+  const showDays = days > 0 || (!showYears && !showMonths);
 
   const formattedDate = stats.eligibilityDate
     ? new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric' }).format(stats.eligibilityDate)
