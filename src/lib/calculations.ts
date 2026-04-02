@@ -7,7 +7,6 @@ import {
   isAfter,
   max as dateMax,
   min as dateMin,
-  intervalToDuration,
 } from 'date-fns';
 import { Stay, CitizenshipStats } from './types';
 
@@ -116,17 +115,16 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 // ── Utilities ─────────────────────────────────────────────────────────────────
 
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  // Use today as start — the eligibility date is addDays(today, daysRemaining),
-  // so intervalToDuration gives the exact calendar gap the user will experience.
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
-  const end = addDays(start, days);
-  const d = intervalToDuration({ start, end });
-  return {
-    years: d.years ?? 0,
-    months: d.months ?? 0,
-    days: d.days ?? 0,
-  };
+  // Use simple day-based math (365/year, 30/month) to match IRCC's day-counting model.
+  // intervalToDuration gives "wrong" results because leap years make 1095 days fall
+  // 1 day short of 3 calendar years — but IRCC counts days, so 1095 = exactly 3 years.
+  let years = Math.floor(days / 365);
+  const afterYears = days % 365;
+  let months = Math.floor(afterYears / 30);
+  const remainingDays = afterYears % 30;
+  // Normalize: 12 months overflow into a year (happens when afterYears is 360-364)
+  if (months >= 12) { years += 1; months = 0; }
+  return { years, months, days: remainingDays };
 }
 
 export function stayDuration(stay: Stay): number {
