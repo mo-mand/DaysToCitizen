@@ -94,9 +94,14 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 }
 
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  const years = Math.floor(days / 365);
-  const months = Math.floor((days % 365) / 30);
+  let years = Math.floor(days / 365);
+  let months = Math.floor((days % 365) / 30);
   const remaining = (days % 365) % 30;
+  // months can reach 12 when remainder is 360-364 — roll into a year
+  if (months >= 12) {
+    years += 1;
+    months = 0;
+  }
   return { years, months, days: remaining };
 }
 
