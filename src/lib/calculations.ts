@@ -7,6 +7,7 @@ import {
   isAfter,
   max as dateMax,
   min as dateMin,
+  intervalToDuration,
 } from 'date-fns';
 import { Stay, CitizenshipStats } from './types';
 
@@ -94,15 +95,15 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 }
 
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  let years = Math.floor(days / 365);
-  let months = Math.floor((days % 365) / 30);
-  const remaining = (days % 365) % 30;
-  // months can reach 12 when remainder is 360-364 — roll into a year
-  if (months >= 12) {
-    years += 1;
-    months = 0;
-  }
-  return { years, months, days: remaining };
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+  const end = addDays(start, days);
+  const d = intervalToDuration({ start, end });
+  return {
+    years: d.years ?? 0,
+    months: d.months ?? 0,
+    days: d.days ?? 0,
+  };
 }
 
 export function stayDuration(stay: Stay): number {
