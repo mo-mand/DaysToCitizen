@@ -96,7 +96,7 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
   const years = Math.floor(days / 365);
   const months = Math.floor((days % 365) / 30);
-  const remaining = days % 30;
+  const remaining = (days % 365) % 30;
   return { years, months, days: remaining };
 }
 

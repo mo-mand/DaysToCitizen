@@ -89,7 +89,7 @@ export default function Home() {
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-6">
 
       {/* Two-column layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_2.7fr] gap-10 items-start">
 
         {/* Left — Summary */}
         <motion.div

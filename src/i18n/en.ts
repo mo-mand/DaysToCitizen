@@ -46,6 +46,15 @@ const en = {
   adding: 'Adding…',
   immigrationStatusLabel: 'Immigration status',
   errorEndDateRequired: 'End date is required, or check "Still in Canada".',
+  physicalDaysLabel: 'physical days',
+  fullCredit: 'full credit',
+  otherCreditedOf: 'of',
+  rawDaysLabel: 'raw',
+  stillNeeded: 'Still needed',
+  presentLabel: 'Present',
+  visitorOther: 'Visitor / Work / Other',
+  prOption: 'Permanent Resident — Full Days',
+  otherOption: 'Any Other Status (Visitor, Work, Student…) — Half Days',
 
   // Countdown
   timeRemaining: 'Time Remaining',

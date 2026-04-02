@@ -106,8 +106,8 @@ export function TripForm({ onAdd }: Props) {
             onChange={(e) => setStatus(e.target.value as ResidencyStatus)}
             className="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
-            <option value="permanent-resident">Permanent Resident — Full Days</option>
-            <option value="other">Any Other Status (Visitor, Work, Student…) — Half Days</option>
+            <option value="permanent-resident">{t.prOption}</option>
+            <option value="other">{t.otherOption}</option>
           </select>
         </div>
 

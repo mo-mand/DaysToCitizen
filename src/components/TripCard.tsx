@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { format, parseISO, differenceInDays } from 'date-fns';
 import { Trash2, Calendar } from 'lucide-react';
 import { Stay } from '@/lib/types';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Props {
   stay: Stay;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export function TripCard({ stay, index, onDelete }: Props) {
+  const { t } = useLanguage();
   const entry = parseISO(stay.entryDate);
   const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
   const totalDays = Math.max(0, differenceInDays(exit, entry));
@@ -36,7 +38,7 @@ export function TripCard({ stay, index, onDelete }: Props) {
           </span>
           <span className="text-gray-300 text-xs">→</span>
           <span className={`text-sm font-medium ${isOngoing ? 'text-red-600' : 'text-gray-700'}`}>
-            {stay.exitDate ? format(parseISO(stay.exitDate), 'MMM d, yyyy') : 'Present'}
+            {stay.exitDate ? format(parseISO(stay.exitDate), 'MMM d, yyyy') : t.presentLabel}
           </span>
           {isOngoing && (
             <span className="inline-flex items-center gap-1 text-xs text-red-600 font-medium">
@@ -55,13 +57,13 @@ export function TripCard({ stay, index, onDelete }: Props) {
                 : 'bg-blue-100 text-blue-800'
             }`}
           >
-            {isPR ? 'PR' : 'Visitor / Work / Other'}
+            {isPR ? 'PR' : t.visitorOther}
           </span>
           <span className="text-xs text-gray-400">
-            {totalDays} physical {totalDays === 1 ? 'day' : 'days'}
+            {totalDays} {t.physicalDaysLabel}
           </span>
           <span className="text-xs font-semibold text-red-600">
-            = {creditedDays} credited
+            = {creditedDays} {t.creditedDays}
           </span>
           {stay.notes && (
             <span className="text-xs text-gray-400 italic truncate max-w-[140px]">· {stay.notes}</span>
