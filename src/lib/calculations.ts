@@ -116,8 +116,10 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 // ── Utilities ─────────────────────────────────────────────────────────────────
 
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  // Fixed reference date so the result never varies based on today's leap year position
-  const start = new Date(2000, 0, 1);
+  // Use today as start — the eligibility date is addDays(today, daysRemaining),
+  // so intervalToDuration gives the exact calendar gap the user will experience.
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
   const end = addDays(start, days);
   const d = intervalToDuration({ start, end });
   return {
