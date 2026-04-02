@@ -108,22 +108,10 @@ export function calculateStats(stays: Stay[]): CitizenshipStats {
 // ── Utilities ─────────────────────────────────────────────────────────────────
 
 export function daysToYMD(days: number): { years: number; months: number; days: number } {
-  // IRCC counts 1095 days as 3 years.
-  let totalDays = days;
-  
-  let years = Math.floor(totalDays / 365);
-  let remainingAfterYears = totalDays % 365;
-
-  let months = Math.floor(remainingAfterYears / 30);
-  let finalDays = remainingAfterYears % 30;
-
-  // Fix the "12 months" bug: 
-  // If remaining days were 360-364, the math above results in 12 months.
-  // We need to roll those 12 months into an extra year.
-  if (months >= 12) {
-    years += 1;
-    months = 0;
-  }
-
-  return { years, months, days: finalDays };
+  const years = Math.floor(days / 365);
+  const remainingAfterYears = days - years * 365;
+  // Using 365/12 per month guarantees months is always 0–11, never 12
+  const months = Math.floor(remainingAfterYears * 12 / 365);
+  const remainingDays = remainingAfterYears - Math.floor(months * 365 / 12);
+  return { years, months, days: remainingDays };
 }
