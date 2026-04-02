@@ -29,7 +29,7 @@ export function TripForm({ onAdd }: Props) {
     if (!stillInCanada && exitDate < entryDate) { setError(t.errorDates); return; }
 
     const stay: Stay = {
-      id: (crypto.randomUUID ?? (() => `${Date.now()}-${Math.random().toString(36).slice(2)}`))(),
+      id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`,
       entryDate,
       exitDate: stillInCanada ? null : exitDate,
       status,
