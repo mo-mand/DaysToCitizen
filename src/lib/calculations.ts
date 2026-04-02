@@ -111,18 +111,19 @@ export function daysToYMD(days: number): { years: number; months: number; days: 
   // IRCC counts 1095 days as 3 years.
   let totalDays = days;
   
-  const years = Math.floor(totalDays / 365);
-  totalDays %= 365;
+  let years = Math.floor(totalDays / 365);
+  let remainingAfterYears = totalDays % 365;
 
-  const months = Math.floor(totalDays / 30);
-  const remainingDays = totalDays % 30;
+  let months = Math.floor(remainingAfterYears / 30);
+  let finalDays = remainingAfterYears % 30;
 
-  return { years, months, days: remainingDays };
-}
+  // Fix the "12 months" bug: 
+  // If remaining days were 360-364, the math above results in 12 months.
+  // We need to roll those 12 months into an extra year.
+  if (months >= 12) {
+    years += 1;
+    months = 0;
+  }
 
-export function stayDuration(stay: Stay): number {
-  const entry = parseISO(stay.entryDate);
-  const exit = stay.exitDate ? parseISO(stay.exitDate) : new Date();
-  if (isAfter(entry, exit)) return 0;
-  return differenceInDays(exit, entry) + 1;
+  return { years, months, days: finalDays };
 }
