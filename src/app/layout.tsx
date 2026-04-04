@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   description:
     'Track your physical presence in Canada and count down to citizenship eligibility. Free, open-source, and private.',
   keywords: ['Canadian citizenship', 'IRCC', 'permanent resident', 'citizenship tracker', 'days in Canada'],
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
