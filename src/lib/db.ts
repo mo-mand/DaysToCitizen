@@ -16,17 +16,26 @@ interface DBStay extends Stay {
   createdAt: string;
 }
 
+interface DBOtp {
+  email: string;
+  code: string;
+  expiresAt: string;
+}
+
 interface DB {
   users: DBUser[];
   stays: DBStay[];
+  otps: DBOtp[];
 }
 
 function readDB(): DB {
   try {
     const raw = fs.readFileSync(DB_PATH, 'utf-8');
-    return JSON.parse(raw) as DB;
+    const db = JSON.parse(raw) as DB;
+    if (!db.otps) db.otps = [];
+    return db;
   } catch {
-    return { users: [], stays: [] };
+    return { users: [], stays: [], otps: [] };
   }
 }
 
@@ -89,4 +98,30 @@ export function updateStay(userId: string, id: string, updates: Partial<Stay>): 
   writeDB(db);
   const { userId: _uid, createdAt: _ca, ...stay } = db.stays[idx];
   return stay;
+}
+
+// ── OTPs ──────────────────────────────────────────────────────────────────────
+
+export function saveOtp(email: string, code: string, expiresAt: Date): void {
+  const db = readDB();
+  // Remove any existing OTP for this email
+  db.otps = db.otps.filter((o) => o.email !== email);
+  db.otps.push({ email, code, expiresAt: expiresAt.toISOString() });
+  writeDB(db);
+}
+
+export function verifyAndConsumeOtp(email: string, code: string): boolean {
+  const db = readDB();
+  const idx = db.otps.findIndex((o) => o.email === email);
+  if (idx === -1) return false;
+  const otp = db.otps[idx];
+  if (otp.code !== code) return false;
+  if (new Date() > new Date(otp.expiresAt)) {
+    db.otps.splice(idx, 1);
+    writeDB(db);
+    return false;
+  }
+  db.otps.splice(idx, 1);
+  writeDB(db);
+  return true;
 }
