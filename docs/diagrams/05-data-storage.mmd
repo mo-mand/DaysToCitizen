@@ -1,0 +1,19 @@
+flowchart LR
+    subgraph Anonymous ["👤 Anonymous User"]
+        LS["🗄️ localStorage\nStays stored in browser\nLost if cache cleared\nNo account needed"]
+    end
+
+    subgraph Migration ["🔄 Sign-in Migration"]
+        OTP["✉️ OTP Verified\nLocal stays batch-uploaded\nlocalStorage cleared"]
+    end
+
+    subgraph Authenticated ["🔐 Authenticated User"]
+        DB[("💾 db.json\nusers[]\nstays[]\notps[]")]
+        JWT["🎟️ JWT Cookie\nhttpOnly · secure\n90 day session"]
+        API["🚀 API Routes\nGET /api/trips\nPOST /api/trips\nDELETE /api/trips/:id\nPATCH /api/trips/:id"]
+    end
+
+    LS -->|"on sign-in"| OTP
+    OTP -->|"migrate"| DB
+    JWT -->|"authenticates"| API
+    API <-->|"read/write"| DB

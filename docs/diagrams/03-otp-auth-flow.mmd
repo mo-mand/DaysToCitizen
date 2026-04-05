@@ -1,0 +1,25 @@
+sequenceDiagram
+    actor User as 👤 User
+    participant Browser as 🌐 Browser
+    participant API as 🚀 Next.js API
+    participant DB as 💾 db.json
+    participant Resend as 📧 Resend
+
+    User->>Browser: Enter email address
+    Browser->>API: POST /api/auth/send-otp {email}
+    API->>API: generateOtp() → 6-digit code
+    API->>API: otpExpiresAt() → +10 min
+    API->>DB: saveOtp(email, code, expiry)
+    API->>Resend: sendOtpEmail(email, code)
+    Resend-->>User: Email with 6-digit code
+    API-->>Browser: {sent: true}
+    Browser->>User: Show code input screen
+
+    User->>Browser: Enter 6-digit code
+    Browser->>API: POST /api/auth/verify-otp {email, code}
+    API->>DB: verifyAndConsumeOtp(email, code)
+    DB-->>API: valid ✓ (code deleted)
+    API->>DB: upsertUser(email)
+    API->>API: signToken(userId) → JWT
+    API-->>Browser: Set httpOnly cookie + {email}
+    Browser->>User: Logged in ✓

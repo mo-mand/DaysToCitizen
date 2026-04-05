@@ -1,0 +1,13 @@
+graph LR
+    Internet(["🌐 Internet\n:80 / :443"])
+    Nginx["⚡ Nginx\n① Terminate TLS\n② HTTP→HTTPS redirect\n③ Proxy to :3000"]
+    Certbot["🔒 Let's Encrypt\nAuto-renews every 90d"]
+    PM2["🔄 PM2\nAuto-restart on crash\nStarts on boot"]
+    NextJS["🚀 Next.js Server\nnode server.js\nport 3000"]
+    DB[("💾 Disk\n.data/db.json\nusers + stays + otps")]
+
+    Internet -->|"HTTPS :443"| Nginx
+    Certbot -.->|"certificate"| Nginx
+    Nginx -->|"localhost:3000"| PM2
+    PM2 --> NextJS
+    NextJS -->|"fs read/write"| DB

@@ -1,0 +1,21 @@
+graph TD
+    LangFiles["📁 23 Language Files\nen.ts · fr.ts · fa.ts · ar.ts · zh.ts\nhi.ts · pa.ts · ur.ts · ko.ts · +14 more"]
+    Context["⚛️ LanguageContext\n{ t, lang, setLang }\nsets data-dir on html element"]
+    Hook["🪝 useLanguage() hook\nconsumed by every component"]
+
+    Navbar["Navbar\nt.appName · t.tagline"]
+    Countdown["CountdownCard\nt.daysNeeded · t.daysRemaining"]
+    Stats["StatsCards\nt.eligibleDaysOf · t.visaDays"]
+    Manage["ManageStays\nt.backToDashboard · t.saveLabel"]
+    Form["TripForm\nt.entryDate · t.exitDate"]
+
+    RTL["🔤 RTL Support\ndata-dir=rtl\nCSS: text elements only\nlayout unchanged"]
+
+    LangFiles --> Context
+    Context --> Hook
+    Hook --> Navbar
+    Hook --> Countdown
+    Hook --> Stats
+    Hook --> Manage
+    Hook --> Form
+    Context --> RTL

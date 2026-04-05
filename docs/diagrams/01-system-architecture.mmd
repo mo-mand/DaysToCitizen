@@ -1,0 +1,26 @@
+graph LR
+    User(["🌐 Browser\nReact + localStorage"])
+    DNS["🌍 Namecheap DNS\nA Record → 3.146.98.97"]
+    Nginx["⚡ Nginx\nReverse Proxy\nSSL Termination"]
+    Certbot["🔒 Let's Encrypt\nCertbot Auto-renew"]
+    PM2["🔄 PM2\nProcess Manager"]
+    NextJS["🚀 Next.js 15\nApp Router\nAPI Routes"]
+    DB[("💾 db.json\nusers + stays\n+ otps")]
+    Resend["📧 Resend API\nOTP Email Delivery"]
+
+    User -->|"HTTPS :443"| Nginx
+    DNS -.->|"resolves to"| Nginx
+    Certbot -.->|"TLS cert"| Nginx
+    Nginx -->|":3000 proxy"| PM2
+    PM2 --> NextJS
+    NextJS -->|"read/write"| DB
+    NextJS -->|"send OTP"| Resend
+    Resend -->|"email"| User
+
+    subgraph AWS EC2 t3.micro - Ubuntu 24
+        Nginx
+        Certbot
+        PM2
+        NextJS
+        DB
+    end
