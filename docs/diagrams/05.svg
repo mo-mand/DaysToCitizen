@@ -1,1 +1,134 @@
-<svg id="my-svg" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart" style="max-width: 995.062px; background-color: transparent;" viewBox="0 0 995.0625 472.35491943359375" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#my-svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#my-svg .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#my-svg .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#my-svg .error-icon{fill:#552222;}#my-svg .error-text{fill:#552222;stroke:#552222;}#my-svg .edge-thickness-normal{stroke-width:1px;}#my-svg .edge-thickness-thick{stroke-width:3.5px;}#my-svg .edge-pattern-solid{stroke-dasharray:0;}#my-svg .edge-thickness-invisible{stroke-width:0;fill:none;}#my-svg .edge-pattern-dashed{stroke-dasharray:3;}#my-svg .edge-pattern-dotted{stroke-dasharray:2;}#my-svg .marker{fill:#333333;stroke:#333333;}#my-svg .marker.cross{stroke:#333333;}#my-svg svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#my-svg p{margin:0;}#my-svg .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#my-svg .cluster-label text{fill:#333;}#my-svg .cluster-label span{color:#333;}#my-svg .cluster-label span p{background-color:transparent;}#my-svg .label text,#my-svg span{fill:#333;color:#333;}#my-svg .node rect,#my-svg .node circle,#my-svg .node ellipse,#my-svg .node polygon,#my-svg .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#my-svg .rough-node .label text,#my-svg .node .label text,#my-svg .image-shape .label,#my-svg .icon-shape .label{text-anchor:middle;}#my-svg .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#my-svg .rough-node .label,#my-svg .node .label,#my-svg .image-shape .label,#my-svg .icon-shape .label{text-align:center;}#my-svg .node.clickable{cursor:pointer;}#my-svg .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#my-svg .arrowheadPath{fill:#333333;}#my-svg .edgePath .path{stroke:#333333;stroke-width:2.0px;}#my-svg .flowchart-link{stroke:#333333;fill:none;}#my-svg .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#my-svg .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#my-svg .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#my-svg .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#my-svg .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#my-svg .cluster text{fill:#333;}#my-svg .cluster span{color:#333;}#my-svg div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#my-svg .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#my-svg rect.text{fill:none;stroke-width:0;}#my-svg .icon-shape,#my-svg .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#my-svg .icon-shape p,#my-svg .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#my-svg .icon-shape .label rect,#my-svg .image-shape .label rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#my-svg .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#my-svg .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#my-svg :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><marker id="my-svg_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"/></marker><g class="root"><g class="clusters"><g class="cluster" id="Authenticated" data-look="classic"><rect style="" x="8" y="224" width="979.0625" height="240.35490798950195"/><g class="cluster-label" transform="translate(415.2890625, 224)"><foreignObject width="164.484375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>🔐 Authenticated User</p></span></div></foreignObject></g></g><g class="cluster" id="Migration" data-look="classic"><rect style="" x="433.375" y="20" width="305.09375" height="172"/><g class="cluster-label" transform="translate(512.609375, 20)"><foreignObject width="146.625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>🔄 Sign-in Migration</p></span></div></foreignObject></g></g><g class="cluster" id="Anonymous" data-look="classic"><rect style="" x="8" y="8" width="276.890625" height="196"/><g class="cluster-label" transform="translate(74.9375, 8)"><foreignObject width="143.015625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>👤 Anonymous User</p></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M259.891,106L264.057,106C268.224,106,276.557,106,293.098,106C309.638,106,334.385,106,359.133,106C383.88,106,408.628,106,424.501,106C440.375,106,447.375,106,450.875,106L454.375,106" id="L_LS_OTP_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_LS_OTP_0" data-points="W3sieCI6MjU5Ljg5MDYyNSwieSI6MTA2fSx7IngiOjI4NC44OTA2MjUsInkiOjEwNn0seyJ4IjozNTkuMTMyODEyNSwieSI6MTA2fSx7IngiOjQzMy4zNzUsInkiOjEwNn0seyJ4Ijo0NTguMzc1LCJ5IjoxMDZ9XQ==" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M713.469,106L717.635,106C721.802,106,730.135,106,745.004,137.226C759.872,168.452,781.276,230.903,802.05,265.643C822.824,300.382,842.969,307.41,853.041,310.923L863.114,314.437" id="L_OTP_DB_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_OTP_DB_0" data-points="W3sieCI6NzEzLjQ2ODc1LCJ5IjoxMDZ9LHsieCI6NzM4LjQ2ODc1LCJ5IjoxMDZ9LHsieCI6ODAyLjY3OTY4NzUsInkiOjI5My4zNTQ5MDc5ODk1MDE5NX0seyJ4Ijo4NjYuODkwNjI1LCJ5IjozMTUuNzU0Njk4MzQ1ODk2MX1d" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M238.852,354.355L246.525,354.355C254.198,354.355,269.544,354.355,289.591,354.355C309.638,354.355,334.385,354.355,359.133,354.355C383.88,354.355,408.628,354.355,427.704,354.355C446.781,354.355,460.188,354.355,466.891,354.355L473.594,354.355" id="L_JWT_API_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_JWT_API_0" data-points="W3sieCI6MjM4Ljg1MTU2MjUsInkiOjM1NC4zNTQ5MDc5ODk1MDE5NX0seyJ4IjoyODQuODkwNjI1LCJ5IjozNTQuMzU0OTA3OTg5NTAxOTV9LHsieCI6MzU5LjEzMjgxMjUsInkiOjM1NC4zNTQ5MDc5ODk1MDE5NX0seyJ4Ijo0MzMuMzc1LCJ5IjozNTQuMzU0OTA3OTg5NTAxOTV9LHsieCI6NDc3LjU5Mzc1LCJ5IjozNTQuMzU0OTA3OTg5NTAxOTV9XQ==" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M698.25,354.355L704.953,354.355C711.656,354.355,725.063,354.355,742.467,354.355C759.872,354.355,781.276,354.355,802.026,352.378C822.775,350.4,842.87,346.446,852.918,344.469L862.966,342.491" id="L_API_DB_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_API_DB_0" data-points="W3sieCI6Njk0LjI1LCJ5IjozNTQuMzU0OTA3OTg5NTAxOTV9LHsieCI6NzM4LjQ2ODc1LCJ5IjozNTQuMzU0OTA3OTg5NTAxOTV9LHsieCI6ODAyLjY3OTY4NzUsInkiOjM1NC4zNTQ5MDc5ODk1MDE5NX0seyJ4Ijo4NjYuODkwNjI1LCJ5IjozNDEuNzE5MTI4ODE0MTAwMTV9XQ==" marker-start="url(#my-svg_flowchart-v2-pointStart)" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(359.1328125, 106)"><g class="label" data-id="L_LS_OTP_0" transform="translate(-34.5703125, -12)"><foreignObject width="69.140625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>on sign-in</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(777.54571, 220.01889)"><g class="label" data-id="L_OTP_DB_0" transform="translate(-27.7890625, -12)"><foreignObject width="55.578125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>migrate</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(359.1328125, 354.35490798950195)"><g class="label" data-id="L_JWT_API_0" transform="translate(-49.2421875, -12)"><foreignObject width="98.484375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>authenticates</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(802.6796875, 354.35490798950195)"><g class="label" data-id="L_API_DB_0" transform="translate(-39.2109375, -12)"><foreignObject width="78.421875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>read/write</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="flowchart-LS-0" transform="translate(146.4453125, 106)"><rect class="basic label-container" style="" x="-113.4453125" y="-63" width="226.890625" height="126"/><g class="label" style="" transform="translate(-83.4453125, -48)"><rect/><foreignObject width="166.890625" height="96"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>🗄️ localStorage<br />Stays stored in browser<br />Lost if cache cleared<br />No account needed</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-OTP-1" transform="translate(585.921875, 106)"><rect class="basic label-container" style="" x="-127.546875" y="-51" width="255.09375" height="102"/><g class="label" style="" transform="translate(-97.546875, -36)"><rect/><foreignObject width="195.09375" height="72"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>✉️ OTP Verified<br />Local stays batch-uploaded<br />localStorage cleared</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-DB-2" transform="translate(914.4765625, 332.35490798950195)"><path d="M0,10.806543183592364 a47.5859375,10.806543183592364 0,0,0 95.171875,0 a47.5859375,10.806543183592364 0,0,0 -95.171875,0 l0,121.80654318359237 a47.5859375,10.806543183592364 0,0,0 95.171875,0 l0,-121.80654318359237" class="basic label-container" style="" transform="translate(-47.5859375, -71.70981477538855)"/><g class="label" style="" transform="translate(-40.0859375, -38)"><rect/><foreignObject width="80.171875" height="96"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>💾 db.json<br />users[]<br />stays[]<br />otps[]</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-JWT-3" transform="translate(146.4453125, 354.35490798950195)"><rect class="basic label-container" style="" x="-92.40625" y="-51" width="184.8125" height="102"/><g class="label" style="" transform="translate(-62.40625, -36)"><rect/><foreignObject width="124.8125" height="72"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>🎟️ JWT Cookie<br />httpOnly · secure<br />90 day session</p></span></div></foreignObject></g></g><g class="node default" id="flowchart-API-4" transform="translate(585.921875, 354.35490798950195)"><rect class="basic label-container" style="" x="-108.328125" y="-75" width="216.65625" height="150"/><g class="label" style="" transform="translate(-78.328125, -60)"><rect/><foreignObject width="156.65625" height="120"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel"><p>🚀 API Routes<br />GET /api/trips<br />POST /api/trips<br />DELETE /api/trips/:id<br />PATCH /api/trips/:id</p></span></div></foreignObject></g></g></g></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="orange5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </linearGradient>
+    <linearGradient id="green5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="amber5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="blue5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="purple5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <filter id="shadow5">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="panelshadow5">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arr-green5" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10B981"/>
+    </marker>
+    <marker id="arr-amber5" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F59E0B"/>
+    </marker>
+    <marker id="arr-blue5" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="420" fill="url(#bg5)" rx="16"/>
+
+  <!-- Grid lines -->
+  <g stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="70" x2="820" y2="70"/>
+    <line x1="0" y1="210" x2="820" y2="210"/>
+    <line x1="0" y1="350" x2="820" y2="350"/>
+    <line x1="205" y1="0" x2="205" y2="420"/>
+    <line x1="410" y1="0" x2="410" y2="420"/>
+    <line x1="615" y1="0" x2="615" y2="420"/>
+  </g>
+
+  <!-- Title -->
+  <text x="410" y="36" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#F1F5F9" text-anchor="middle">Data Storage Architecture</text>
+  <text x="410" y="56" font-family="system-ui,sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">Local-first design &#8212; full functionality before sign-up &#8212; seamless migration</text>
+
+  <!-- Anonymous panel -->
+  <rect x="24" y="82" width="240" height="280" rx="14" fill="#1E293B" stroke="#F97316" stroke-width="2" stroke-opacity="0.7" filter="url(#panelshadow5)"/>
+  <rect x="24" y="82" width="240" height="38" rx="14" fill="url(#orange5)" opacity="0.9"/>
+  <rect x="24" y="102" width="240" height="18" rx="0" fill="url(#orange5)" opacity="0.9"/>
+  <text x="144" y="107" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">Anonymous User</text>
+
+  <!-- localStorage box -->
+  <rect x="44" y="134" width="200" height="104" rx="10" fill="#0F172A" stroke="#F97316" stroke-width="1" stroke-opacity="0.4" filter="url(#shadow5)"/>
+  <text x="144" y="156" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#FB923C" text-anchor="middle">localStorage</text>
+  <text x="144" y="174" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">Stays stored in browser</text>
+  <text x="144" y="190" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">No account needed</text>
+  <text x="144" y="206" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Lost if cache cleared</text>
+  <text x="144" y="220" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Zero login friction</text>
+
+  <!-- Full features badge -->
+  <rect x="54" y="252" width="180" height="30" rx="8" fill="#F97316" fill-opacity="0.15" stroke="#F97316" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="144" y="272" font-family="system-ui,sans-serif" font-size="10" fill="#FB923C" text-anchor="middle">Full features &#8212; no sign-in required</text>
+
+  <!-- Anonymous panel bottom label -->
+  <text x="144" y="340" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Anonymous session</text>
+
+  <!-- Migration arrow (center) -->
+  <rect x="280" y="175" width="120" height="62" rx="10" fill="#1E293B" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.7" filter="url(#shadow5)"/>
+  <text x="340" y="196" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#FDE68A" text-anchor="middle">Sign-in</text>
+  <text x="340" y="212" font-family="system-ui,sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">OTP verified</text>
+  <text x="340" y="226" font-family="system-ui,sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">batch migration</text>
+
+  <!-- Arrow: localStorage -> migration -->
+  <line x1="264" y1="200" x2="278" y2="200" stroke="#F59E0B" stroke-width="2.5" marker-end="url(#arr-amber5)"/>
+  <!-- Arrow: migration -> authenticated -->
+  <line x1="400" y1="200" x2="416" y2="200" stroke="#10B981" stroke-width="2.5" marker-end="url(#arr-green5)"/>
+
+  <!-- Authenticated panel -->
+  <rect x="418" y="82" width="376" height="280" rx="14" fill="#1E293B" stroke="#10B981" stroke-width="2" stroke-opacity="0.7" filter="url(#panelshadow5)"/>
+  <rect x="418" y="82" width="376" height="38" rx="14" fill="url(#green5)" opacity="0.9"/>
+  <rect x="418" y="102" width="376" height="18" rx="0" fill="url(#green5)" opacity="0.9"/>
+  <text x="606" y="107" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">Authenticated User</text>
+
+  <!-- JWT cookie box -->
+  <rect x="434" y="134" width="160" height="90" rx="10" fill="#0F172A" stroke="#A855F7" stroke-width="1" stroke-opacity="0.5" filter="url(#shadow5)"/>
+  <text x="514" y="156" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#C084FC" text-anchor="middle">JWT Cookie</text>
+  <text x="514" y="174" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">httpOnly &#183; secure</text>
+  <text x="514" y="190" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">90 day session</text>
+  <text x="514" y="208" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">signed with jose</text>
+
+  <!-- API routes box -->
+  <rect x="434" y="238" width="160" height="104" rx="10" fill="#0F172A" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.5" filter="url(#shadow5)"/>
+  <text x="514" y="258" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#60A5FA" text-anchor="middle">API Routes</text>
+  <text x="514" y="276" font-family="system-ui,sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">GET /api/trips</text>
+  <text x="514" y="291" font-family="system-ui,sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">POST /api/trips</text>
+  <text x="514" y="306" font-family="system-ui,sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">DELETE /api/trips/:id</text>
+  <text x="514" y="321" font-family="system-ui,sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">PATCH /api/trips/:id</text>
+
+  <!-- db.json cylinder -->
+  <rect x="614" y="158" width="158" height="154" rx="10" fill="#0F172A" stroke="#10B981" stroke-width="1" stroke-opacity="0.5" filter="url(#shadow5)"/>
+  <ellipse cx="693" cy="158" rx="79" ry="14" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="693" y="190" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#34D399" text-anchor="middle">db.json</text>
+  <text x="693" y="212" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">users[ ]</text>
+  <text x="693" y="230" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">stays[ ]</text>
+  <text x="693" y="248" font-family="system-ui,sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">otps[ ]</text>
+  <text x="693" y="270" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">flat file &#183; single instance</text>
+  <text x="693" y="284" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">no DB server needed</text>
+  <text x="693" y="300" font-family="system-ui,sans-serif" font-size="9" fill="#64748B" text-anchor="middle">abstracted via db.ts</text>
+
+  <!-- Arrow: JWT -> API -->
+  <line x1="514" y1="224" x2="514" y2="236" stroke="#A855F7" stroke-width="1.5" marker-end="url(#arr-blue5)"/>
+
+  <!-- Arrow: API -> db.json (bidirectional) -->
+  <line x1="596" y1="274" x2="612" y2="274" stroke="#3B82F6" stroke-width="2" marker-end="url(#arr-blue5)"/>
+  <line x1="612" y1="262" x2="596" y2="262" stroke="#10B981" stroke-width="2" marker-end="url(#arr-green5)"/>
+
+  <!-- Bottom note -->
+  <text x="410" y="392" font-family="system-ui,sans-serif" font-size="10" fill="#475569" text-anchor="middle">localStorage cleared on sign-in &#183; server data persists across devices &#183; migration is one-way</text>
+</svg>
