@@ -49,6 +49,7 @@ const uk: Translations = {
   prOption: 'Постійний резидент — повні дні',
   otherOption: 'Інший статус (відвідувач, робота, навчання…) — половина днів',
   backToDashboard: 'Повернутися до панелі',
+  manage: 'Керувати',
   manageStaysTitle: 'Керування перебуваннями',
   manageStaysSubtitle: 'Додайте, відредагуйте або видаліть ваші перебування в Канаді.',
   recordedStays: 'Записані перебування',

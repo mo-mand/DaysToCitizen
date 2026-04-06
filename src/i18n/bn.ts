@@ -49,6 +49,7 @@ const bn: Translations = {
   prOption: 'স্থায়ী বাসিন্দা — পূর্ণ দিন',
   otherOption: 'অন্য যেকোনো মর্যাদা (দর্শনার্থী, কাজ, পড়াশোনা…) — অর্ধেক দিন',
   backToDashboard: 'ড্যাশবোর্ডে ফিরুন',
+  manage: 'পরিচালনা',
   manageStaysTitle: 'থাকার ব্যবস্থাপনা',
   manageStaysSubtitle: 'কানাডায় আপনার থাকা যোগ করুন, সম্পাদনা করুন বা মুছুন।',
   recordedStays: 'নথিভুক্ত থাকা',

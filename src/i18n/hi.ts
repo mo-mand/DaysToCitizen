@@ -49,6 +49,7 @@ const hi: Translations = {
   prOption: 'स्थायी निवासी — पूर्ण दिन',
   otherOption: 'कोई अन्य स्थिति (आगंतुक, कार्य, अध्ययन…) — आधे दिन',
   backToDashboard: 'डैशबोर्ड पर वापस',
+  manage: 'प्रबंधित करें',
   manageStaysTitle: 'प्रवास प्रबंधित करें',
   manageStaysSubtitle: 'अपने कनाडा प्रवास जोड़ें, संपादित करें या हटाएं।',
   recordedStays: 'दर्ज प्रवास',

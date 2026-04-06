@@ -49,6 +49,7 @@ const ur: Translations = {
   prOption: 'مستقل رہائشی — مکمل دن',
   otherOption: 'کوئی بھی اور حیثیت (وزیٹر، کام، تعلیم…) — آدھے دن',
   backToDashboard: 'ڈیش بورڈ پر واپس',
+  manage: 'منظم کریں',
   manageStaysTitle: 'قیام کا انتظام',
   manageStaysSubtitle: 'کینیڈا میں اپنے قیام کو شامل، ترمیم یا حذف کریں۔',
   recordedStays: 'ریکارڈ شدہ قیام',

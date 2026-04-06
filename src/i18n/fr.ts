@@ -53,6 +53,7 @@ const fr: Translations = {
   prOption: 'Résident permanent — Jours complets',
   otherOption: 'Tout autre statut (visiteur, travail, étude…) — Demi-jours',
   backToDashboard: 'Retour au tableau de bord',
+  manage: 'Gérer',
   manageStaysTitle: 'Gérer les séjours',
   manageStaysSubtitle: 'Ajoutez, modifiez ou supprimez vos séjours au Canada.',
   recordedStays: 'Séjours enregistrés',

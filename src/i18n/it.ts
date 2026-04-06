@@ -49,6 +49,7 @@ const it: Translations = {
   prOption: 'Residente Permanente — Giorni interi',
   otherOption: 'Qualsiasi altro stato (visitatore, lavoro, studio…) — Mezza giornata',
   backToDashboard: 'Torna al pannello',
+  manage: 'Gestisci',
   manageStaysTitle: 'Gestisci soggiorni',
   manageStaysSubtitle: 'Aggiungi, modifica o rimuovi i tuoi soggiorni in Canada.',
   recordedStays: 'Soggiorni registrati',

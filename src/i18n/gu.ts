@@ -49,6 +49,7 @@ const gu: Translations = {
   prOption: 'કાયમી રહેવાસી — પૂર્ણ દિવસો',
   otherOption: 'અન્ય કોઈ પણ દરજ્જો (મુલાકાતી, કામ, અભ્યાસ…) — અડધા દિવસ',
   backToDashboard: 'ડૅશબૉર્ડ પર પાછા',
+  manage: 'સંચાલન',
   manageStaysTitle: 'રોકાણ સંચાલિત કરો',
   manageStaysSubtitle: 'કૅનેડામાં તમારા રોકાણ ઉમેરો, સંપાદિત કરો અથવા દૂર કરો.',
   recordedStays: 'નોંધાયેલ રોકાણ',

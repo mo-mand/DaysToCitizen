@@ -49,6 +49,7 @@ const ro: Translations = {
   prOption: 'Rezident Permanent — Zile complete',
   otherOption: 'Orice alt statut (vizitator, muncă, studii…) — Jumătate de zi',
   backToDashboard: 'Înapoi la panou',
+  manage: 'Gestionare',
   manageStaysTitle: 'Gestionează sejururile',
   manageStaysSubtitle: 'Adaugă, editează sau șterge sejururile tale în Canada.',
   recordedStays: 'Sejururi înregistrate',

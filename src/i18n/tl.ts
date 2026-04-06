@@ -49,6 +49,7 @@ const tl: Translations = {
   prOption: 'Permanenteng Residente — Buong Araw',
   otherOption: 'Anumang iba pang katayuan (bisita, trabaho, pag-aaral…) — Kalahating araw',
   backToDashboard: 'Bumalik sa dashboard',
+  manage: 'Pamahalaan',
   manageStaysTitle: 'Pamahalaan ang mga pananatili',
   manageStaysSubtitle: 'Magdagdag, mag-edit, o mag-alis ng iyong mga pananatili sa Canada.',
   recordedStays: 'Naitala na pananatili',

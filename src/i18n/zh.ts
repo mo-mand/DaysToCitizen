@@ -49,6 +49,7 @@ const zh: Translations = {
   prOption: '永久居民 — 全天计算',
   otherOption: '其他身份（访客、工作、学习…）— 半天计算',
   backToDashboard: '返回仪表板',
+  manage: '管理',
   manageStaysTitle: '管理居留',
   manageStaysSubtitle: '添加、编辑或删除您在加拿大的居留记录。',
   recordedStays: '已记录的居留',

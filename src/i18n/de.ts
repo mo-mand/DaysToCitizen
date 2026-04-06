@@ -49,6 +49,7 @@ const de: Translations = {
   prOption: 'Daueraufenthaltsberechtigter — volle Tage',
   otherOption: 'Anderer Status (Besucher, Arbeit, Studium…) — halbe Tage',
   backToDashboard: 'Zurück zum Dashboard',
+  manage: 'Verwalten',
   manageStaysTitle: 'Aufenthalte verwalten',
   manageStaysSubtitle: 'Füge Aufenthalte in Kanada hinzu, bearbeite oder lösche sie.',
   recordedStays: 'Erfasste Aufenthalte',

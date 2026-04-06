@@ -49,6 +49,7 @@ const pa: Translations = {
   prOption: 'ਸਥਾਈ ਨਿਵਾਸੀ — ਪੂਰੇ ਦਿਨ',
   otherOption: 'ਕੋਈ ਹੋਰ ਦਰਜਾ (ਵਿਜ਼ਟਰ, ਕੰਮ, ਪੜ੍ਹਾਈ…) — ਅੱਧੇ ਦਿਨ',
   backToDashboard: 'ਡੈਸ਼ਬੋਰਡ ਤੇ ਵਾਪਸ',
+  manage: 'ਪ੍ਰਬੰਧ',
   manageStaysTitle: 'ਠਹਿਰਾਅ ਪ੍ਰਬੰਧਿਤ ਕਰੋ',
   manageStaysSubtitle: 'ਕੈਨੇਡਾ ਵਿੱਚ ਆਪਣੇ ਠਹਿਰਾਅ ਜੋੜੋ, ਸੰਪਾਦਿਤ ਕਰੋ ਜਾਂ ਹਟਾਓ।',
   recordedStays: 'ਦਰਜ ਕੀਤੇ ਠਹਿਰਾਅ',

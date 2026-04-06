@@ -49,6 +49,7 @@ const es: Translations = {
   prOption: 'Residente Permanente — Días completos',
   otherOption: 'Cualquier otro estatus (visitante, trabajo, estudio…) — Medio día',
   backToDashboard: 'Volver al panel',
+  manage: 'Gestionar',
   manageStaysTitle: 'Gestionar estancias',
   manageStaysSubtitle: 'Agrega, edita o elimina tus estancias en Canadá.',
   recordedStays: 'Estancias registradas',

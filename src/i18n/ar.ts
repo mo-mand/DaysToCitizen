@@ -49,6 +49,7 @@ const ar: Translations = {
   prOption: 'مقيم دائم — أيام كاملة',
   otherOption: 'أي وضع آخر (زائر، عمل، دراسة…) — نصف أيام',
   backToDashboard: 'العودة إلى لوحة التحكم',
+  manage: 'إدارة',
   manageStaysTitle: 'إدارة الإقامات',
   manageStaysSubtitle: 'أضف إقاماتك في كندا أو عدّلها أو احذفها.',
   recordedStays: 'الإقامات المسجلة',

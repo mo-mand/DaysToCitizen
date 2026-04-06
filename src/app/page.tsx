@@ -126,7 +126,7 @@ export default function Home() {
                   className="flex items-center gap-1.5 text-xs font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg px-3 py-1.5 shadow-sm transition-colors"
                 >
                   <Settings2 className="w-3.5 h-3.5" />
-                  Manage
+                  {t.manage}
                 </Link>
               </div>
             </div>

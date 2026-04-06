@@ -49,6 +49,7 @@ const pl: Translations = {
   prOption: 'Stały rezydent — pełne dni',
   otherOption: 'Inny status (odwiedzający, praca, nauka…) — pół dnia',
   backToDashboard: 'Wróć do panelu',
+  manage: 'Zarządzaj',
   manageStaysTitle: 'Zarządzaj pobytami',
   manageStaysSubtitle: 'Dodaj, edytuj lub usuń swoje pobyty w Kanadzie.',
   recordedStays: 'Zarejestrowane pobyty',

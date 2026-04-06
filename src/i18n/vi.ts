@@ -49,6 +49,7 @@ const vi: Translations = {
   prOption: 'Thường trú nhân — Ngày đầy đủ',
   otherOption: 'Bất kỳ trạng thái khác (khách, làm việc, học tập…) — Nửa ngày',
   backToDashboard: 'Quay lại bảng điều khiển',
+  manage: 'Quản lý',
   manageStaysTitle: 'Quản lý thời gian lưu trú',
   manageStaysSubtitle: 'Thêm, chỉnh sửa hoặc xóa thời gian lưu trú tại Canada.',
   recordedStays: 'Lưu trú đã ghi',

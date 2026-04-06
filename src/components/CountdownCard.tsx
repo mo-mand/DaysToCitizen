@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function CountdownCard({ stats }: Props) {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const { years, months, days } = daysToYMD(stats.daysRemaining);
 
   // Logic: Only show the segment if the value is greater than 0
@@ -20,7 +20,7 @@ export function CountdownCard({ stats }: Props) {
   const showDays = days > 0 || (!showYears && !showMonths);
 
   const formattedDate = stats.eligibilityDate
-    ? new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric' }).format(stats.eligibilityDate)
+    ? new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'long', day: 'numeric' }).format(stats.eligibilityDate)
     : null;
 
   if (stats.isEligible) {
@@ -44,19 +44,19 @@ export function CountdownCard({ stats }: Props) {
         {showYears && (
           <div className="flex flex-col items-center">
             <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{years}</span>
-            <span className="text-xs text-gray-400 mt-1">{years === 1 ? t.year : t.years}</span>
+            <span className="text-xs font-bold text-gray-400 mt-1">{years === 1 ? t.year : t.years}</span>
           </div>
         )}
         {showMonths && (
           <div className="flex flex-col items-center">
             <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{months}</span>
-            <span className="text-xs text-gray-400 mt-1">{months === 1 ? t.month : t.months}</span>
+            <span className="text-xs font-bold text-gray-400 mt-1">{months === 1 ? t.month : t.months}</span>
           </div>
         )}
         {showDays && (
           <div className="flex flex-col items-center">
             <span className="text-5xl font-bold text-red-600 leading-none tabular-nums">{days}</span>
-            <span className="text-xs text-gray-400 mt-1">{days === 1 ? t.day : t.days}</span>
+            <span className="text-xs font-bold text-gray-400 mt-1">{days === 1 ? t.day : t.days}</span>
           </div>
         )}
       </div>

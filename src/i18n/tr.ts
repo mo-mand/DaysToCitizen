@@ -49,6 +49,7 @@ const tr: Translations = {
   prOption: 'Daimi Oturum İzni — Tam günler',
   otherOption: 'Diğer statü (ziyaretçi, çalışma, öğrenci…) — yarım gün',
   backToDashboard: 'Panele dön',
+  manage: 'Yönet',
   manageStaysTitle: 'Kalışları Yönet',
   manageStaysSubtitle: "Kanada'daki kalışlarınızı ekleyin, düzenleyin veya silin.",
   recordedStays: 'Kayıtlı kalışlar',

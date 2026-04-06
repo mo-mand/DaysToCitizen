@@ -49,6 +49,7 @@ const ja: Translations = {
   prOption: '永住者 — 全日数カウント',
   otherOption: 'その他の在留資格（訪問者、就労、留学…）— 半日カウント',
   backToDashboard: 'ダッシュボードに戻る',
+  manage: '管理',
   manageStaysTitle: '滞在を管理',
   manageStaysSubtitle: 'カナダでの滞在を追加・編集・削除できます。',
   recordedStays: '記録された滞在',

@@ -49,6 +49,7 @@ const ko: Translations = {
   prOption: '영주권자 — 전일 산정',
   otherOption: '기타 신분(방문자, 취업, 학업…) — 반일 산정',
   backToDashboard: '대시보드로 돌아가기',
+  manage: '관리',
   manageStaysTitle: '체류 관리',
   manageStaysSubtitle: '캐나다 체류를 추가, 수정 또는 삭제하세요.',
   recordedStays: '기록된 체류',
