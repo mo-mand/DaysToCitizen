@@ -8,9 +8,9 @@
 
 Every year, tens of thousands of people receive Canadian Permanent Residency. Before they can apply for citizenship, they must prove **1,095 days of physical presence in Canada** within the last 5 years — a number tracked by IRCC (Immigration, Refugees and Citizenship Canada). The stakes are high: miscounting can mean rejection, delays of months, or being locked out of citizenship entirely.
 
-Most immigrants track this in spreadsheets, notes apps, or simply rely on memory. There is no free, accurate, multilingual tool that does this correctly — accounting for IRCC's own counting rules (both arrival and departure days count), multiple immigration statuses, and the complexity of living between countries.
+Most immigrants track this in spreadsheets, notes apps, or simply rely on memory. I couldn't find a tool that is simple, fits on a single page, requires no lengthy onboarding questionnaire, and actually stores your data online — while also correctly accounting for IRCC's own counting rules (both arrival and departure days count), multiple immigration statuses, and the complexity of living between countries.
 
-**DaysToCitizen** solves this. It is a free web application where immigrants enter their trips outside Canada and instantly see their eligibility countdown, how many days they've accumulated, and how many they still need.
+**DaysToCitizen** solves this. It is a free, open-source web application where immigrants enter their stays outside Canada and instantly see their eligibility countdown, how many days they've accumulated, and how many they still need.
 
 > **Screenshot placeholder 1**: The main dashboard showing the countdown card and stats with a sample data set.
 
@@ -18,20 +18,21 @@ Most immigrants track this in spreadsheets, notes apps, or simply rely on memory
 - A user who would have miscounted by even 2–3 days (common with off-by-one errors in manual tracking) could incorrectly believe they qualify — or unnecessarily delay applying
 - With 23 supported languages including Farsi, Arabic, Punjabi, Hindi, Urdu, and Chinese, the tool reaches immigrants in their own language — the majority of Canada's new PRs come from these language groups
 - Zero cost to users, zero ads, privacy-first (data stays local unless they choose to create an account)
+- Open source — the full codebase is publicly available for anyone to audit, fork, or self-host
 
 ---
 
 ## Technical Stack — What We Chose and Why
 
 | Layer | Choice | Why |
-|---|---|---|
+|-------|--------|-----|
 | Framework | Next.js 15 (App Router) | SSR + API routes in one repo, no separate backend |
 | Language | TypeScript | Catch bugs at compile time, especially date math |
 | Styling | Tailwind CSS | Fast iteration, no CSS files to manage |
 | Date math | date-fns | Explicit, immutable, tree-shakeable |
 | Auth | JWT + OTP via Resend | Passwordless, no OAuth dependency |
-| Storage | JSON flat file (`.data/db.json`) | No database server, survives on a t3.micro |
-| Deployment | AWS EC2 + Nginx + PM2 | Full control, free tier eligible, HTTPS via certbot |
+| Storage | JSON flat file (`db.json`) | No database server, survives on a t3.micro |
+| Deployment | AWS EC2 + Nginx + PM2 | Full control, 6-month credit eligible, HTTPS via certbot |
 
 **The decision to avoid a database:** Most SaaS tutorials reach for PostgreSQL or MongoDB immediately. For a v1 with a single server and a user base measured in thousands, a JSON file protected by file-system writes is entirely sufficient — and eliminates an entire class of infrastructure complexity. The trade-off is no horizontal scaling and no concurrent write safety, but for a single-instance personal-data app this is the right call.
 
@@ -55,7 +56,7 @@ Three options were on the table:
 
 **Option B — AWS Lambda + API Gateway (Serverless):** Maximum scalability, pay-per-request. The trade-off: cold starts, inability to write to disk, no persistent process state, and a significantly more complex deployment pipeline. Also overkill — a citizenship tracker does not need to handle 10,000 concurrent users at launch.
 
-**Option C — AWS EC2 t3.micro (chosen):** A persistent virtual machine. Full control over the filesystem, process management, and network. Free for 12 months under AWS Free Tier. The trade-off: manual operations (upgrades, restarts, certificate renewal), single point of failure, no auto-scaling.
+**Option C — AWS EC2 t3.micro (chosen):** A persistent virtual machine. Full control over the filesystem, process management, and network. Covered under the AWS Free Tier credit (6 months in this case). The trade-off: manual operations (upgrades, restarts, certificate renewal), single point of failure, no auto-scaling.
 
 **Decision rationale:** The flat-file database was the deciding constraint. It requires a persistent disk and a single process. EC2 is the only option that satisfies this at zero marginal cost. When the app scales and a real database is warranted, migration to a serverless or container-based architecture becomes straightforward.
 
@@ -81,7 +82,7 @@ The Namecheap DNS configuration:
 - `A www → 3.146.98.97` (www subdomain)
 - `TXT/MX records for verification.daystocitizen.ca` (Resend email subdomain)
 
-Using a subdomain (`verification.daystocitizen.ca`) for transactional email is best practice — it isolates email reputation from the main domain's web reputation.
+Using a subdomain (`verification.daystocitizen.ca`) for transactional email is best practice — it isolates email reputation from the main domain's web reputation. The full story of configuring Resend with custom domains, SPF/DKIM/DMARC records, and deliverability is covered in a dedicated follow-up article.
 
 ---
 
@@ -317,11 +318,13 @@ Port 3000 (Next.js) is intentionally not open in the security group — it's onl
 
 This was the most technically challenging part of the project, going through six iterations before being correct.
 
-**IRCC rule:** Both arrival and departure days count as full days in Canada. A trip from March 29 to March 31 = 3 days abroad (not 2), so 3 days are deducted from your eligible total.
+**IRCC rule:** Both arrival and departure days count as full days in Canada. A stay from March 29 to March 31 = 3 days abroad (not 2), so 3 days are deducted from your eligible total.
 
-> **Screenshot placeholder 2**: The ManageStays page showing a sample trip and its day count.
+> **Screenshot placeholder 2**: The ManageStays page showing a sample stay and its day count.
 
-**The `daysToYMD` overflow bug:** Converting a raw number of days to years/months/days sounds trivial. It isn't. Using calendar-based approaches (`intervalToDuration` from date-fns) introduced leap year errors — 1,095 days is not exactly 3 calendar years. The final solution uses pure arithmetic:
+**The `daysToYMD` overflow bug:** Converting a raw number of days to years/months/days sounds trivial. It isn't. The first symptom was absurd: a brand-new user with zero stays recorded saw **"3 years and 15 days remaining"** displayed on the dashboard instead of the correct "3 years 0 months 0 days." Another version showed **"2 years 12 months"** — twelve months is not a valid display value, it should roll over to 3 years. These are the kinds of bugs that would genuinely mislead someone about their citizenship eligibility.
+
+The root cause: using calendar-based approaches (`intervalToDuration` from date-fns) introduced leap year errors — 1,095 days is not exactly 3 calendar years. The first broken attempt used `1095 % 30` to get remaining days, which gives 15 (wrong). The final solution uses pure arithmetic:
 
 ```typescript
 export function daysToYMD(days: number) {
@@ -333,7 +336,7 @@ export function daysToYMD(days: number) {
 }
 ```
 
-The key insight: using `Math.round` (not `Math.floor`) when converting months back to days prevents accumulation of rounding errors that would otherwise cause months to show as 12 instead of rolling over to the next year.
+The key insight: using `Math.round` (not `Math.floor`) when converting months back to days prevents the accumulation of rounding errors that caused the "12 months" display — numbers stay within their correct ranges and roll over properly.
 
 ---
 
@@ -391,28 +394,28 @@ The app follows a **local-first** model:
 
 ![Data Storage Architecture](diagrams/05.svg)
 
-**Why local-first?** It eliminates the login barrier. A user can come to the site, enter all their trips, and see their citizenship countdown — all without creating an account. Sign-up only becomes relevant when they want to save permanently or access from another device. This dramatically reduces abandonment.
+**Why local-first?** It eliminates the login barrier. A user can come to the site, enter all their stays, and see their citizenship countdown — all without creating an account. Sign-up only becomes relevant when they want to save permanently or access from another device. This dramatically reduces abandonment.
 
 ---
 
 ## Key Problems Solved
 
-| Problem | Root Cause | Fix |
-|---|---|---|
-| "3 years 15 days" on empty page | `1095 % 30 = 15` (wrong modulo) | Arithmetic formula: `÷365` for years first |
-| `daysToYMD` showing "12 months" | Rounding error in month→day conversion | `Math.round` instead of `Math.floor` |
-| `crypto.randomUUID` crashing on HTTP | Browser security restriction; also `this` binding lost when method extracted | Replaced with `Date.now().toString(36) + Math.random()` |
-| RTL breaking card layout | `dir="rtl"` on `<html>` reverses all Flex/Grid | Custom `data-dir` attribute; CSS targets only text elements |
-| Anyone could log in as any user | OTP was bypassed; email = instant session | Real OTP: generate → email → verify → then issue JWT |
-| ManageStays page not translating | All strings were hardcoded English | `useLanguage()` hook added to both `EditRow` and main component |
+| # | What went wrong | Why it happened | How we fixed it |
+|---|-----------------|-----------------|-----------------|
+| 1 | Dashboard showed **"3 years 15 days"** on an empty account | Used `1095 % 30 = 15` (wrong modulo operator) instead of proper division | Rewrote `daysToYMD` using `÷365` for years first, then arithmetic for months and days |
+| 2 | Counter showed **"2 years 12 months"** instead of "3 years" | Rounding error accumulated when converting months back to days | Switched from `Math.floor` to `Math.round` in the month→day step |
+| 3 | App crashed in production with `crypto.randomUUID` error | Browser API is restricted to HTTPS contexts; also `this` binding was lost when the method was extracted | Replaced with `Date.now().toString(36) + Math.random()` — works in all environments |
+| 4 | Farsi/Arabic layout completely broke when switching language | Setting `dir="rtl"` on `<html>` reverses all Flexbox and Grid directions, not just text | Replaced with a custom `data-dir` attribute; CSS applies direction only to text elements, not layout |
+| 5 | Anyone could log in as **any other user's account** | OTP step was bypassed — entering an email immediately created a session | Implemented real OTP: generate code → save to DB with expiry → send via Resend → verify and consume → only then issue JWT |
+| 6 | ManageStays page stayed in English after language change | All strings on that page were hardcoded English, `useLanguage()` hook was missing | Added `useLanguage()` to both the main component and the `EditRow` sub-component |
 
 ---
 
 ## What's Next
 
-- **PostgreSQL migration:** When concurrent users or multi-instance deployment becomes necessary, the flat-file DB is the first thing to replace. The abstraction layer (`db.ts`) means this is a single-file swap.
+- **Graduating to a real database:** Right now all data lives in a single `db.json` file on the server. This works perfectly for a single machine and a modest number of users — but if we ever wanted to run the app on two servers simultaneously, or have thousands of users writing data at the exact same moment, the flat file would become a bottleneck. The good news: the entire database logic lives in one file (`db.ts`), so swapping it out for a proper database like PostgreSQL later is a contained change that doesn't touch any other part of the app.
 - **Push notifications:** The reminder infrastructure (banner + email cooldown) is built. Browser push notifications for citizenship deadline proximity is the next logical step.
-- **Resend domain reputation:** A dedicated article on configuring Resend with custom domains, SPF/DKIM/DMARC, and deliverability best practices.
+- **Resend deep-dive:** A dedicated follow-up article on configuring Resend with custom domains, SPF/DKIM/DMARC records, deliverability best practices, and why subdomains matter for email reputation.
 - **Mobile app:** The calculation logic is framework-agnostic TypeScript — it could be extracted and used in a React Native app without changes.
 
 > **Screenshot placeholder 5**: The live site at daystocitizen.ca with HTTPS padlock visible in the browser bar.
