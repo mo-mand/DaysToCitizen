@@ -12,7 +12,7 @@ Most immigrants track this in spreadsheets, notes apps, or simply rely on memory
 
 **DaysToCitizen** solves this. It is a free, open-source web application where immigrants enter their stays outside Canada and instantly see their eligibility countdown, how many days they've accumulated, and how many they still need.
 
-> **Screenshot placeholder 1**: The main dashboard showing the countdown card and stats with a sample data set.
+![The main dashboard showing the countdown card and stats with a sample data set](screenshot1.png)
 
 **Measurable outcomes:**
 - A user who would have miscounted by even 2–3 days (common with off-by-one errors in manual tracking) could incorrectly believe they qualify — or unnecessarily delay applying
@@ -92,7 +92,7 @@ This section walks through the exact terminal commands used to go from a blank A
 
 ### Step 1 — Launch the Instance (AWS Console)
 
-> **Screenshot placeholder 6**: The EC2 launch wizard — instance type t3.micro, Ubuntu 22.04 LTS, key pair selection.
+![The EC2 launch wizard — instance type t3.micro, Ubuntu 22.04 LTS, key pair selection](screenshot6.png)
 
 In the AWS Console, navigate to **EC2 → Launch Instance**. The key choices:
 - **AMI:** Ubuntu Server 22.04 LTS (free tier eligible)
@@ -298,7 +298,7 @@ Successfully deployed certificate for daystocitizen.ca
 Congratulations! You have successfully enabled HTTPS on https://daystocitizen.ca
 ```
 
-> **Screenshot placeholder 7**: The AWS EC2 console showing the running instance, Elastic IP, and security group rules with ports 22/80/443 open.
+![The AWS EC2 console showing the running instance, Elastic IP, and security group rules](screenshot7.png)
 
 ### AWS Security Group: Why It Matters
 
@@ -320,7 +320,7 @@ This was the most technically challenging part of the project, going through six
 
 **IRCC rule:** Both arrival and departure days count as full days in Canada. A stay from March 29 to March 31 = 3 days abroad (not 2), so 3 days are deducted from your eligible total.
 
-> **Screenshot placeholder 2**: The ManageStays page showing a sample stay and its day count.
+![The ManageStays page showing a sample stay and its day count](screenshot2.png)
 
 **The `daysToYMD` overflow bug:** Converting a raw number of days to years/months/days sounds trivial. It isn't. The first symptom was absurd: a brand-new user with zero stays recorded saw **"3 years and 15 days remaining"** displayed on the dashboard instead of the correct "3 years 0 months 0 days." Another version showed **"2 years 12 months"** — twelve months is not a valid display value, it should roll over to 3 years. These are the kinds of bugs that would genuinely mislead someone about their citizenship eligibility.
 
@@ -342,7 +342,7 @@ The key insight: using `Math.round` (not `Math.floor`) when converting months ba
 
 ## Authentication: From Zero to Verified OTP
 
-> **Screenshot placeholder 3**: The two-step auth modal — first step (email entry) and second step (6-digit code entry).
+![The two-step auth modal — email entry and 6-digit code entry](screenshot3.png)
 
 The initial auth implementation had a critical security flaw: submitting any email address immediately created a session. Anyone who knew another user's email could access their data.
 
@@ -358,7 +358,7 @@ The OTP is stored in the same JSON database as users and stays (`db.otps[]`), wi
 
 ## Internationalization: 23 Languages Without Breaking Layout
 
-> **Screenshot placeholder 4**: The app in Farsi (RTL) vs. English — same layout, opposite text direction.
+![The app in Farsi (RTL) vs. English — same layout, opposite text direction](screenshot4.png)
 
 Supporting 23 languages including RTL (right-to-left) scripts like Arabic, Farsi, and Urdu required solving a non-obvious CSS problem.
 
@@ -433,7 +433,7 @@ The `useLanguage()` hook that provides translated strings was added to the main 
 - **Resend deep-dive:** A dedicated follow-up article on configuring Resend with custom domains, SPF/DKIM/DMARC records, deliverability best practices, and why subdomains matter for email reputation.
 - **Mobile app:** The calculation logic is framework-agnostic TypeScript — it could be extracted and used in a React Native app without changes.
 
-> **Screenshot placeholder 5**: The live site at daystocitizen.ca with HTTPS padlock visible in the browser bar.
+![The live site at daystocitizen.ca with HTTPS padlock visible in the browser bar](screenshot5.png)
 
 ---
 
