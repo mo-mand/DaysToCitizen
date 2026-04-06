@@ -400,14 +400,29 @@ The app follows a **local-first** model:
 
 ## Key Problems Solved
 
-| # | What went wrong | Why it happened | How we fixed it |
-|---|-----------------|-----------------|-----------------|
-| 1 | Dashboard showed **"3 years 15 days"** on an empty account | Used `1095 % 30 = 15` (wrong modulo operator) instead of proper division | Rewrote `daysToYMD` using `÷365` for years first, then arithmetic for months and days |
-| 2 | Counter showed **"2 years 12 months"** instead of "3 years" | Rounding error accumulated when converting months back to days | Switched from `Math.floor` to `Math.round` in the month→day step |
-| 3 | App crashed in production with `crypto.randomUUID` error | Browser API is restricted to HTTPS contexts; also `this` binding was lost when the method was extracted | Replaced with `Date.now().toString(36) + Math.random()` — works in all environments |
-| 4 | Farsi/Arabic layout completely broke when switching language | Setting `dir="rtl"` on `<html>` reverses all Flexbox and Grid directions, not just text | Replaced with a custom `data-dir` attribute; CSS applies direction only to text elements, not layout |
-| 5 | Anyone could log in as **any other user's account** | OTP step was bypassed — entering an email immediately created a session | Implemented real OTP: generate code → save to DB with expiry → send via Resend → verify and consume → only then issue JWT |
-| 6 | ManageStays page stayed in English after language change | All strings on that page were hardcoded English, `useLanguage()` hook was missing | Added `useLanguage()` to both the main component and the `EditRow` sub-component |
+**Why does it show "3 years and 15 days" when I have zero stays recorded?**
+
+The very first version of the countdown used `1095 % 30` to calculate remaining days — which gives 15 because 1095 divided by 30 leaves a remainder of 15. That's the wrong operation entirely. The fix was to divide by 365 first to extract full years, then handle the remainder separately. A user with zero stays should see "3 years 0 months 0 days." They now do.
+
+**Why did the display say "2 years 12 months" instead of "3 years"?**
+
+A rounding error accumulated in the month-to-day conversion step. When converting months back into a day count to find the remainder, using `Math.floor` let tiny fractions build up until the month count hit exactly 12 — which should have rolled over to a new year but didn't. Switching to `Math.round` in that one step eliminated the error entirely.
+
+**Why did the app crash with a `crypto.randomUUID` error?**
+
+`crypto.randomUUID()` is a browser API that only works on secure origins (HTTPS). During development over plain HTTP, or in certain server-side contexts, it throws. The fix was to replace it with a simple inline ID generator: `Date.now().toString(36) + Math.random().toString(36)` — no API dependency, works everywhere.
+
+**Why did the Farsi and Arabic layout completely fall apart?**
+
+Setting `dir="rtl"` on the `<html>` element tells the browser to reverse text direction — but it also reverses Flexbox row direction, Grid column order, and scroll position across the entire page. Every card layout broke. The solution was to not use the `dir` attribute at all, and instead apply a custom `data-dir="rtl"` attribute that CSS targets only on text-level elements (`p`, `span`, `h1`, etc.) while leaving layout elements completely untouched.
+
+**How could anyone log into anyone else's account?**
+
+The original sign-in flow had no actual verification — typing an email and clicking submit immediately created a session for that email. If you knew someone's email address, you had full access to their data. The fix was a proper OTP flow: generate a 6-digit code, save it to the database with a 10-minute expiry, send it to the email via Resend, and only create the session after the user proves they received it. The code is consumed on first use, preventing replay.
+
+**Why did the ManageStays page stay in English after switching the language?**
+
+The `useLanguage()` hook that provides translated strings was added to the main page component, but the `EditRow` sub-component — the row-level editor for each stay — was a separate component that never imported the hook. It had all its button labels and field names hardcoded in English. Adding the hook to both components fixed it.
 
 ---
 
