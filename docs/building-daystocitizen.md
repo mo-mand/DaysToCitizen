@@ -85,6 +85,234 @@ Using a subdomain (`verification.daystocitizen.ca`) for transactional email is b
 
 ---
 
+## Provisioning the EC2 Instance: Every Command Explained
+
+This section walks through the exact terminal commands used to go from a blank AWS Linux server to a running production application. Every command is real — these are the exact steps taken, in order.
+
+### Step 1 — Launch the Instance (AWS Console)
+
+> **Screenshot placeholder 6**: The EC2 launch wizard — instance type t3.micro, Ubuntu 22.04 LTS, key pair selection.
+
+In the AWS Console, navigate to **EC2 → Launch Instance**. The key choices:
+- **AMI:** Ubuntu Server 22.04 LTS (free tier eligible)
+- **Instance type:** t3.micro (2 vCPUs, 1 GB RAM — sufficient for a Node.js app under light load)
+- **Key pair:** Create a new `.pem` key pair and save it locally. You will never be able to re-download this file.
+- **Security group:** Allow inbound on ports 22 (SSH), 80 (HTTP), and 443 (HTTPS) from `0.0.0.0/0`
+
+### Step 2 — Assign an Elastic IP
+
+An EC2 instance's public IP changes every time it stops and restarts. For DNS to stay stable, you need an **Elastic IP** — a static IP address you own independently of the instance.
+
+In the console: **EC2 → Elastic IPs → Allocate Elastic IP Address → Associate with your instance.**
+
+The result: your instance now has a permanent IP (e.g. `3.146.98.97`) that survives reboots. Without this, every reboot breaks your DNS A records and your HTTPS certificate.
+
+### Step 3 — SSH Into the Instance
+
+```bash
+chmod 400 daystocitizen-key.pem
+ssh -i daystocitizen-key.pem ubuntu@3.146.98.97
+```
+
+`chmod 400` makes the key file read-only by the owner — SSH refuses to use keys with loose permissions as a security measure. You should see:
+
+```
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-1012-aws x86_64)
+...
+ubuntu@ip-172-31-24-105:~$
+```
+
+### Step 4 — Update the System and Install Node.js
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+This fetches the latest package list and upgrades installed packages. Always run this first on a new instance — AWS AMIs are not always fully up to date at launch.
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v && npm -v
+```
+
+Using NodeSource's setup script (rather than `apt install nodejs` directly) ensures you get Node.js 20.x — the Ubuntu default repository often ships a much older version that won't run Next.js 15. Expected output:
+
+```
+v20.11.0
+10.2.4
+```
+
+### Step 5 — Clone and Build the Application
+
+```bash
+git clone https://github.com/youruser/daystocitizen.git
+cd daystocitizen
+npm install
+```
+
+`npm install` on the server installs all dependencies listed in `package.json`. This can take 60–90 seconds on a t3.micro. Next, create the environment file:
+
+```bash
+nano .env.local
+```
+
+Add your production secrets:
+
+```
+JWT_SECRET=your-long-random-secret-here
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
+RESEND_FROM=noreply@verification.daystocitizen.ca
+```
+
+Then build:
+
+```bash
+npm run build
+```
+
+Next.js compiles pages, optimizes bundles, and generates the `.next` production output. On a t3.micro this takes about 60–90 seconds. Successful output ends with:
+
+```
+Route (app)                              Size     First Load JS
+┌ ○ /                                    4.32 kB        92.1 kB
+├ ○ /ManageStays                         3.18 kB        87.4 kB
+└ ○ /api/auth/send-otp                   0 B                0 B
+...
+✓ Compiled successfully
+```
+
+### Step 6 — Process Management with PM2
+
+Node.js is a single process. If it throws an unhandled exception, the whole app dies and stays dead until someone manually restarts it. **PM2** solves this.
+
+```bash
+sudo npm install -g pm2
+pm2 start npm --name daystocitizen -- start
+```
+
+This tells PM2 to run `npm start` (which runs `next start`) under a managed process named `daystocitizen`. Check it:
+
+```bash
+pm2 status
+```
+
+Expected output:
+
+```
+┌────┬──────────────────┬─────────┬─────────┬──────┬───────────┬──────────┐
+│ id │ name             │ mode    │ status  │ ↺    │ cpu       │ memory   │
+├────┼──────────────────┼─────────┼─────────┼──────┼───────────┼──────────┤
+│ 0  │ daystocitizen    │ fork    │ online  │ 0    │ 0%        │ 98.5mb   │
+└────┴──────────────────┴─────────┴─────────┴──────┴───────────┴──────────┘
+```
+
+To make PM2 survive a server reboot, run:
+
+```bash
+pm2 startup
+```
+
+PM2 prints a `sudo env PATH=...` command — copy and run it exactly. Then:
+
+```bash
+pm2 save
+```
+
+This writes the current process list to disk so PM2 restores it on boot. After these two commands, the application automatically starts within seconds of any reboot, power cycle, or unexpected shutdown.
+
+To deploy a new version with updated environment variables:
+
+```bash
+git pull
+npm run build
+pm2 restart daystocitizen --update-env
+```
+
+The `--update-env` flag is critical — a plain `pm2 restart` uses cached environment variables from the original launch and ignores any changes to `.env.local`.
+
+### Step 7 — Nginx as a Reverse Proxy
+
+Next.js runs on port 3000 bound to `localhost`. Nginx sits in front, listening on ports 80 and 443, and forwards requests.
+
+```bash
+sudo apt install -y nginx
+sudo nano /etc/nginx/sites-available/daystocitizen
+```
+
+The configuration:
+
+```nginx
+server {
+    listen 80;
+    server_name daystocitizen.ca www.daystocitizen.ca;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+The `server_name` must match your actual domain — **not** the IP address. This was a real debugging moment: the original config had `server_name 18.223.133.122` (an old IP), and certbot couldn't find a matching server block for the domain, failing silently. Always use the domain name.
+
+```bash
+sudo ln -s /etc/nginx/sites-available/daystocitizen /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+`nginx -t` validates the config before reloading — it will tell you about syntax errors before they break production. Expected output:
+
+```
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+
+### Step 8 — HTTPS with Let's Encrypt
+
+```bash
+sudo apt install -y python3-certbot-nginx
+sudo certbot --nginx -d daystocitizen.ca -d www.daystocitizen.ca
+```
+
+Certbot does several things at once:
+1. Contacts Let's Encrypt to prove you control the domain (via HTTP-01 challenge — it temporarily serves a file at `/.well-known/acme-challenge/`)
+2. Downloads a signed TLS certificate
+3. **Modifies your Nginx config automatically** to add `ssl_certificate`, `ssl_certificate_key`, and a 301 redirect from HTTP to HTTPS
+4. Installs a systemd timer that runs `certbot renew` twice daily
+
+Certificates are valid for 90 days. The renewal timer ensures they're renewed automatically when they're within 30 days of expiry — you never need to think about it. Expected output:
+
+```
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/daystocitizen.ca/fullchain.pem
+Key is saved at: /etc/letsencrypt/live/daystocitizen.ca/privkey.pem
+Deploying certificate to VirtualHost /etc/nginx/sites-enabled/daystocitizen
+Successfully deployed certificate for daystocitizen.ca
+Congratulations! You have successfully enabled HTTPS on https://daystocitizen.ca
+```
+
+> **Screenshot placeholder 7**: The AWS EC2 console showing the running instance, Elastic IP, and security group rules with ports 22/80/443 open.
+
+### AWS Security Group: Why It Matters
+
+The security group acts as a stateful firewall at the hypervisor level — traffic is filtered before it reaches your instance at all. The minimum required rules:
+
+| Type | Protocol | Port | Source | Purpose |
+|------|----------|------|--------|---------|
+| SSH | TCP | 22 | Your IP | Admin access |
+| HTTP | TCP | 80 | 0.0.0.0/0 | Let's Encrypt challenge + redirect |
+| HTTPS | TCP | 443 | 0.0.0.0/0 | Production traffic |
+
+Port 3000 (Next.js) is intentionally not open in the security group — it's only accessible from `localhost`, so the only way to reach it is through Nginx. This is the correct pattern: the application process is never directly exposed to the internet even if someone discovers the port.
+
+---
+
 ## The Day Counting Problem
 
 This was the most technically challenging part of the project, going through six iterations before being correct.
