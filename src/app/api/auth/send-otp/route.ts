@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   const code = generateOtp();
   const expiresAt = otpExpiresAt();
 
-  saveOtp(normalized, code, expiresAt);
+  await saveOtp(normalized, code, expiresAt);
   await sendOtpEmail(normalized, code);
 
   return NextResponse.json({ sent: true });

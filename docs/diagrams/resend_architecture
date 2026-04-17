@@ -1,0 +1,31 @@
+digraph "DaysToCitizen — OTP Email Flow via Resend" {
+	graph [bgcolor="#0F172A" fontcolor="#FFFFFF" fontname="Sans-Serif" fontsize=13 label="DaysToCitizen — OTP Email Flow via Resend" nodesep=0.60 pad=1.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"4ae189c892724471b888eda45ad6174d" [label="User
+(Browser)" height=2.3 image="C:\Users\Mostafa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\resources/onprem/client\user.png" shape=none]
+	"9aac093620c04ffa88d9952e9183904f" -> "1a76d92ec581455c9d7491e4f4dbf60d" [color="#38BDF8" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	subgraph "cluster_AWS EC2  ·  daystocitizen.ca" {
+		graph [bgcolor="#1E293B" fontcolor="#94A3B8" fontname="Sans-Serif" fontsize=12 label="AWS EC2  ·  daystocitizen.ca" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"9aac093620c04ffa88d9952e9183904f" [label="Nginx
+TLS termination" height=2.3 image="C:\Users\Mostafa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\resources/onprem/network\nginx.png" shape=none]
+		"1a76d92ec581455c9d7491e4f4dbf60d" [label="Next.js 15
+API Route" height=2.3 image="C:\Users\Mostafa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\resources/programming/framework\react.png" shape=none]
+	}
+	subgraph "cluster_DNS (Cloudflare)" {
+		graph [bgcolor="#1E293B" fontcolor="#94A3B8" fontname="Sans-Serif" fontsize=12 label="DNS (Cloudflare)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		d830906f675d41d087a906a04f851a21 [label="verification.daystocitizen.ca
+SPF · DKIM · DMARC" height=2.3 image="C:\Users\Mostafa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\resources/aws/network\route-53.png" shape=none]
+	}
+	"6d4d062543334e99b00ec5d0b220a75f" -> "71956c1eb61c46b7a2fccd981c8706d4" [label=relay color="#A78BFA" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_Resend  (resend.com)" {
+		graph [bgcolor="#1E293B" fontcolor="#94A3B8" fontname="Sans-Serif" fontsize=12 label="Resend  (resend.com)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"6d4d062543334e99b00ec5d0b220a75f" [label="Resend API" height=1.9 image="C:\Users\Mostafa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\resources/saas/communication\twilio.png" shape=none]
+		"71956c1eb61c46b7a2fccd981c8706d4" [label="SMTP Relay
+& Reputation" height=2.3 image="C:\Users\Mostafa\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\resources/aws/general\general.png" shape=none]
+	}
+	"4ae189c892724471b888eda45ad6174d" -> "9aac093620c04ffa88d9952e9183904f" [label="POST /api/auth/send-otp" color="#F472B6" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"1a76d92ec581455c9d7491e4f4dbf60d" -> "6d4d062543334e99b00ec5d0b220a75f" [label="resend.emails.send()" color="#34D399" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	d830906f675d41d087a906a04f851a21 -> "6d4d062543334e99b00ec5d0b220a75f" [label="domain verified" color="#FBBF24" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	"71956c1eb61c46b7a2fccd981c8706d4" -> "4ae189c892724471b888eda45ad6174d" [label="6-digit OTP email" color="#60A5FA" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}

@@ -15,13 +15,13 @@ export async function POST(req: NextRequest) {
   }
 
   const normalized = email.trim().toLowerCase();
-  const valid = verifyAndConsumeOtp(normalized, code.trim());
+  const valid = await verifyAndConsumeOtp(normalized, code.trim());
 
   if (!valid) {
     return NextResponse.json({ error: 'Invalid or expired code. Please try again.' }, { status: 401 });
   }
 
-  const user = upsertUser(normalized);
+  const user = await upsertUser(normalized);
   const token = await signToken(user.id);
 
   const res = NextResponse.json({ email: user.email });

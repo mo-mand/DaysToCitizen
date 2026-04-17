@@ -1,127 +1,119 @@
-import fs from 'fs';
-import path from 'path';
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import {
+  DynamoDBDocumentClient,
+  GetCommand,
+  PutCommand,
+  DeleteCommand,
+  QueryCommand,
+  UpdateCommand,
+} from '@aws-sdk/lib-dynamodb';
 import { Stay } from './types';
 
-const DB_DIR = path.join(process.cwd(), '.data');
-const DB_PATH = path.join(DB_DIR, 'db.json');
+const client = new DynamoDBClient({ region: process.env.APP_REGION ?? 'ca-central-1' });
+const db = DynamoDBDocumentClient.from(client);
 
-interface DBUser {
-  id: string;
-  email: string;
-  createdAt: string;
-}
-
-interface DBStay extends Stay {
-  userId: string;
-  createdAt: string;
-}
-
-interface DBOtp {
-  email: string;
-  code: string;
-  expiresAt: string;
-}
-
-interface DB {
-  users: DBUser[];
-  stays: DBStay[];
-  otps: DBOtp[];
-}
-
-function readDB(): DB {
-  try {
-    const raw = fs.readFileSync(DB_PATH, 'utf-8');
-    const db = JSON.parse(raw) as DB;
-    if (!db.otps) db.otps = [];
-    return db;
-  } catch {
-    return { users: [], stays: [], otps: [] };
-  }
-}
-
-function writeDB(db: DB): void {
-  if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
-  fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2), 'utf-8');
-}
+const USERS_TABLE = process.env.DYNAMODB_USERS_TABLE ?? 'daystocitizen-users';
+const STAYS_TABLE = process.env.DYNAMODB_STAYS_TABLE ?? 'daystocitizen-stays';
+const OTPS_TABLE  = process.env.DYNAMODB_OTPS_TABLE  ?? 'daystocitizen-otps';
 
 // ── Users ─────────────────────────────────────────────────────────────────────
 
-export function findUserByEmail(email: string): DBUser | undefined {
-  return readDB().users.find((u) => u.email === email);
+export async function findUserByEmail(email: string): Promise<{ id: string; email: string; createdAt: string } | undefined> {
+  const res = await db.send(new QueryCommand({
+    TableName: USERS_TABLE,
+    IndexName: 'email-index',
+    KeyConditionExpression: 'email = :e',
+    ExpressionAttributeValues: { ':e': email },
+    Limit: 1,
+  }));
+  return res.Items?.[0] as { id: string; email: string; createdAt: string } | undefined;
 }
 
-export function findUserById(id: string): DBUser | undefined {
-  return readDB().users.find((u) => u.id === id);
+export async function findUserById(id: string): Promise<{ id: string; email: string; createdAt: string } | undefined> {
+  const res = await db.send(new GetCommand({ TableName: USERS_TABLE, Key: { id } }));
+  return res.Item as { id: string; email: string; createdAt: string } | undefined;
 }
 
-export function upsertUser(email: string): DBUser {
-  const db = readDB();
-  const existing = db.users.find((u) => u.email === email);
+export async function upsertUser(email: string): Promise<{ id: string; email: string; createdAt: string }> {
+  const existing = await findUserByEmail(email);
   if (existing) return existing;
-  const user: DBUser = { id: crypto.randomUUID(), email, createdAt: new Date().toISOString() };
-  db.users.push(user);
-  writeDB(db);
+  const user = { id: crypto.randomUUID(), email, createdAt: new Date().toISOString() };
+  await db.send(new PutCommand({ TableName: USERS_TABLE, Item: user }));
   return user;
 }
 
 // ── Stays ─────────────────────────────────────────────────────────────────────
 
-export function getStays(userId: string): Stay[] {
-  return readDB()
-    .stays.filter((s) => s.userId === userId)
-    .sort((a, b) => new Date(b.entryDate).getTime() - new Date(a.entryDate).getTime())
-    .map(({ userId: _uid, createdAt: _ca, ...stay }) => stay);
+export async function getStays(userId: string): Promise<Stay[]> {
+  const res = await db.send(new QueryCommand({
+    TableName: STAYS_TABLE,
+    KeyConditionExpression: 'userId = :u',
+    ExpressionAttributeValues: { ':u': userId },
+  }));
+  return ((res.Items ?? []) as (Stay & { userId: string; createdAt: string })[])
+    .map(({ userId: _u, createdAt: _c, ...stay }) => stay)
+    .sort((a, b) => new Date(b.entryDate).getTime() - new Date(a.entryDate).getTime());
 }
 
-export function createStay(userId: string, stay: Stay): Stay {
-  const db = readDB();
-  if (db.stays.some((s) => s.id === stay.id && s.userId === userId)) return stay;
-  db.stays.push({ ...stay, userId, createdAt: new Date().toISOString() });
-  writeDB(db);
+export async function createStay(userId: string, stay: Stay): Promise<Stay> {
+  await db.send(new PutCommand({
+    TableName: STAYS_TABLE,
+    Item: { ...stay, userId, createdAt: new Date().toISOString() },
+    ConditionExpression: 'attribute_not_exists(id)',
+  })).catch(() => {}); // idempotent — ignore if already exists
   return stay;
 }
 
-export function deleteStay(userId: string, id: string): boolean {
-  const db = readDB();
-  const idx = db.stays.findIndex((s) => s.id === id && s.userId === userId);
-  if (idx === -1) return false;
-  db.stays.splice(idx, 1);
-  writeDB(db);
+export async function deleteStay(userId: string, id: string): Promise<boolean> {
+  await db.send(new DeleteCommand({
+    TableName: STAYS_TABLE,
+    Key: { userId, id },
+    ConditionExpression: 'attribute_exists(id)',
+  })).catch(() => {});
   return true;
 }
 
-export function updateStay(userId: string, id: string, updates: Partial<Stay>): Stay | null {
-  const db = readDB();
-  const idx = db.stays.findIndex((s) => s.id === id && s.userId === userId);
-  if (idx === -1) return null;
-  db.stays[idx] = { ...db.stays[idx], ...updates };
-  writeDB(db);
-  const { userId: _uid, createdAt: _ca, ...stay } = db.stays[idx];
+export async function updateStay(userId: string, id: string, updates: Partial<Stay>): Promise<Stay | null> {
+  const keys = Object.keys(updates) as (keyof Stay)[];
+  if (keys.length === 0) return null;
+
+  const setExpr = keys.map((k) => `#${k} = :${k}`).join(', ');
+  const names   = Object.fromEntries(keys.map((k) => [`#${k}`, k]));
+  const values  = Object.fromEntries(keys.map((k) => [`:${k}`, updates[k]]));
+
+  const res = await db.send(new UpdateCommand({
+    TableName: STAYS_TABLE,
+    Key: { userId, id },
+    UpdateExpression: `SET ${setExpr}`,
+    ExpressionAttributeNames: names,
+    ExpressionAttributeValues: values,
+    ConditionExpression: 'attribute_exists(id)',
+    ReturnValues: 'ALL_NEW',
+  })).catch(() => null);
+
+  if (!res?.Attributes) return null;
+  const { userId: _u, createdAt: _c, ...stay } = res.Attributes as Stay & { userId: string; createdAt: string };
   return stay;
 }
 
 // ── OTPs ──────────────────────────────────────────────────────────────────────
 
-export function saveOtp(email: string, code: string, expiresAt: Date): void {
-  const db = readDB();
-  // Remove any existing OTP for this email
-  db.otps = db.otps.filter((o) => o.email !== email);
-  db.otps.push({ email, code, expiresAt: expiresAt.toISOString() });
-  writeDB(db);
+export async function saveOtp(email: string, code: string, expiresAt: Date): Promise<void> {
+  const ttl = Math.floor(expiresAt.getTime() / 1000); // DynamoDB TTL is Unix epoch seconds
+  await db.send(new PutCommand({
+    TableName: OTPS_TABLE,
+    Item: { email, code, expiresAt: expiresAt.toISOString(), ttl },
+  }));
 }
 
-export function verifyAndConsumeOtp(email: string, code: string): boolean {
-  const db = readDB();
-  const idx = db.otps.findIndex((o) => o.email === email);
-  if (idx === -1) return false;
-  const otp = db.otps[idx];
-  if (otp.code !== code) return false;
-  if (new Date() > new Date(otp.expiresAt)) {
-    db.otps.splice(idx, 1);
-    writeDB(db);
+export async function verifyAndConsumeOtp(email: string, code: string): Promise<boolean> {
+  const res = await db.send(new GetCommand({ TableName: OTPS_TABLE, Key: { email } }));
+  const item = res.Item;
+  if (!item || item.code !== code) return false;
+  if (new Date() > new Date(item.expiresAt)) {
+    await db.send(new DeleteCommand({ TableName: OTPS_TABLE, Key: { email } }));
     return false;
   }
-  db.otps.splice(idx, 1);
-  writeDB(db);
+  await db.send(new DeleteCommand({ TableName: OTPS_TABLE, Key: { email } }));
   return true;
 }

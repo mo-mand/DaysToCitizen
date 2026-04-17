@@ -12,7 +12,7 @@ async function getUserId(req: NextRequest): Promise<string | null> {
 export async function GET(req: NextRequest) {
   const userId = await getUserId(req);
   if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  return NextResponse.json(getStays(userId));
+  return NextResponse.json(await getStays(userId));
 }
 
 export async function POST(req: NextRequest) {
@@ -32,5 +32,5 @@ export async function POST(req: NextRequest) {
     notes: body.notes,
   };
 
-  return NextResponse.json(createStay(userId, stay), { status: 201 });
+  return NextResponse.json(await createStay(userId, stay), { status: 201 });
 }

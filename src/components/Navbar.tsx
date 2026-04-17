@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { LogIn, LogOut, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
 import { MapleLeaf } from './MapleLeaf';
 import { AuthModal } from './AuthModal';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -29,6 +30,9 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
+            <Link href="/help" className="text-sm text-gray-500 hover:text-gray-800 transition-colors hidden sm:block">
+              Help
+            </Link>
             <LanguageSwitcher />
 
             {email ? (
