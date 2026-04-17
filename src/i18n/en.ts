@@ -116,6 +116,12 @@ const en = {
   footerBuiltBy: 'Built by',
   footerOpenSource: 'Open source',
   footerDisclaimer: 'For reference only — always consult IRCC.',
+
+  // Help page
+  helpBack: '← Back to DaysToCitizen',
+  helpCtaTitle: 'Start Tracking Your Days',
+  helpCtaSubtitle: 'Free, private, and no setup required. Works in 23 languages.',
+  helpOpenApp: 'Open DaysToCitizen →',
 };
 
 export default en;
