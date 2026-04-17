@@ -98,8 +98,8 @@ const tr: Translations = {
 
 
   // Help page
-  helpBack: '← DaysToCitizen'e Dön',
+  helpBack: "← DaysToCitizen'e Dön",
   helpCtaTitle: 'Günlerinizi takip etmeye başlayın',
   helpCtaSubtitle: 'Ücretsiz, gizli, kurulum yok. 23 dilde çalışır.',
-  helpOpenApp: 'DaysToCitizen'i Aç →',
+  helpOpenApp: "DaysToCitizen'i Aç →",
 };
