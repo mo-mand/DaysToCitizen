@@ -6,6 +6,7 @@ const es: Translations = {
   signIn: 'Iniciar sesión',
   signOut: 'Cerrar sesión',
   myAccount: 'Mi cuenta',
+  help: 'Ayuda',
   authTitle: 'Inicia sesión para guardar tus datos',
   authSubtitle: 'Ingresa tu correo electrónico — sin contraseña ni verificación. Tus registros se guardarán permanentemente.',
   emailLabel: 'Correo electrónico',

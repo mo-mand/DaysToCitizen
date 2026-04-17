@@ -6,6 +6,7 @@ const ro: Translations = {
   signIn: 'Conectare',
   signOut: 'Deconectare',
   myAccount: 'Contul meu',
+  help: 'Ajutor',
   authTitle: 'Conectați-vă pentru a salva datele',
   authSubtitle: 'Introduceți emailul — fără parolă sau verificare. Înregistrările se salvează permanent.',
   emailLabel: 'Adresă de email',

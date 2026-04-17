@@ -46,7 +46,7 @@ export default function HelpPage() {
 
       {/* Hero */}
       <div className="mb-12">
-        <Link href="/" className="text-sm text-red-600 hover:underline mb-4 inline-block">
+        <Link href="/" className="text-sm text-purple-600 hover:text-purple-800 hover:underline mb-4 inline-block">
           ← Back to DaysToCitizen
         </Link>
         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">

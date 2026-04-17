@@ -6,6 +6,7 @@ const ko: Translations = {
   signIn: '로그인',
   signOut: '로그아웃',
   myAccount: '내 계정',
+  help: '도움말',
   authTitle: '데이터 저장을 위해 로그인하세요',
   authSubtitle: '이메일을 입력하세요 — 비밀번호나 인증 불필요. 기록이 영구 저장됩니다.',
   emailLabel: '이메일 주소',

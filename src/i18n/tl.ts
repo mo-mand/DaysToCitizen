@@ -6,6 +6,7 @@ const tl: Translations = {
   signIn: 'Mag-sign in',
   signOut: 'Mag-sign out',
   myAccount: 'Aking account',
+  help: 'Tulong',
   authTitle: 'Mag-sign in para i-save ang iyong data',
   authSubtitle: 'Ilagay ang iyong email — walang password o verification. Ang iyong mga rekord ay permanenteng mase-save.',
   emailLabel: 'Email address',

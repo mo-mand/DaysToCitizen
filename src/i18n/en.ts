@@ -7,6 +7,7 @@ const en = {
   signIn: 'Sign In',
   signOut: 'Sign Out',
   myAccount: 'My Account',
+  help: 'Help',
 
   // Auth modal
   authTitle: 'Sign in to save your data',

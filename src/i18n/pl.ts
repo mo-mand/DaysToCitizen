@@ -6,6 +6,7 @@ const pl: Translations = {
   signIn: 'Zaloguj się',
   signOut: 'Wyloguj się',
   myAccount: 'Moje konto',
+  help: 'Pomoc',
   authTitle: 'Zaloguj się, aby zapisać dane',
   authSubtitle: 'Podaj swój email — bez hasła ani weryfikacji. Twoje wpisy zostaną zapisane na stałe.',
   emailLabel: 'Adres email',

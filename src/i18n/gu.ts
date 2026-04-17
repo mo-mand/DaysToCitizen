@@ -6,6 +6,7 @@ const gu: Translations = {
   signIn: 'સાઇન ઇન કરો',
   signOut: 'સાઇન આઉટ',
   myAccount: 'મારું ખાતું',
+  help: 'મદદ',
   authTitle: 'ડેટા સાચવવા માટે સાઇન ઇન કરો',
   authSubtitle: 'તમારો ઇ-મેઇલ દાખલ કરો — પાસવર્ડ અથવા ચકાસણીની જરૂર નથી.',
   emailLabel: 'ઇ-મેઇલ સરનામું',

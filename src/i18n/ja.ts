@@ -6,6 +6,7 @@ const ja: Translations = {
   signIn: 'サインイン',
   signOut: 'サインアウト',
   myAccount: 'マイアカウント',
+  help: 'ヘルプ',
   authTitle: 'データを保存するためサインイン',
   authSubtitle: 'メールアドレスを入力するだけ — パスワードや認証は不要。記録は永久に保存されます。',
   emailLabel: 'メールアドレス',

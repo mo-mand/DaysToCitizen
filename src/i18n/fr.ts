@@ -7,6 +7,7 @@ const fr: Translations = {
   signIn: 'Connexion',
   signOut: 'Déconnexion',
   myAccount: 'Mon compte',
+  help: 'Aide',
 
   authTitle: 'Connectez-vous pour sauvegarder vos données',
   authSubtitle: 'Entrez votre courriel pour recevoir un code unique. Aucun mot de passe requis.',

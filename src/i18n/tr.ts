@@ -6,6 +6,7 @@ const tr: Translations = {
   signIn: 'Giriş Yap',
   signOut: 'Çıkış Yap',
   myAccount: 'Hesabım',
+  help: 'Yardım',
   authTitle: 'Verilerinizi kaydetmek için giriş yapın',
   authSubtitle: 'E-postanızı girin — şifre veya doğrulama gerekmez. Kayıtlarınız kalıcı olarak saklanır.',
   emailLabel: 'E-posta adresi',

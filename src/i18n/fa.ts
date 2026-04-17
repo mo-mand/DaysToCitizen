@@ -6,6 +6,7 @@ const fa: Translations = {
   signIn: 'ورود',
   signOut: 'خروج',
   myAccount: 'حساب من',
+  help: 'راهنما',
   authTitle: 'برای ذخیره اطلاعات وارد شوید',
   authSubtitle: 'ایمیل خود را وارد کنید — بدون نیاز به رمز عبور یا تأیید. اطلاعات شما برای همیشه ذخیره می‌شود.',
   emailLabel: 'آدرس ایمیل',

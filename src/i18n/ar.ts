@@ -6,6 +6,7 @@ const ar: Translations = {
   signIn: 'تسجيل الدخول',
   signOut: 'تسجيل الخروج',
   myAccount: 'حسابي',
+  help: 'مساعدة',
   authTitle: 'سجّل دخولك لحفظ بياناتك',
   authSubtitle: 'أدخل بريدك الإلكتروني — لا حاجة لكلمة مرور أو تحقق. يُحفظ سجلك للأبد.',
   emailLabel: 'عنوان البريد الإلكتروني',

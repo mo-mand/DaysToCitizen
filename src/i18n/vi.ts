@@ -6,6 +6,7 @@ const vi: Translations = {
   signIn: 'Đăng nhập',
   signOut: 'Đăng xuất',
   myAccount: 'Tài khoản của tôi',
+  help: 'Trợ giúp',
   authTitle: 'Đăng nhập để lưu dữ liệu',
   authSubtitle: 'Nhập email của bạn — không cần mật khẩu hay xác minh. Hồ sơ sẽ được lưu vĩnh viễn.',
   emailLabel: 'Địa chỉ email',

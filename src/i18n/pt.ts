@@ -6,6 +6,7 @@ const pt: Translations = {
   signIn: 'Entrar',
   signOut: 'Sair',
   myAccount: 'Minha conta',
+  help: 'Ajuda',
   authTitle: 'Entre para salvar seus dados',
   authSubtitle: 'Digite seu e-mail — sem senha ou verificação. Seus registros serão salvos permanentemente.',
   emailLabel: 'Endereço de e-mail',

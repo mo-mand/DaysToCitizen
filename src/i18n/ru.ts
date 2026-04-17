@@ -6,6 +6,7 @@ const ru: Translations = {
   signIn: 'Войти',
   signOut: 'Выйти',
   myAccount: 'Мой аккаунт',
+  help: 'Помощь',
   authTitle: 'Войдите для сохранения данных',
   authSubtitle: 'Введите email — без пароля и подтверждения. Записи сохраняются навсегда.',
   emailLabel: 'Email адрес',

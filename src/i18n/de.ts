@@ -6,6 +6,7 @@ const de: Translations = {
   signIn: 'Anmelden',
   signOut: 'Abmelden',
   myAccount: 'Mein Konto',
+  help: 'Hilfe',
   authTitle: 'Anmelden zum Speichern Ihrer Daten',
   authSubtitle: 'Geben Sie Ihre E-Mail ein — kein Passwort oder Bestätigung nötig. Ihre Aufzeichnungen werden dauerhaft gespeichert.',
   emailLabel: 'E-Mail-Adresse',

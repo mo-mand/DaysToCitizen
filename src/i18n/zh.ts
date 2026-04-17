@@ -6,6 +6,7 @@ const zh: Translations = {
   signIn: '登录',
   signOut: '退出',
   myAccount: '我的账户',
+  help: '帮助',
   authTitle: '登录以保存您的数据',
   authSubtitle: '输入您的电子邮件 — 无需密码或验证。您的记录将永久保存。',
   emailLabel: '电子邮件地址',

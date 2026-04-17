@@ -6,6 +6,7 @@ const pa: Translations = {
   signIn: 'ਸਾਈਨ ਇਨ ਕਰੋ',
   signOut: 'ਸਾਈਨ ਆਊਟ',
   myAccount: 'ਮੇਰਾ ਖਾਤਾ',
+  help: 'ਮਦਦ',
   authTitle: 'ਡੇਟਾ ਸੁਰੱਖਿਅਤ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ',
   authSubtitle: 'ਆਪਣੀ ਈਮੇਲ ਦਰਜ ਕਰੋ — ਪਾਸਵਰਡ ਜਾਂ ਤਸਦੀਕ ਦੀ ਲੋੜ ਨਹੀਂ।',
   emailLabel: 'ਈਮੇਲ ਪਤਾ',

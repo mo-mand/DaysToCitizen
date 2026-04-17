@@ -6,6 +6,7 @@ const uk: Translations = {
   signIn: 'Увійти',
   signOut: 'Вийти',
   myAccount: 'Мій акаунт',
+  help: 'Допомога',
   authTitle: 'Увійдіть для збереження даних',
   authSubtitle: 'Введіть email — без пароля та підтвердження. Записи зберігаються назавжди.',
   emailLabel: 'Email адреса',

@@ -6,6 +6,7 @@ const ur: Translations = {
   signIn: 'سائن ان کریں',
   signOut: 'سائن آؤٹ',
   myAccount: 'میرا اکاؤنٹ',
+  help: 'مدد',
   authTitle: 'ڈیٹا محفوظ کرنے کے لیے سائن ان کریں',
   authSubtitle: 'اپنا ای میل درج کریں — کوئی پاس ورڈ یا تصدیق ضروری نہیں۔',
   emailLabel: 'ای میل پتہ',

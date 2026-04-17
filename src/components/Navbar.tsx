@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LogIn, LogOut, ChevronDown } from 'lucide-react';
+import { LogIn, LogOut, ChevronDown, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 import { MapleLeaf } from './MapleLeaf';
 import { AuthModal } from './AuthModal';
@@ -30,8 +30,9 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <Link href="/help" className="text-sm text-gray-500 hover:text-gray-800 transition-colors hidden sm:block">
-              Help
+            <Link href="/help" className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 transition-colors hidden sm:flex">
+              <HelpCircle className="w-4 h-4" />
+              {t.help}
             </Link>
             <LanguageSwitcher />
 

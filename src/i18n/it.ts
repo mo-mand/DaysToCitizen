@@ -6,6 +6,7 @@ const it: Translations = {
   signIn: 'Accedi',
   signOut: 'Esci',
   myAccount: 'Il mio account',
+  help: 'Aiuto',
   authTitle: 'Accedi per salvare i tuoi dati',
   authSubtitle: 'Inserisci la tua email — nessuna password o verifica necessaria. I tuoi record vengono salvati in modo permanente.',
   emailLabel: 'Indirizzo email',
