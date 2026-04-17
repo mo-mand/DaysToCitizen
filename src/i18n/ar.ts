@@ -103,3 +103,4 @@ const ar: Translations = {
   helpCtaSubtitle: 'مجاني، خاص، لا يحتاج إعداد. يعمل بـ 23 لغة.',
   helpOpenApp: 'افتح DaysToCitizen ←',
 };
+export default ar;

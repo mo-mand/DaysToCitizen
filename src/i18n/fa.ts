@@ -103,3 +103,4 @@ const fa: Translations = {
   helpCtaSubtitle: 'رایگان، خصوصی، بدون راه‌اندازی. در 23 زبان کار می‌کند.',
   helpOpenApp: 'باز کردن DaysToCitizen ←',
 };
+export default fa;

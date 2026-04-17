@@ -103,3 +103,4 @@ const zh: Translations = {
   helpCtaSubtitle: '免费、私密、无需设置。支持23种语言。',
   helpOpenApp: '打开 DaysToCitizen →',
 };
+export default zh;

@@ -103,3 +103,4 @@ const ko: Translations = {
   helpCtaSubtitle: '무료, 개인 정보 보호, 설정 불필요. 23개 언어 지원.',
   helpOpenApp: 'DaysToCitizen 열기 →',
 };
+export default ko;

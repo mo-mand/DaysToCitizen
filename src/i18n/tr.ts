@@ -103,3 +103,4 @@ const tr: Translations = {
   helpCtaSubtitle: 'Ücretsiz, gizli, kurulum yok. 23 dilde çalışır.',
   helpOpenApp: "DaysToCitizen'i Aç →",
 };
+export default tr;

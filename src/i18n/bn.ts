@@ -103,3 +103,4 @@ const bn: Translations = {
   helpCtaSubtitle: 'বিনামূল্যে, ব্যক্তিগত, কোনো সেটআপ নেই। ২৩টি ভাষায় কাজ করে।',
   helpOpenApp: 'DaysToCitizen খুলুন →',
 };
+export default bn;

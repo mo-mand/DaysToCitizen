@@ -103,3 +103,4 @@ const ja: Translations = {
   helpCtaSubtitle: '無料、プライベート、設定不要。23言語に対応。',
   helpOpenApp: 'DaysToCitizenを開く →',
 };
+export default ja;

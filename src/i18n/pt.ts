@@ -103,3 +103,4 @@ const pt: Translations = {
   helpCtaSubtitle: 'Gratuito, privado e sem configuração. Funciona em 23 idiomas.',
   helpOpenApp: 'Abrir DaysToCitizen →',
 };
+export default pt;

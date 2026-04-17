@@ -103,3 +103,4 @@ const pa: Translations = {
   helpCtaSubtitle: 'ਮੁਫਤ, ਨਿੱਜੀ, ਕੋਈ ਸੈਟਅਪ ਨਹੀਂ। 23 ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਕੰਮ ਕਰਦਾ ਹੈ।',
   helpOpenApp: 'DaysToCitizen ਖੋਲੋ →',
 };
+export default pa;

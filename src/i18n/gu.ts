@@ -103,3 +103,4 @@ const gu: Translations = {
   helpCtaSubtitle: 'મફત, ખાનગી, કોઈ સેટઅપ નહીં. 23 ભાષાઓમાં કામ કરે છે.',
   helpOpenApp: 'DaysToCitizen ખોલો →',
 };
+export default gu;

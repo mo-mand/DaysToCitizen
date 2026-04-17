@@ -103,3 +103,4 @@ const ro: Translations = {
   helpCtaSubtitle: 'Gratuit, privat, fără configurare. Funcționează în 23 de limbi.',
   helpOpenApp: 'Deschide DaysToCitizen →',
 };
+export default ro;

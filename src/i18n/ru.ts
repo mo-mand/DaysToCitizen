@@ -103,3 +103,4 @@ const ru: Translations = {
   helpCtaSubtitle: 'Бесплатно, конфиденциально, без настройки. Работает на 23 языках.',
   helpOpenApp: 'Открыть DaysToCitizen →',
 };
+export default ru;

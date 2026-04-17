@@ -103,3 +103,4 @@ const ur: Translations = {
   helpCtaSubtitle: 'مفت، نجی، کوئی سیٹ اپ نہیں۔ 23 زبانوں میں کام کرتا ہے۔',
   helpOpenApp: 'DaysToCitizen کھولیں ←',
 };
+export default ur;

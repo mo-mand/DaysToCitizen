@@ -103,3 +103,4 @@ const vi: Translations = {
   helpCtaSubtitle: 'Miễn phí, riêng tư, không cần cài đặt. Hoạt động bằng 23 ngôn ngữ.',
   helpOpenApp: 'Mở DaysToCitizen →',
 };
+export default vi;

@@ -103,3 +103,4 @@ const hi: Translations = {
   helpCtaSubtitle: 'मुफ्त, निजी, कोई सेटअप नहीं। 23 भाषाओं में काम करता है।',
   helpOpenApp: 'DaysToCitizen खोलें →',
 };
+export default hi;

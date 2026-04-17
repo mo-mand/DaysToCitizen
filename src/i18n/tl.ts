@@ -103,3 +103,4 @@ const tl: Translations = {
   helpCtaSubtitle: 'Libre, pribado, walang setup. Gumagana sa 23 wika.',
   helpOpenApp: 'Buksan ang DaysToCitizen →',
 };
+export default tl;
