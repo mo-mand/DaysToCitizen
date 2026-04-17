@@ -97,10 +97,5 @@ const ja: Translations = {
   footerDisclaimer: '参考情報のみ — 常にIRCCに確認してください。',
 
 
-  // Help page
-  helpBack: '← DaysToCitizenに戻る',
-  helpCtaTitle: '日数の追跡を始める',
-  helpCtaSubtitle: '無料、プライベート、設定不要。23言語に対応。',
-  helpOpenApp: 'DaysToCitizenを開く →',
 };
 export default ja;

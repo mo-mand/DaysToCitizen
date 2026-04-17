@@ -97,10 +97,5 @@ const zh: Translations = {
   footerDisclaimer: '仅供参考 — 请始终咨询IRCC。',
 
 
-  // Help page
-  helpBack: '← 返回 DaysToCitizen',
-  helpCtaTitle: '开始追踪您的天数',
-  helpCtaSubtitle: '免费、私密、无需设置。支持23种语言。',
-  helpOpenApp: '打开 DaysToCitizen →',
 };
 export default zh;

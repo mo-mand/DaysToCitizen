@@ -97,10 +97,5 @@ const ko: Translations = {
   footerDisclaimer: '참고용 — IRCC에 항상 확인하세요.',
 
 
-  // Help page
-  helpBack: '← DaysToCitizen으로 돌아가기',
-  helpCtaTitle: '일수 추적 시작하기',
-  helpCtaSubtitle: '무료, 개인 정보 보호, 설정 불필요. 23개 언어 지원.',
-  helpOpenApp: 'DaysToCitizen 열기 →',
 };
 export default ko;

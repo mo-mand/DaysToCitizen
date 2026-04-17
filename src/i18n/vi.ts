@@ -97,10 +97,5 @@ const vi: Translations = {
   footerDisclaimer: 'Chỉ để tham khảo — luôn tham khảo IRCC.',
 
 
-  // Help page
-  helpBack: '← Quay lại DaysToCitizen',
-  helpCtaTitle: 'Bắt đầu theo dõi ngày của bạn',
-  helpCtaSubtitle: 'Miễn phí, riêng tư, không cần cài đặt. Hoạt động bằng 23 ngôn ngữ.',
-  helpOpenApp: 'Mở DaysToCitizen →',
 };
 export default vi;

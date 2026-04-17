@@ -97,10 +97,5 @@ const ar: Translations = {
   footerDisclaimer: 'للاستخدام المرجعي فقط — استشر دائماً IRCC.',
 
 
-  // Help page
-  helpBack: '← العودة إلى DaysToCitizen',
-  helpCtaTitle: 'ابدأ تتبع أيامك',
-  helpCtaSubtitle: 'مجاني، خاص، لا يحتاج إعداد. يعمل بـ 23 لغة.',
-  helpOpenApp: 'افتح DaysToCitizen ←',
 };
 export default ar;

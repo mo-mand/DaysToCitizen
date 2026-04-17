@@ -97,10 +97,5 @@ const tr: Translations = {
   footerDisclaimer: 'Yalnızca referans — IRCC\'ye her zaman danışın.',
 
 
-  // Help page
-  helpBack: "← DaysToCitizen'e Dön",
-  helpCtaTitle: 'Günlerinizi takip etmeye başlayın',
-  helpCtaSubtitle: 'Ücretsiz, gizli, kurulum yok. 23 dilde çalışır.',
-  helpOpenApp: "DaysToCitizen'i Aç →",
 };
 export default tr;

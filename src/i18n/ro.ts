@@ -97,10 +97,5 @@ const ro: Translations = {
   footerDisclaimer: 'Doar pentru referință — consultați întotdeauna IRCC.',
 
 
-  // Help page
-  helpBack: '← Înapoi la DaysToCitizen',
-  helpCtaTitle: 'Începeți să urmăriți zilele',
-  helpCtaSubtitle: 'Gratuit, privat, fără configurare. Funcționează în 23 de limbi.',
-  helpOpenApp: 'Deschide DaysToCitizen →',
 };
 export default ro;

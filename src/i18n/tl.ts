@@ -97,10 +97,5 @@ const tl: Translations = {
   footerDisclaimer: 'Para sa sanggunian lamang — laging kumonsulta sa IRCC.',
 
 
-  // Help page
-  helpBack: '← Bumalik sa DaysToCitizen',
-  helpCtaTitle: 'Simulan ang pagsubaybay ng iyong mga araw',
-  helpCtaSubtitle: 'Libre, pribado, walang setup. Gumagana sa 23 wika.',
-  helpOpenApp: 'Buksan ang DaysToCitizen →',
 };
 export default tl;

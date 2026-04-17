@@ -97,10 +97,5 @@ const uk: Translations = {
   footerDisclaimer: 'Тільки для довідки — завжди перевіряйте IRCC.',
 
 
-  // Help page
-  helpBack: '← Повернутися до DaysToCitizen',
-  helpCtaTitle: 'Почніть відстежувати свої дні',
-  helpCtaSubtitle: 'Безкоштовно, конфіденційно, без налаштувань. Працює у 23 мовах.',
-  helpOpenApp: 'Відкрити DaysToCitizen →',
 };
 export default uk;

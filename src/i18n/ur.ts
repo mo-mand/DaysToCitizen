@@ -97,10 +97,5 @@ const ur: Translations = {
   footerDisclaimer: 'صرف حوالہ کے لیے — ہمیشہ IRCC سے مشورہ کریں۔',
 
 
-  // Help page
-  helpBack: '← DaysToCitizen پر واپس',
-  helpCtaTitle: 'اپنے دن ٹریک کرنا شروع کریں',
-  helpCtaSubtitle: 'مفت، نجی، کوئی سیٹ اپ نہیں۔ 23 زبانوں میں کام کرتا ہے۔',
-  helpOpenApp: 'DaysToCitizen کھولیں ←',
 };
 export default ur;

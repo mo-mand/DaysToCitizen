@@ -30,7 +30,7 @@ export function Navbar() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <Link href="/help" className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 transition-colors hidden sm:flex">
+            <Link href="/help" className="flex items-center gap-1 text-sm text-purple-500 hover:text-purple-700 bg-purple-50 hover:bg-purple-100 px-2.5 py-1 rounded-lg transition-colors hidden sm:flex">
               <HelpCircle className="w-4 h-4" />
               {t.help}
             </Link>

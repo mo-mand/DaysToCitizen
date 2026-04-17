@@ -97,10 +97,5 @@ const pa: Translations = {
   footerDisclaimer: 'ਸਿਰਫ਼ ਹਵਾਲੇ ਲਈ — ਹਮੇਸ਼ਾ IRCC ਨਾਲ ਸਲਾਹ ਕਰੋ।',
 
 
-  // Help page
-  helpBack: '← DaysToCitizen ਤੇ ਵਾਪਸ',
-  helpCtaTitle: 'ਆਪਣੇ ਦਿਨਾਂ ਨੂੰ ਟਰੈਕ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰੋ',
-  helpCtaSubtitle: 'ਮੁਫਤ, ਨਿੱਜੀ, ਕੋਈ ਸੈਟਅਪ ਨਹੀਂ। 23 ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਕੰਮ ਕਰਦਾ ਹੈ।',
-  helpOpenApp: 'DaysToCitizen ਖੋਲੋ →',
 };
 export default pa;

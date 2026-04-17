@@ -97,10 +97,5 @@ const gu: Translations = {
   footerDisclaimer: 'ફક્ત સંદર્ભ માટે — હંમેશા IRCC સલાહ લો.',
 
 
-  // Help page
-  helpBack: '← DaysToCitizen પર પાછા',
-  helpCtaTitle: 'તમારા દિવસો ટ્રેક કરવાનું શરૂ કરો',
-  helpCtaSubtitle: 'મફત, ખાનગી, કોઈ સેટઅપ નહીં. 23 ભાષાઓમાં કામ કરે છે.',
-  helpOpenApp: 'DaysToCitizen ખોલો →',
 };
 export default gu;

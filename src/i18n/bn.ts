@@ -97,10 +97,5 @@ const bn: Translations = {
   footerDisclaimer: 'শুধুমাত্র রেফারেন্সের জন্য — সর্বদা IRCC পরামর্শ করুন।',
 
 
-  // Help page
-  helpBack: '← DaysToCitizen-এ ফিরে যান',
-  helpCtaTitle: 'আপনার দিন ট্র্যাক শুরু করুন',
-  helpCtaSubtitle: 'বিনামূল্যে, ব্যক্তিগত, কোনো সেটআপ নেই। ২৩টি ভাষায় কাজ করে।',
-  helpOpenApp: 'DaysToCitizen খুলুন →',
 };
 export default bn;

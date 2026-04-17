@@ -108,10 +108,5 @@ const fr: Translations = {
   footerDisclaimer: 'À titre indicatif uniquement — consultez toujours IRCC.',
 
 
-  // Help page
-  helpBack: '← Retour à DaysToCitizen',
-  helpCtaTitle: 'Commencez à suivre vos jours',
-  helpCtaSubtitle: 'Gratuit, privé et sans configuration. Fonctionne en 23 langues.',
-  helpOpenApp: 'Ouvrir DaysToCitizen →',
 };
 export default fr;

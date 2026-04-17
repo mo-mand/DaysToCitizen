@@ -34,12 +34,14 @@ resource "aws_amplify_app" "app" {
     DYNAMODB_OTPS_TABLE    = "daystocitizen-otps"
   }
 
+  platform = "WEB_COMPUTE"
+
   tags = { Project = var.project }
 }
 
 resource "aws_amplify_branch" "main" {
   app_id      = aws_amplify_app.app.id
-  branch_name = "main"
+  branch_name = "master"
   framework   = "Next.js - SSR"
   stage       = "PRODUCTION"
 

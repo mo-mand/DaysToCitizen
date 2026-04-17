@@ -97,10 +97,5 @@ const fa: Translations = {
   footerDisclaimer: 'فقط برای مرجع — همیشه با IRCC مشورت کنید.',
 
 
-  // Help page
-  helpBack: '← بازگشت به DaysToCitizen',
-  helpCtaTitle: 'ردیابی روزهای خود را شروع کنید',
-  helpCtaSubtitle: 'رایگان، خصوصی، بدون راه‌اندازی. در 23 زبان کار می‌کند.',
-  helpOpenApp: 'باز کردن DaysToCitizen ←',
 };
 export default fa;
