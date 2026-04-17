@@ -95,6 +95,11 @@ const pt: Translations = {
   footerBuiltBy: 'Criado por',
   footerOpenSource: 'Código aberto',
   footerDisclaimer: 'Apenas referência — sempre consulte o IRCC.',
-};
 
-export default pt;
+
+  // Help page
+  helpBack: '← Voltar ao DaysToCitizen',
+  helpCtaTitle: 'Comece a rastrear seus dias',
+  helpCtaSubtitle: 'Gratuito, privado e sem configuração. Funciona em 23 idiomas.',
+  helpOpenApp: 'Abrir DaysToCitizen →',
+};

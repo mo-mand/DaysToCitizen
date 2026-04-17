@@ -95,6 +95,11 @@ const tr: Translations = {
   footerBuiltBy: 'Yapımcı',
   footerOpenSource: 'Açık kaynak',
   footerDisclaimer: 'Yalnızca referans — IRCC\'ye her zaman danışın.',
-};
 
-export default tr;
+
+  // Help page
+  helpBack: '← DaysToCitizen'e Dön',
+  helpCtaTitle: 'Günlerinizi takip etmeye başlayın',
+  helpCtaSubtitle: 'Ücretsiz, gizli, kurulum yok. 23 dilde çalışır.',
+  helpOpenApp: 'DaysToCitizen'i Aç →',
+};

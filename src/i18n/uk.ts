@@ -95,6 +95,11 @@ const uk: Translations = {
   footerBuiltBy: 'Створено',
   footerOpenSource: 'Відкритий код',
   footerDisclaimer: 'Тільки для довідки — завжди перевіряйте IRCC.',
-};
 
-export default uk;
+
+  // Help page
+  helpBack: '← Повернутися до DaysToCitizen',
+  helpCtaTitle: 'Почніть відстежувати свої дні',
+  helpCtaSubtitle: 'Безкоштовно, конфіденційно, без налаштувань. Працює у 23 мовах.',
+  helpOpenApp: 'Відкрити DaysToCitizen →',
+};

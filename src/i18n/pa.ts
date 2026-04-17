@@ -95,6 +95,11 @@ const pa: Translations = {
   footerBuiltBy: 'ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ',
   footerOpenSource: 'ਓਪਨ ਸੋਰਸ',
   footerDisclaimer: 'ਸਿਰਫ਼ ਹਵਾਲੇ ਲਈ — ਹਮੇਸ਼ਾ IRCC ਨਾਲ ਸਲਾਹ ਕਰੋ।',
-};
 
-export default pa;
+
+  // Help page
+  helpBack: '← DaysToCitizen ਤੇ ਵਾਪਸ',
+  helpCtaTitle: 'ਆਪਣੇ ਦਿਨਾਂ ਨੂੰ ਟਰੈਕ ਕਰਨਾ ਸ਼ੁਰੂ ਕਰੋ',
+  helpCtaSubtitle: 'ਮੁਫਤ, ਨਿੱਜੀ, ਕੋਈ ਸੈਟਅਪ ਨਹੀਂ। 23 ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਕੰਮ ਕਰਦਾ ਹੈ।',
+  helpOpenApp: 'DaysToCitizen ਖੋਲੋ →',
+};

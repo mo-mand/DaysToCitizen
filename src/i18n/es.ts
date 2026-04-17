@@ -95,6 +95,11 @@ const es: Translations = {
   footerBuiltBy: 'Creado por',
   footerOpenSource: 'Código abierto',
   footerDisclaimer: 'Solo de referencia — siempre consulta a IRCC.',
-};
 
-export default es;
+
+  // Help page
+  helpBack: '← Volver a DaysToCitizen',
+  helpCtaTitle: 'Empieza a registrar tus días',
+  helpCtaSubtitle: 'Gratis, privado y sin configuración. Funciona en 23 idiomas.',
+  helpOpenApp: 'Abrir DaysToCitizen →',
+};

@@ -95,6 +95,11 @@ const gu: Translations = {
   footerBuiltBy: 'દ્વારા બનાવ્યું',
   footerOpenSource: 'ઓપન સોર્સ',
   footerDisclaimer: 'ફક્ત સંદર્ભ માટે — હંમેશા IRCC સલાહ લો.',
-};
 
-export default gu;
+
+  // Help page
+  helpBack: '← DaysToCitizen પર પાછા',
+  helpCtaTitle: 'તમારા દિવસો ટ્રેક કરવાનું શરૂ કરો',
+  helpCtaSubtitle: 'મફત, ખાનગી, કોઈ સેટઅપ નહીં. 23 ભાષાઓમાં કામ કરે છે.',
+  helpOpenApp: 'DaysToCitizen ખોલો →',
+};

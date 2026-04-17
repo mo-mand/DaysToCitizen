@@ -95,6 +95,11 @@ const de: Translations = {
   footerBuiltBy: 'Erstellt von',
   footerOpenSource: 'Open Source',
   footerDisclaimer: 'Nur Referenz — immer IRCC konsultieren.',
-};
 
-export default de;
+
+  // Help page
+  helpBack: '← Zurück zu DaysToCitizen',
+  helpCtaTitle: 'Beginnen Sie, Ihre Tage zu verfolgen',
+  helpCtaSubtitle: 'Kostenlos, privat, keine Einrichtung. Funktioniert in 23 Sprachen.',
+  helpOpenApp: 'DaysToCitizen öffnen →',
+};

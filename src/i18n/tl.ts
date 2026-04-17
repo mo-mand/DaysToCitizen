@@ -95,6 +95,11 @@ const tl: Translations = {
   footerBuiltBy: 'Ginawa ni',
   footerOpenSource: 'Open source',
   footerDisclaimer: 'Para sa sanggunian lamang — laging kumonsulta sa IRCC.',
-};
 
-export default tl;
+
+  // Help page
+  helpBack: '← Bumalik sa DaysToCitizen',
+  helpCtaTitle: 'Simulan ang pagsubaybay ng iyong mga araw',
+  helpCtaSubtitle: 'Libre, pribado, walang setup. Gumagana sa 23 wika.',
+  helpOpenApp: 'Buksan ang DaysToCitizen →',
+};
