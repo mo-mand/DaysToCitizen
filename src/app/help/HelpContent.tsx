@@ -128,7 +128,24 @@ export default function HelpContentComponent() {
       {/* FAQ */}
       <Section title={t.faq.title}>
         <Q q={t.faq.q1}><p>{t.faq.a1}</p></Q>
-        <Q q={t.faq.q2}><p>{t.faq.a2}</p></Q>
+        <Q q={t.faq.q2}>
+          <p>{t.faq.a2}</p>
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-3">
+            <p className="text-green-800 font-semibold text-sm mb-2">
+              {(t.faq as Record<string, string>).a2ExampleTitle ?? 'Example'}
+            </p>
+            <ul className="text-green-700 text-sm space-y-1.5">
+              <li className="flex gap-2">
+                <span className="font-bold flex-shrink-0">①</span>
+                <span>{(t.faq as Record<string, string>).a2ExampleLine1 ?? 'Jan 2023 – Mar 2024 → Select "Other Status" (visa/work/student). These 15 months count at the 2-for-1 rate.'}</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="font-bold flex-shrink-0">②</span>
+                <span>{(t.faq as Record<string, string>).a2ExampleLine2 ?? 'Mar 2024 – Jan 2026 → Select "Permanent Resident". These 22 months count in full (1:1).'}</span>
+              </li>
+            </ul>
+          </div>
+        </Q>
         <Q q={t.faq.q3}><p>{t.faq.a3}</p></Q>
         <Q q={t.faq.q4}><p>{t.faq.a4}</p></Q>
         <Q q={t.faq.q5}><p>{t.faq.a5}</p></Q>

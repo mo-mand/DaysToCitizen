@@ -17,17 +17,9 @@ export async function POST(req: NextRequest) {
 
   try {
     await saveOtp(normalized, code, expiresAt);
-  } catch (e) {
-    const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
-    return NextResponse.json({ error: `saveOtp failed — ${msg}` }, { status: 500 });
-  }
-
-  try {
     await sendOtpEmail(normalized, code);
-  } catch (e) {
-    const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
-    return NextResponse.json({ error: `sendEmail failed — ${msg}` }, { status: 500 });
+    return NextResponse.json({ sent: true });
+  } catch {
+    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 });
   }
-
-  return NextResponse.json({ sent: true });
 }
