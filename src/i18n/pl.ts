@@ -87,6 +87,7 @@ const pl: Translations = {
   how2: 'Dni jako stały rezydent liczą się w pełni (1:1).',
   how3: 'Dni z innym statusem (turysta, zezwolenie na pracę, studia) liczą się jako połowa (1:0,5), max. 365 dni.',
   how4: 'Uwzględniane są tylko ostatnie 5 lat — okno przesuwa się każdego dnia.',
+  prCardNote: 'Jeśli zostałeś Stałym Rezydentem, będąc już w Kanadzie na innym statusie, podziel ten okres na dwa oddzielne pobyty — jeden kończący się w dniu wydania karty PR, drugi rozpoczynający się od tej daty. Używana jest data wydrukowana na odwrocie karty PR.',
   disclaimer: 'To narzędzie służy wyłącznie jako punkt odniesienia. Zawsze weryfikuj z oficjalnymi wytycznymi IRCC.',
   errorRequired: 'To pole jest wymagane.',
   errorDates: 'Data zakończenia musi być po dacie rozpoczęcia.',

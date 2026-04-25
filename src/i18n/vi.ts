@@ -87,6 +87,7 @@ const vi: Translations = {
   how2: 'Ngày với tư cách thường trú nhân được tính đầy đủ (1:1).',
   how3: 'Ngày với bất kỳ trạng thái nào khác (khách thăm, giấy phép lao động, học tập) được tính một nửa (1:0,5), tối đa 365 ngày.',
   how4: 'Chỉ 5 năm gần nhất được xét — cửa sổ tính toán cập nhật mỗi ngày.',
+  prCardNote: 'Nếu bạn trở thành Thường trú nhân trong khi đã ở Canada với tư cách di trú khác, hãy chia khoảng thời gian đó thành hai lần lưu trú riêng biệt — một lần kết thúc vào ngày trên thẻ PR và một lần bắt đầu từ ngày đó. Ngày in trên mặt sau thẻ PR của bạn được sử dụng.',
   disclaimer: 'Công cụ này chỉ để tham khảo. Luôn xác minh với hướng dẫn chính thức của IRCC trước khi nộp đơn.',
   errorRequired: 'Trường này là bắt buộc.',
   errorDates: 'Ngày kết thúc phải sau ngày bắt đầu.',

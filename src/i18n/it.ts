@@ -87,6 +87,7 @@ const it: Translations = {
   how2: 'I giorni come Residente Permanente contano per intero (1:1).',
   how3: 'I giorni con qualsiasi altro stato (visitatore, permesso di lavoro, studio) contano a metà (1:0,5), massimo 365 giorni.',
   how4: 'Vengono considerati solo gli ultimi 5 anni — la finestra avanza ogni giorno.',
+  prCardNote: 'Se sei diventato Residente Permanente mentre eri già in Canada con un altro status, dividi quel periodo in due soggiorni separati — uno che termina alla data della tua carta di RP e uno che inizia da quella data. Viene utilizzata la data stampata sul retro della tua carta di RP.',
   disclaimer: 'Questo strumento è solo di riferimento. Verifica sempre con le linee guida ufficiali dell\'IRCC.',
   errorRequired: 'Questo campo è obbligatorio.',
   errorDates: 'La data di fine deve essere successiva alla data di inizio.',

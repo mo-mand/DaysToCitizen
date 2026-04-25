@@ -131,15 +131,15 @@ export default function HelpContentComponent() {
         <Q q={t.faq.q2}>
           <p>{t.faq.a2}</p>
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-3">
-            <p className="text-green-800 font-semibold text-sm mb-2">Example</p>
+            <p className="text-green-800 font-semibold text-sm mb-2">{t.faq.a2ExampleTitle}</p>
             <ul className="text-green-700 text-sm space-y-1.5">
               <li className="flex gap-2">
                 <span className="font-bold flex-shrink-0">①</span>
-                <span>Jan 2023 – Mar 2024 → Select &quot;Other Status&quot; (visa/work/student). These 15 months count at the 2-for-1 rate.</span>
+                <span>{t.faq.a2ExampleLine1}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold flex-shrink-0">②</span>
-                <span>Mar 2024 – Jan 2026 → Select &quot;Permanent Resident&quot;. These 22 months count in full (1:1).</span>
+                <span>{t.faq.a2ExampleLine2}</span>
               </li>
             </ul>
           </div>

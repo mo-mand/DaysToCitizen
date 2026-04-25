@@ -87,6 +87,7 @@ const tr: Translations = {
   how2: 'Daimi oturma izni (PR) sahibi olarak geçirilen günler tam sayılır (1:1).',
   how3: 'Diğer statülerdeki (ziyaretçi, çalışma izni, öğrenci) günler yarım sayılır (1:0,5), en fazla 365 gün.',
   how4: 'Yalnızca son 5 yıl dikkate alınır — pencere her gün ilerler.',
+  prCardNote: 'Kanada\'da zaten başka bir statüyle bulunurken Daimi Oturum İzni sahibi olduysanız, bu dönemi iki ayrı kalışa bölün — biri PR kartınızın tarihinde sona eren, diğeri bu tarihten başlayan. PR kartınızın arkasında yazılı olan tarih kullanılır.',
   disclaimer: 'Bu araç yalnızca referans amaçlıdır. Başvurmadan önce IRCC resmi kılavuzlarını kontrol edin.',
   errorRequired: 'Bu alan zorunludur.',
   errorDates: 'Bitiş tarihi başlangıç tarihinden sonra olmalıdır.',

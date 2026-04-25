@@ -87,6 +87,7 @@ const ro: Translations = {
   how2: 'Zilele ca Rezident Permanent sunt socotite integral (1:1).',
   how3: 'Zilele cu alt statut (vizitator, permis de muncă, studii) se socotesc la jumătate (1:0,5), max. 365 zile.',
   how4: 'Sunt luați în considerare doar ultimii 5 ani — fereastra avansează zilnic.',
+  prCardNote: 'Dacă ați devenit Rezident Permanent în timp ce vă aflați deja în Canada cu un alt statut, împărțiți acea perioadă în două sejururi separate — unul care se termină la data cardului dvs. de RP și unul care începe de la acea dată. Se folosește data tipărită pe spatele cardului dvs. de RP.',
   disclaimer: 'Acest instrument este doar de referință. Verificați întotdeauna ghidurile oficiale IRCC.',
   errorRequired: 'Acest câmp este obligatoriu.',
   errorDates: 'Data de sfârșit trebuie să fie după data de început.',

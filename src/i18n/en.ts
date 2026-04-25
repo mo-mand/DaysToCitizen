@@ -104,6 +104,7 @@ const en = {
   how2: 'Days as a Permanent Resident count in full (1:1).',
   how3: 'Days under any other status (visitor, work, study) count as half (1:0.5), up to a maximum of 365 credited days.',
   how4: 'Only the last 5 years are considered — the window rolls forward every day.',
+  prCardNote: 'If you became a Permanent Resident while already in Canada on another status, split that period into two separate stays — one ending on your PR card date, one starting from it. The date printed on the back of your PR card is used.',
   disclaimer: 'This tool is for reference only. Always verify with official IRCC guidelines before applying.',
 
   // Errors

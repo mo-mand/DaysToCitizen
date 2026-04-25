@@ -175,9 +175,7 @@ export default function Home() {
           {/* PR transition note */}
           <li className="flex items-start gap-2 text-sm text-green-700 pt-2 border-t border-gray-100 mt-1">
             <span className="text-green-500 font-bold mt-0.5 flex-shrink-0">✦</span>
-            <span>
-              If you became a Permanent Resident while already in Canada on another visa, split that period into two separate stays — one ending on your PR card date, one starting from it. The date printed on the back of your PR card is used.
-            </span>
+            <span>{t.prCardNote}</span>
           </li>
           {/* Prohibitions warning */}
           <li className="flex items-start gap-2 text-sm text-blue-700 pt-2 border-t border-gray-100 mt-1">

@@ -96,6 +96,7 @@ const fr: Translations = {
   how2: 'Les jours en tant que résident permanent comptent en totalité (1:1).',
   how3: 'Les jours sous tout autre statut (visiteur, permis de travail, étude) comptent à moitié (1:0.5), jusqu\'à un maximum de 365 jours crédités.',
   how4: 'Seules les 5 dernières années sont prises en compte — la fenêtre avance chaque jour.',
+  prCardNote: 'Si vous êtes devenu résident permanent alors que vous étiez déjà au Canada avec un autre statut, divisez cette période en deux séjours distincts — l\'un se terminant à la date de votre carte de RP, l\'autre commençant à partir de cette date. La date imprimée au dos de votre carte de RP est utilisée.',
   disclaimer: 'Cet outil est fourni à titre indicatif uniquement. Vérifiez toujours auprès des directives officielles d\'IRCC avant de présenter une demande.',
 
   errorRequired: 'Ce champ est obligatoire.',

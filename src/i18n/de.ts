@@ -87,6 +87,7 @@ const de: Translations = {
   how2: 'Tage als Permanent Resident werden voll angerechnet (1:1).',
   how3: 'Tage mit anderem Status (Besucher, Arbeitserlaubnis, Studium) werden als halbe Tage angerechnet (1:0,5), max. 365 Tage.',
   how4: 'Nur die letzten 5 Jahre werden berücksichtigt — das Fenster verschiebt sich täglich.',
+  prCardNote: 'Wenn Sie Permanent Resident wurden, während Sie bereits mit einem anderen Status in Kanada waren, teilen Sie diesen Zeitraum in zwei separate Aufenthalte auf — einer endet am Ausstellungsdatum Ihrer PR-Karte, der andere beginnt ab diesem Datum. Das auf der Rückseite Ihrer PR-Karte aufgedruckte Datum wird verwendet.',
   disclaimer: 'Dieses Tool dient nur als Referenz. Prüfen Sie immer die offiziellen IRCC-Richtlinien.',
   errorRequired: 'Dieses Feld ist erforderlich.',
   errorDates: 'Das Enddatum muss nach dem Startdatum liegen.',

@@ -87,6 +87,7 @@ const es: Translations = {
   how2: 'Los días como Residente Permanente cuentan completos (1:1).',
   how3: 'Los días con otro estatus (visitante, permiso de trabajo, estudio) cuentan como medio día (1:0.5), máximo 365 días.',
   how4: 'Solo se consideran los últimos 5 años — la ventana avanza cada día.',
+  prCardNote: 'Si se convirtió en Residente Permanente mientras ya estaba en Canadá con otro estatus, divida ese período en dos estancias separadas — una que termina en la fecha de su tarjeta de RP y otra que comienza desde esa fecha. Se utiliza la fecha impresa en el reverso de su tarjeta de RP.',
   disclaimer: 'Esta herramienta es solo de referencia. Siempre verifica con las directrices oficiales de IRCC.',
   errorRequired: 'Este campo es requerido.',
   errorDates: 'La fecha de fin debe ser posterior a la fecha de inicio.',

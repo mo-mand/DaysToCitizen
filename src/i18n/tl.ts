@@ -87,6 +87,7 @@ const tl: Translations = {
   how2: 'Ang mga araw bilang Permanent Resident ay bibilangin nang buo (1:1).',
   how3: 'Ang mga araw sa anumang ibang status (bisita, work permit, estudyante) ay bibilangin nang kalahati (1:0.5), hanggang 365 araw.',
   how4: 'Ang huling 5 taon lamang ang isinasaalang-alang — ang window ay sumusulong araw-araw.',
+  prCardNote: 'Kung naging Permanenteng Residente ka habang nasa Canada ka na sa ibang katayuan, hatiin ang panahon na iyon sa dalawang magkahiwalay na pananatili — isa na nagtatapos sa petsa ng iyong PR card at isa na nagsisimula mula sa petsang iyon. Ginagamit ang petsang nakalimbag sa likod ng iyong PR card.',
   disclaimer: 'Ang tool na ito ay para sa sanggunian lamang. Laging i-verify sa opisyal na mga alituntunin ng IRCC.',
   errorRequired: 'Kinakailangan ang field na ito.',
   errorDates: 'Ang petsa ng katapusan ay dapat pagkatapos ng petsa ng simula.',
