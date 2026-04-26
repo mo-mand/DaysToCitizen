@@ -11,7 +11,7 @@ export function Footer() {
         <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
           <span>{t.footerBuiltBy}</span>
           <a
-            href="https://github.com/mo-mand"
+            href="https://momand.cloud/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
@@ -19,16 +19,7 @@ export function Footer() {
             Mo Mand
           </a>
           <span className="text-gray-300">·</span>
-          <a
-            href="https://www.linkedin.com/in/mo-mand/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-700 transition-colors"
-          >
-            LinkedIn
-          </a>
-          <span className="text-gray-300">·</span>
-          <a
+          <
             href="https://github.com/mo-mand/daystocitizen"
             target="_blank"
             rel="noopener noreferrer"
