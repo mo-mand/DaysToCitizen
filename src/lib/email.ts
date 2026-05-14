@@ -17,7 +17,7 @@ export async function sendOtpEmail(to: string, code: string): Promise<void> {
   const { Resend } = await import('resend');
   const resend = new Resend(key);
 
-  await resend.emails.send({
+  const result = await resend.emails.send({
     from: FROM,
     to,
     subject: `Your DaysToCitizen verification code: ${code}`,
@@ -42,4 +42,8 @@ export async function sendOtpEmail(to: string, code: string): Promise<void> {
       </div>
     `,
   });
+
+  if (result.error) {
+    throw new Error(`Resend error: ${result.error.name ?? 'unknown'} — ${result.error.message ?? JSON.stringify(result.error)}`);
+  }
 }
