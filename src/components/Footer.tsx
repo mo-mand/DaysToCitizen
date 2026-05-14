@@ -19,7 +19,7 @@ export function Footer() {
             Mo Mand
           </a>
           <span className="text-gray-300">·</span>
-          <
+          <a
             href="https://github.com/mo-mand/daystocitizen"
             target="_blank"
             rel="noopener noreferrer"
