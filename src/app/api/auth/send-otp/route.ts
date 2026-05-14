@@ -17,9 +17,20 @@ export async function POST(req: NextRequest) {
 
   try {
     await saveOtp(normalized, code, expiresAt);
-    await sendOtpEmail(normalized, code);
-    return NextResponse.json({ sent: true });
-  } catch {
-    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 });
+  } catch (e) {
+    const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+    return NextResponse.json({ error: `saveOtp failed — ${msg}` }, { status: 500 });
   }
+
+  const hasKey = !!process.env.RESEND_API_KEY;
+  const from = process.env.EMAIL_FROM ?? '(default)';
+
+  try {
+    await sendOtpEmail(normalized, code);
+  } catch (e) {
+    const msg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+    return NextResponse.json({ error: `sendEmail failed — ${msg}`, hasKey, from }, { status: 500 });
+  }
+
+  return NextResponse.json({ sent: true, hasKey, from });
 }
